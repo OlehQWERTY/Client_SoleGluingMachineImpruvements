@@ -5,15 +5,6 @@
 
 windows
 
-cd C:\Git\Client_SoleGluingMachineImpruvements
-
-C:\path\to\app>set FLASK_APP=main.py
-
-
-PS C:\path\to\app> $env:FLASK_APP = "client.py"
-or
-python -m flask:
-
-flask run
+cd C:\Git\Client_SoleGluingMachineImpruvements && set FLASK_APP=main.py && flask run
 
 * Running on http://127.0.0.1:5000/

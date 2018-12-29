@@ -8,8 +8,8 @@ from flask import render_template
 def h_main():
 	return 'Main, page!'
 
-@app.route('/machines/')
-@app.route('/hello1/<name>')
-def hello1(name=None):
+@app.route('/machine/')
+@app.route('/machie/<name>')
+def machine(name=None):  #name=None
 	# name = "name"
-	return render_template('index.html', name=name)  # , name="name"
+	return render_template('machine.html', name=name)  # , name=name , name="name"
