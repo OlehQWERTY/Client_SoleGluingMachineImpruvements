@@ -7,7 +7,7 @@ windows
 
 cd C:\Git\Client_SoleGluingMachineImpruvements
 
-C:\path\to\app>set FLASK_APP=client.py
+C:\path\to\app>set FLASK_APP=main.py
 
 
 PS C:\path\to\app> $env:FLASK_APP = "client.py"
