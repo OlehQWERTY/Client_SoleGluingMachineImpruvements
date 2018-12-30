@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    {% block head %}
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,16 +13,19 @@
 
     <link rel="import" href="import/doc.html">
 
-    <title>{% block title %}{% endblock %} - My Webpage</title>
-    {% endblock %}
+    <title>{% block title %}{% endblock title %} - Controller</title>
+
+    {% block head %}
+
+    {% endblock head %}
+
   </head>
   <body>
 
     <div id="topMenu">
-      {% block topBar %}
         <div data-include='1.html'></div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Controller</a>
+        <a class="navbar-brand" href="/">Controller</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,23 +36,23 @@
               <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
             <!--</li>-->
             <li class="nav-item">
-              <a class="nav-link" href="tasks">Tasks</a>
+              <a class="nav-link" href="/task">Task</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Machine
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="machine1">Machine #1</a>
-                <a class="dropdown-item" href="machine2">Machine #2</a>
-                <a class="dropdown-item" href="machine3">Machine #3</a>
-                <a class="dropdown-item" href="machine4">Machine #4</a>
-                <a class="dropdown-item" href="machine5">Machine #5</a>
-                <a class="dropdown-item" href="machine6">Machine #6</a>
-                <a class="dropdown-item" href="machine7">Machine #7</a>
-                <a class="dropdown-item" href="machine8">Machine #8</a>
+                <a class="dropdown-item" href="/machine/1">Machine #1</a>
+                <a class="dropdown-item" href="/machine/2">Machine #2</a>
+                <a class="dropdown-item" href="/machine/3">Machine #3</a>
+                <a class="dropdown-item" href="/machine/4">Machine #4</a>
+                <a class="dropdown-item" href="/machine/5">Machine #5</a>
+                <a class="dropdown-item" href="/machine/6">Machine #6</a>
+                <a class="dropdown-item" href="/machine/7">Machine #7</a>
+                <a class="dropdown-item" href="/machine/8">Machine #8</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">All machines</a>
+                <a class="dropdown-item" href="/machine">All machines</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
               </div>
             </li>
 
@@ -73,74 +76,19 @@
             </div>
         </div>
         </nav>
-      {% endblock %}
+
+      {% block topBar %}
+
+      {% endblock topBar %}
+
     </div>
 
-    <div id = inputMachineParam>
-      {% block machineParam %}
-                <!--форма ввода-->
-        <form class="needs-validation" novalidate>
-          <div class="form-row">
-            <div class="col-md-4 mb-3">
-              <label for="validationTooltip01">Имя</label>
-              <input type="text" class="form-control" id="validationTooltip01" placeholder="Имя" value="Mark" required>
-              <div class="valid-tooltip">
-                Looks good!
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationTooltip02">Фамилия</label>
-              <input type="text" class="form-control" id="validationTooltip02" placeholder="Фамилия" value="Otto" required>
-              <div class="valid-tooltip">
-                Looks good!
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationTooltipUsername">Имя пользователя</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-                </div>
-                <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Имя пользователя" aria-describedby="validationTooltipUsernamePrepend" required>
-                <div class="invalid-tooltip">
-                  Please choose a unique and valid username.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="validationTooltip03">City</label>
-              <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
-              <div class="invalid-tooltip">
-                Please provide a valid city.
-              </div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationTooltip04">State</label>
-              <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>
-              <div class="invalid-tooltip">
-                Please provide a valid state.
-              </div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationTooltip05">Zip</label>
-              <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-              <div class="invalid-tooltip">
-                Please provide a valid zip.
-              </div>
-            </div>
-          </div>
-          <button class="btn btn-primary" type="submit">Submit form</button>
-        </form>
-      {% endblock %}
-    </div>
+    <div id="content">{% block content %}{% endblock content %}</div>
 
-    <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">
       {% block footer %}
-      &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
-      {% endblock %}
+      &copy; Copyright 2018 by <a href="https://www.facebook.com/oleg.gordiichenko/">you</a>.
+      {% endblock footer %}
     </div>
   </body>
 </html>

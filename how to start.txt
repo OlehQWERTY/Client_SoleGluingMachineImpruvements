@@ -1,9 +1,13 @@
 # $ pip install Flask
-# $ FLASK_APP=client.py flask run
-#  * Running on http://localhost:5000/
+
+Linux:
+
+cd ~/git/Client_leGluingMachineImpruvements/ && FLASK_APP=main.py flask run
+
+* Running on http://localhost:5000/
 
 
-windows
+Windows:
 
 cd C:\Git\Client_SoleGluingMachineImpruvements && set FLASK_APP=main.py && flask run
 
