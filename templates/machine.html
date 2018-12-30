@@ -8,30 +8,52 @@
     .important { color: #336699; }
   </style>
 {% endblock head %}
- 
-{% block topBar %}
-  {{ super() }}
-{% endblock topBar%}
 
 {% block content %}
 	<!--форма ввода-->
-  <div id = inputMachineParam>
+  <div id = "inputMachineParam">
     <form class="needs-validation" novalidate>
+    	<div class="form-row">
+    		 
+    		 <div class="btn-group btn-group-toggle" data-toggle="buttons" id = "languageSelector" style="height: 50px; margin-top: 20px">
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> En
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> Uk
+                  </label>
+            </div>
+
+    		<div class="col-md-1 mb-3">
+				  <div class="form-group">
+				    <label for="exampleFormControlSelect1"> Кількість позицій</label>
+				    <select class="form-control" id="exampleFormControlSelect1">
+				      <option>4</option>
+				      <option>6</option>
+				      <option>8</option>
+				    </select>
+				  </div>
+				</div>
+			</div>
+
       <div class="form-row">
+        
         <div class="col-md-4 mb-3">
-          <label for="validationTooltip01">Имя</label>
+          <label for="validationTooltip02">Имя</label>
           <input type="text" class="form-control" id="validationTooltip01" placeholder="Имя" value="Mark" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
         </div>
+
         <div class="col-md-4 mb-3">
-          <label for="validationTooltip02">Фамилия</label>
+          <label for="validationTooltip03">Фамилия</label>
           <input type="text" class="form-control" id="validationTooltip02" placeholder="Фамилия" value="Otto" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
         </div>
+
         <div class="col-md-4 mb-3">
           <label for="validationTooltipUsername">Имя пользователя</label>
           <div class="input-group">
@@ -45,6 +67,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-row">
         <div class="col-md-6 mb-3">
           <label for="validationTooltip03">City</label>
@@ -72,3 +95,25 @@
     </form>
   </div>
 {% endblock content %}
+
+
+    RecID int auto_increment primary key,
+    UnitID varchar(255),
+    Articul varchar(255),
+    ProcessID varchar(255),
+    ProcessIDsDescription varchar(255),
+    OperatorName varchar(255),
+    OperationDate varchar(255),
+    Pull varchar(255),
+    OrderNumber varchar(255),
+    LocalNumber varchar(255),
+    PartLocalNumber varchar(255),
+    ReadyDate varchar(255),
+    CountryOrder varchar(255),
+    CityOrder varchar(255),
+    PlantOrder varchar(255),
+    DateEntered varchar(255),
+    RequiredRDate varchar(255),
+    CountryProd varchar(255),
+    CityProd varchar(255),
+    QR varchar(255),
