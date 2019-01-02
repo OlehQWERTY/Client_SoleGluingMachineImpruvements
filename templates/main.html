@@ -1,19 +1,28 @@
 {% extends "base.html" %}
 
 {% block title %}Main page{% endblock title %}
-<!-- 
+
 {% block head %}
   {{ super() }}
   <style type="text/css">
     .important { color: #336699; }
   </style>
-{% endblock head %} -->
-<!-- 
-{% block topBar %}
-  {{ super() }}
-{% endblock topBar%}
- -->
-<!-- {% block machineParam %}
-  {{ super() }}
-{% endblock machineParam %} -->
-<!-- 
+{% endblock head %}
+
+{% block content %}
+  <center> <font color="red"><h2 color = red>This is the main page. Currently it is not finnished and started only to try it out. Developers aren't responsible for any damege or problems caused by this app.</h2></font>
+  <h4>How to use:</h4> </center>
+  <li>Task -> Add - for adding new task in task list;</li>
+  <li>Task -> List - to see all tasks list or additing task list;</li>
+  <li>Machine -> Machine # - to see Machine # task list and current progress.</li>
+
+
+  <center> <font color="red"><h2 color = red>Ви знаходитесь на головній сторінці. Дана система контролю не завершена та працює в тестовому режимі. Розробники не несуть відповідальності за жодні збитки чи пошкодження викликані цим програмним продуктом.</h2></font>
+  <h4>Як використовувати:</h4> </center>
+  <ul>
+  <li>Task -> Add - для додавання нових завдань в список завдань;</li>
+  <li>Task -> List - для перегляду поточних завдань або їх редагування;</li>
+  <li>Machine -> Machine # - для перегляду завдань та їх поточного прогресу на машині з номером #.</li>
+	</ul>
+
+{% endblock content %}

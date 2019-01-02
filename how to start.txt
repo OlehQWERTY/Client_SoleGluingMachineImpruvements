@@ -1,5 +1,12 @@
 # $ pip install Flask
 
+start debug:
+
+windows:
+set FLASK_DEBUG=1
+linux:
+replase set with ... 
+
 Linux:
 
 cd ~/git/Client_leGluingMachineImpruvements/ && FLASK_APP=main.py flask run

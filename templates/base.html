@@ -89,11 +89,26 @@
 
     </div>
 
-    <div id="content" class="container">{% block content %}{% endblock content %}</div>
+    <div id="content" class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
 
+      {% block content %}
+        <!-- some content -->
+      {% endblock content %}
+
+    </div>
+    
     <div id="footer">
       {% block footer %}
-      &copy; Copyright 2018 by <a href="https://www.facebook.com/oleg.gordiichenko/">you</a>.
+      <center>&copy; Copyright 2018 by <a href="https://www.facebook.com/oleg.gordiichenko/">Oleg</a>.<center>
       {% endblock footer %}
     </div>
   </body>
