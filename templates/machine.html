@@ -10,6 +10,12 @@
 {% endblock head %}
 
 {% block content %}
+  {% if number %}
+    <h2>Machine {{ number }}</h2>
+    <h2> {{ machines[number] }} </h2>
+  {% else %}
+    <h2>All machines</h2>
+  {% endif %}
 	<!--форма ввода-->
   <div id = "inputMachineParam">
     <form class="needs-validation" novalidate>

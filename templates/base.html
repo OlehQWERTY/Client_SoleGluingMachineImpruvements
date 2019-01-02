@@ -25,7 +25,7 @@
     <div id="topMenu">
         <div data-include='1.html'></div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Controller</a>
+        <a class="navbar-brand" href="{{url_for('home')}}">Controller</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,8 +40,8 @@
                 Task
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/task/add">Add</a>
-                <a class="dropdown-item" href="/task/list">List</a>
+                <a class="dropdown-item" href="{{url_for('taskAddP')}}">Add</a>
+                <a class="dropdown-item" href="{{url_for('taskP')}}">List</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -58,7 +58,7 @@
                 <a class="dropdown-item" href="/machine/7">Machine #7</a>
                 <a class="dropdown-item" href="/machine/8">Machine #8</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/machine">All machines</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
+                <a class="dropdown-item" href="{{url_for('machineP')}}">All machines</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
               </div>
             </li>
 
@@ -72,7 +72,7 @@
             <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
           <!--</form>-->
 
-            <div class="btn-group btn-group-toggle" data-toggle="buttons" id = "languageSelector">
+            <div class="btn-group btn-group-sm btn-group-toggle btn-sm" data-toggle="buttons" id = "languageSelector">
                   <label class="btn btn-secondary active">
                     <input type="radio" name="options" id="option1" autocomplete="off" checked> En
                   </label>
@@ -80,6 +80,9 @@
                     <input type="radio" name="options" id="option2" autocomplete="off"> Uk
                   </label>
             </div>
+            
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Log in</a><!-- <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg active btn-sm disabled" role="button" aria-pressed="true">Log in</a> -->
+           
         </div>
         </nav>
 

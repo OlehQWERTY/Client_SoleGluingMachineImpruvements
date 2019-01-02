@@ -1,8 +1,10 @@
 from app import app
 # from flask import render_template
 
-from flask import Flask, render_template, url_for, flash, redirect
+from flask import Flask, render_template, url_for, flash, redirect, abort, Response
 from forms import RegistrationForm, LoginForm
+
+from time import time
 
 # app = Flask(__name__)
 # app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -54,6 +56,21 @@ tasks = [
     }
 ]
 
+# machines = [
+# 	{
+# 		1: 4,
+# 		2: 4,
+# 		3: 6,
+# 		4: 4,
+# 		5: 4,
+# 		6: 6,
+# 		7: 4,
+# 		8: 6
+# 	}
+# ]
+
+machines = [4, 4, 6, 4, 4, 6, 4, 6]
+
 @app.route('/')
 def home():
 	return render_template('main.html')
@@ -61,9 +78,9 @@ def home():
 
 
 @app.route('/machine/')
-@app.route('/machine/<name>')
-def machineP(name=None):  #name=None
-	return render_template('machine.html', name=name)  # , name=name , name="name"
+@app.route('/machine/<number>')
+def machineP(number=None):  #name=None
+	return render_template('machine.html', number=number, machines=machines)  # , name=name , name="name"
 
 
 @app.route('/task/')
@@ -79,7 +96,7 @@ def taskAddP():
 
 
 @app.route("/register", methods=['GET', 'POST'])
-def register():
+def register(): 
     form = RegistrationForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
@@ -89,6 +106,7 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    global loggedIn
     form = LoginForm()
     if form.validate_on_submit():
         if form.email.data == 'admin@controller.com' and form.password.data == '1234':
@@ -96,5 +114,6 @@ def login():
             return redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
+            # abort(401)
     return render_template('login.html', title='Login', form=form)
 
