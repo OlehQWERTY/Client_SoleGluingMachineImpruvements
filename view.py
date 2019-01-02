@@ -56,20 +56,20 @@ tasks = [
     }
 ]
 
-# machines = [
-# 	{
-# 		1: 4,
-# 		2: 4,
-# 		3: 6,
-# 		4: 4,
-# 		5: 4,
-# 		6: 6,
-# 		7: 4,
-# 		8: 6
-# 	}
-# ]
+machines = [
+	{
+		'1': 4,
+		'2': 4,
+		'3': 6,
+		'4': 4,
+		'5': 4,
+		'6': 6,
+		'7': 4,
+		'8': 6
+	}
+]
 
-machines = [4, 4, 6, 4, 4, 6, 4, 6]
+# machines = [4, 4, 6, 4, 4, 6, 4, 6]
 
 @app.route('/')
 def home():
@@ -79,8 +79,13 @@ def home():
 
 @app.route('/machine/')
 @app.route('/machine/<number>')
-def machineP(number=None):  #name=None
-	return render_template('machine.html', number=number, machines=machines)  # , name=name , name="name"
+def machineP(number=None):
+	if number and number > 8:
+		current_pos_ammount = None
+	else:
+		current_pos_ammount = machines[0][str(number)
+
+	return render_template('machine.html', number=number, machines=current_pos_ammount)  # , name=name , name="name" [0][number]
 
 
 @app.route('/task/')
