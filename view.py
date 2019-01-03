@@ -56,7 +56,7 @@ tasks = [
 	}
 ]
 
-machines = [
+machines = [  # from machines config db
 	{
 		'1': 4,
 		'2': 4,
@@ -69,7 +69,18 @@ machines = [
 	}
 ]
 
-# machines = [4, 4, 6, 4, 4, 6, 4, 6]
+mProgress = [  # test temp: before db'll be added
+	{
+		'1': [1, 40],'1': [2, 40],'1': [3, 40],'1': [4, 40],
+		'2': [1, 50],'2': [2, 50],'2': [3, 50],'2': [4, 50],
+		'3': [1, 68],'3': [2, 68],'3': [3, 68],'3': [4, 68],'3': [5, 68],'3': [6, 68],
+		'4': [1, 90],'4': [2, 90],'4': [3, 90],'4': [4, 90],
+		'5': [1, 80],'5': [2, 80],'5': [3, 80],'5': [4, 80],
+		'6': [1, 46],'6': [2, 46],'6': [3, 46],'6': [4, 46],'6': [5, 46],'6': [6, 46],
+		'7': [1, 10],'7': [2, 10],'7': [3, 10],'7': [4, 10],
+		'8': [1, 100],'8': [2, 100],'8': [3, 100],'8': [4, 100],'8': [5, 100],'8': [6, 100]
+	}
+]
 
 @app.route('/')
 def home():
@@ -89,7 +100,7 @@ def machineP(number=None):
 
 @app.route('/machine/all')
 def machineAll():
-	return render_template('machineAll.html')
+	return render_template('machineAll.html', machines=machines[0], mProgress=mProgress)
 
 
 @app.route('/task/')
