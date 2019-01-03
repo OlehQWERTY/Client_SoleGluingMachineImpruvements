@@ -10,16 +10,16 @@
 {% endblock head %}
 
 {% block content %}
-  {% if number %}
-    <h2>Machine {{ number }}</h2>
-    <h2> {{ machines }} </h2>
-  {% else %}
-    <h2>All machines</h2>
-  {% endif %}
+  <!-- {% if number %} -->
+    <center><h2>Machine {{ number }}</h2></center>
+    <!-- <h2> Pos: {{ machine }} </h2> -->
+  <!-- {% else %} -->
+    <!-- <h2>All machines</h2> -->
+  <!-- {% endif %} -->
 	<!--форма ввода-->
   <div id = "inputMachineParam">
     <form class="needs-validation" novalidate>
-    	<div class="form-row">
+<!--     	<div class="form-row">
     		 
     		 <div class="btn-group btn-group-toggle" data-toggle="buttons" id = "languageSelector" style="height: 50px; margin-top: 20px">
                   <label class="btn btn-secondary active">
@@ -40,27 +40,38 @@
 				    </select>
 				  </div>
 				</div>
-			</div>
+			</div> -->
 
       <div class="form-row">
         
         <div class="col-md-4 mb-3">
-          <label for="validationTooltip02">Имя</label>
-          <input type="text" class="form-control" id="validationTooltip01" placeholder="Имя" value="Mark" required>
-          <div class="valid-tooltip">
+          <label for="validationTooltip01">Им'я</label>
+          <input type="text" class="form-control" id="validationTooltip01" placeholder="Зоя" required>
+          <!-- <input type="text" class="form-control" id="validationTooltip01" placeholder="Им'я" value="Зоя" required> -->
+          <div class="invalid-tooltip">
             Looks good!
           </div>
         </div>
 
         <div class="col-md-4 mb-3">
-          <label for="validationTooltip03">Фамилия</label>
-          <input type="text" class="form-control" id="validationTooltip02" placeholder="Фамилия" value="Otto" required>
-          <div class="valid-tooltip">
+          <label for="validationTooltip02">Фамілія</label>
+          <input type="text" class="form-control" id="validationTooltip02" placeholder="Семенівна" required>
+          <!-- <div class="valid-invalid">  показувати підпис нижче при пустому полі -->
+          <div class="invalid-tooltip">
             Looks good!
           </div>
         </div>
 
         <div class="col-md-4 mb-3">
+          <label for="validationTooltip03">Зміна</label>
+          <input type="text" class="form-control" id="validationTooltip03" placeholder="Зміна" required>
+          <div class="invalid-tooltip">
+          <!-- <div class="valid-invalid"> -->
+            Looks good!
+          </div>
+        </div>
+
+<!--         <div class="col-md-4 mb-3">
           <label for="validationTooltipUsername">Имя пользователя</label>
           <div class="input-group">
             <div class="input-group-prepend">
@@ -71,32 +82,70 @@
               Please choose a unique and valid username.
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label for="validationTooltip03">City</label>
-          <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
+          <label for="validationTooltip04">City</label>
+          <input type="text" class="form-control" id="validationTooltip04" placeholder="Zhytomyr" required>
           <div class="invalid-tooltip">
             Please provide a valid city.
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationTooltip04">State</label>
-          <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>
+          <label for="validationTooltip05">State</label>
+          <input type="text" class="form-control" id="validationTooltip05" placeholder="Ukraine" required>
           <div class="invalid-tooltip">
             Please provide a valid state.
           </div>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="validationTooltip05">Zip</label>
-          <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
+          <label for="validationTooltip06">Plant id</label>
+          <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-1" required>
           <div class="invalid-tooltip">
-            Please provide a valid zip.
+            Please provide a valid plant id.
           </div>
         </div>
       </div>
+
+      <center><h3> Позиції: </h3></center>
+
+      {% for x in range(1, machine + 1) %}
+
+        <div class="form-row">
+          <div class="col-md-1 mb-3">
+            <label for="validationTooltip04">Позиція</label>
+            <input type="text" class="form-control" id="validationTooltip04" placeholder="{{ x }}" value="{{ x }}" readonly>
+            <div class="invalid-tooltip">
+              Please provide a valid position number.
+            </div>
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="validationTooltip04">Bunch</label>
+            <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required>
+            <div class="invalid-tooltip">
+              Please provide a valid city.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip05">Pull</label>
+            <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required>
+            <div class="invalid-tooltip">
+              Please provide a valid state.
+            </div>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="validationTooltip06">Local number</label>
+            <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required>
+            <div class="invalid-tooltip">
+              Please provide a valid plant id.
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+
       <button class="btn btn-primary" type="submit">Submit form</button>
     </form>
   </div>

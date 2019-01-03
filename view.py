@@ -10,50 +10,50 @@ from time import time
 # app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 tasks = [
-    {
-        'RecID': '1',
-	    'UnitID': '1',
-	    'Articul': 'Nasty',
-	    'ProcessID': '101',
-	    'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
-	    'OperatorName': 'Zoya Semenovna',
-	    'OperationDate': '17/11/18:17-25-36',
-	    'Pull': '197mljfuy',
-	    'OrderNumber': '145878925loi',
-	    'LocalNumber': '12',
-	    'PartLocalNumber': '4',
-	    'ReadyDate': '18/11/18:25-30-36',
-	    'CountryOrder': 'PL',
-	    'CityOrder': 'Lublin',
-	    'PlantOrder': 'RIF - 5',
-	    'DateEntered': '18/12/19:25-25-36',
-	    'RequiredRDate': '17/11/18:17-0-0',
-	    'CountryProd': 'UK',
-	    'CityProd': 'Kyiv',
-	    'QR': '186547'
-    },
-    {
-        'RecID': '1',
-	    'UnitID': '1',
-	    'Articul': 'Kate',
-	    'ProcessID': '101',
-	    'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
-	    'OperatorName': 'Zoya Semenovna',
-	    'OperationDate': '17/11/18:17-25-42',
-	    'Pull': '199poi',
-	    'OrderNumber': '199987',
-	    'LocalNumber': '13',
-	    'PartLocalNumber': '1',
-	    'ReadyDate': '18/11/18:25-30-36',
-	    'CountryOrder': 'PL',
-	    'CityOrder': 'Lublin',
-	    'PlantOrder': 'RIF - 5',
-	    'DateEntered': '18/12/19:25-25-36',
-	    'RequiredRDate': '17/11/18:17-0-0',
-	    'CountryProd': 'UK',
-	    'CityProd': 'Kyiv',
-	    'QR': '186551'
-    }
+	{
+		'RecID': '1',
+		'UnitID': '1',
+		'Articul': 'Nasty',
+		'ProcessID': '101',
+		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
+		'OperatorName': 'Zoya Semenovna',
+		'OperationDate': '17/11/18:17-25-36',
+		'Pull': '197mljfuy',
+		'OrderNumber': '145878925loi',
+		'LocalNumber': '12',
+		'PartLocalNumber': '4',
+		'ReadyDate': '18/11/18:25-30-36',
+		'CountryOrder': 'PL',
+		'CityOrder': 'Lublin',
+		'PlantOrder': 'RIF - 5',
+		'DateEntered': '18/12/19:25-25-36',
+		'RequiredRDate': '17/11/18:17-0-0',
+		'CountryProd': 'UK',
+		'CityProd': 'Kyiv',
+		'QR': '186547'
+	},
+	{
+		'RecID': '1',
+		'UnitID': '1',
+		'Articul': 'Kate',
+		'ProcessID': '101',
+		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
+		'OperatorName': 'Zoya Semenovna',
+		'OperationDate': '17/11/18:17-25-42',
+		'Pull': '199poi',
+		'OrderNumber': '199987',
+		'LocalNumber': '13',
+		'PartLocalNumber': '1',
+		'ReadyDate': '18/11/18:25-30-36',
+		'CountryOrder': 'PL',
+		'CityOrder': 'Lublin',
+		'PlantOrder': 'RIF - 5',
+		'DateEntered': '18/12/19:25-25-36',
+		'RequiredRDate': '17/11/18:17-0-0',
+		'CountryProd': 'UK',
+		'CityProd': 'Kyiv',
+		'QR': '186551'
+	}
 ]
 
 machines = [
@@ -77,15 +77,19 @@ def home():
 	# return 'Main, page!'
 
 
-@app.route('/machine/')
+# @app.route('/machine/')
 @app.route('/machine/<number>')
 def machineP(number=None):
-	if number and number > 8:
+	if number and int(number) > 8:
 		current_pos_ammount = None
 	else:
-		current_pos_ammount = machines[0][str(number)
+		current_pos_ammount = machines[0][str(number)]
 
-	return render_template('machine.html', number=number, machines=current_pos_ammount)  # , name=name , name="name" [0][number]
+	return render_template('machine.html', number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
+
+@app.route('/machine/all')
+def machineAll():
+	return render_template('machineAll.html')
 
 
 @app.route('/task/')
@@ -102,23 +106,22 @@ def taskAddP():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register(): 
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
+	form = RegistrationForm()
+	if form.validate_on_submit():
+		flash(f'Account created for {form.username.data}!', 'success')
+		return redirect(url_for('home'))
+	return render_template('register.html', title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    global loggedIn
-    form = LoginForm()
-    if form.validate_on_submit():
-        if form.email.data == 'admin@controller.com' and form.password.data == '1234':
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
-        else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
-            # abort(401)
-    return render_template('login.html', title='Login', form=form)
-
+	global loggedIn
+	form = LoginForm()
+	if form.validate_on_submit():
+		if form.email.data == 'admin@controller.com' and form.password.data == '1234':
+			flash('You have been logged in!', 'success')
+			return redirect(url_for('home'))
+		else:
+			flash('Login Unsuccessful. Please check username and password', 'danger')
+			# abort(401)
+	return render_template('login.html', title='Login', form=form)
