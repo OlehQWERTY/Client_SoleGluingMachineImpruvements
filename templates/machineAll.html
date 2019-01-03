@@ -21,27 +21,32 @@
 	</div> -->
   
   <!-- python dict can't have similar keys -->
-  
-  <!-- <h4>{{mProgress[0].pop('1')}}</h4>
-  <h4>{{mProgress[0]['1']}}</h4>
-  <h4>{{mProgress[0]['1']}}</h4> -->
+
+  <!-- <h4>{{mProgress[0]['1']}}</h4> -->
+  <!-- <h4>{{mProgress[0]['1'][0][0]}}</h4> -->
 
   {% for x in machines %}
     <center><h2>Machine {{ x }} ({{ machines[x] }}) </h2></center>  <!--  {{ x }} -->
       {% for y in range(machines[x]) %}
-        <h5> Позиція {{ y + 1 }} (56 / {{ 75 * (y+1) }}): </h5>
+        <h5> Позиція {{ y + 1 }} ({{mProgress[0][x][y][0]}} / {{mProgress[0][x][y][1]}}): </h5>
         {% if True %}
           <!-- {{y ~ 1}} -->
           {% set tempStr = ("progress" ~ x ~ "_" ~ y) %}
             <!-- <h6>{{tempStr}}</h6> -->
-          <div class= 'progress'> <!-- не виходить присвоїти блоку назву '{{tempStr}}' якогось дідька -->
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{y}}%"></div>
-          </div>
+
+          {% if not mProgress[0][x][y][0] or not mProgress[0][x][y][1] %}
+            <center><font color="red"><h6>**** Doesn't speciffied! ****</h6></font></center>
+          {% else %}
+            {% set t_width = (mProgress[0][x][y][0] / mProgress[0][x][y][1]) %}
+            <div class= 'progress'> <!-- не виходить присвоїти блоку назву '{{tempStr}}' якогось дідька -->
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{t_width*100}}%"></div>
+            </div>
+          {% endif %} <!-- _% if mProgress[0][x][y][0] == None or mProgress[0][x][y][1] == None %_ -->
         {% else %}
           <div class="progress">
             <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-        {% endif %}
+        {% endif %}  <!-- _% if True %_ -->
       {% endfor %}
   {% endfor %}
 
