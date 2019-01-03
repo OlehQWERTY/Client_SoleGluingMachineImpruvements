@@ -1,3 +1,5 @@
+# template language: Jinja 2
+
 from app import app
 # from flask import render_template
 
@@ -107,12 +109,12 @@ def machineAll():
 @app.route('/task/list')
 # @app.route('/task/<name>')
 def taskP():
-	return render_template('task.html', tasks=tasks)  # , name=name , name="name"
+	return render_template('task.html', tasks=tasks)  #  True if dict == dict1 else False
 
 
 @app.route('/task/add')
 def taskAddP():
-	return render_template('taskAdd.html', tasks=tasks)  # , name=name , name="name" , title="LOL"
+	return render_template('taskAdd.html')  # , tasks=tasks
 
 
 @app.route("/register", methods=['GET', 'POST'])
