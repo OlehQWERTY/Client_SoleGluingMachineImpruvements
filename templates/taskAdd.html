@@ -17,52 +17,109 @@
 	<!--форма ввода-->
 	<div id = "inputTasksParam">
 	  <form class="needs-validation" novalidate>
-	    <div class="form-row">
-	      <div class="col-md-4 mb-3">
-	        <label for="validationTooltip01">Пул</label>
-	        <input type="text" class="form-control" id="validationTooltip01" placeholder="Имя" value="Mark" required>
-	        <div class="valid-tooltip">
-	          Looks good!
-	        </div>
-	      </div>
-	      <div class="col-md-4 mb-3">
-	        <label for="validationTooltip02">Завдання</label>
-	        <input type="text" class="form-control" id="validationTooltip02" placeholder="Фамилия" value="Otto" required>
-	        <div class="valid-tooltip">
-	          Looks good!
-	        </div>
-	      </div>
-  	      <div class="col-md-4 mb-3">
-	        <label for="validationTooltip03">Завдання</label>
-	        <input type="text" class="form-control" id="validationTooltip03" placeholder="Фамилия" value="Otto" required>
-	        <div class="valid-tooltip">
-	          Looks good!
-	        </div>
-	      </div>
-	    </div>
+ 		<div class="form-row">
+          <!-- <div class="col-md-1 mb-3">
+            <label for="validationTooltip04">Позиція</label>
+            <input type="text" class="form-control" id="validationTooltip04" placeholder="{{ x }}" value="{{ x }}" readonly>
+            <div class="invalid-tooltip">
+              Please provide a valid position number.
+            </div>
+          </div> -->
+          <div class="col-md-6 mb-3">
+            <label for="validationTooltip04">Bunch</label>
+            <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required>
+            <div class="invalid-tooltip">
+              Please provide a valid city.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip05">Pull</label>
+            <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required>
+            <div class="invalid-tooltip">
+              Please provide a valid state.
+            </div>
+          </div>
+          <div class="col-md-2 mb-3">
+            <label for="validationTooltip06">Local number</label>
+            <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required>
+            <div class="invalid-tooltip">
+              Please provide a valid plant id.
+            </div>
+          </div>
+        </div>
+
 	    <div class="form-row">
 	      <div class="col-md-6 mb-3">
-	        <label for="validationTooltip04">City</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="City" required>
+	        <label for="validationTooltip04">City Order</label>
+	        <input type="text" class="form-control" id="validationTooltip04" placeholder="ArcoBaleno" required>
 	        <div class="invalid-tooltip">
 	          Please provide a valid city.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip05">State</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="State" required>
+	        <label for="validationTooltip05">State Order</label>
+	        <input type="text" class="form-control" id="validationTooltip05" placeholder="PL" required>
 	        <div class="invalid-tooltip">
 	          Please provide a valid state.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip06">Zip</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="Zip" required>
+	        <label for="validationTooltip06">Plant Order</label>
+	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-10" required>
 	        <div class="invalid-tooltip">
 	          Please provide a valid zip.
 	        </div>
 	      </div>
 	    </div>
+
+	   	<div class="form-row">
+	      <div class="col-md-6 mb-3">
+	        <label for="validationTooltip04">City Production</label>
+	        <input type="text" class="form-control" id="validationTooltip04" placeholder="Berdichev" required>
+	        <div class="invalid-tooltip">
+	          Please provide a valid city.
+	        </div>
+	      </div>
+	      <div class="col-md-3 mb-3">
+	        <label for="validationTooltip05">State Production</label>
+	        <input type="text" class="form-control" id="validationTooltip05" placeholder="UK" required>
+	        <div class="invalid-tooltip">
+	          Please provide a valid state.
+	        </div>
+	      </div>
+	      <div class="col-md-3 mb-3">
+	        <label for="validationTooltip06">Plant Production</label>
+	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-1" required>
+	        <div class="invalid-tooltip">
+	          Please provide a valid zip.
+	        </div>
+	      </div>
+	    </div>
+		
+		<div class="form-row">
+	      <div class="col-md-6 mb-3">
+	        <label for="validationTooltip04">Date entered (task)</label>
+	        <input type="text" class="form-control" id="validationTooltip04" placeholder="21/01/18 15-21-13" required>
+	        <div class="invalid-tooltip">
+	          Please provide a valid city.
+	        </div>
+	      </div>
+	      <div class="col-md-3 mb-3">
+	        <label for="validationTooltip05">Date entered (to production)</label>
+	        <input type="text" class="form-control" id="validationTooltip05" placeholder="18/01/18 12-20-15" required>
+	        <div class="invalid-tooltip">
+	          Please provide a valid state.
+	        </div>
+	      </div>
+	      <div class="col-md-3 mb-3">
+	        <label for="validationTooltip06">Date required</label>
+	        <input type="text" class="form-control" id="validationTooltip06" placeholder="30/02/18 15-21-13" required>
+	        <div class="invalid-tooltip">
+	          Please provide a valid zip.
+	        </div>
+	      </div>
+	    </div>
+
 	    <button class="btn btn-primary" type="submit">Submit form</button>
 	  </form>
 	</div>
@@ -80,8 +137,8 @@
 'Pull': '199poi',
 'OrderNumber': '199987',
 <!-- 'LocalNumber': '13', automatic (for first time possible to correct)-->
-'PartLocalNumber': '1',
-'ReadyDate': '18/11/18:25-30-36',
+<!-- 'PartLocalNumber': '1', automatic (send to machene 500) -->
+<!-- 'ReadyDate': '18/11/18:25-30-36' automatic -> if close task was confirmed, -->
 'CountryOrder': 'PL',
 'CityOrder': 'Lublin',
 'PlantOrder': 'RIF - 5',
@@ -89,4 +146,4 @@
 'RequiredRDate': '17/11/18:17-0-0',
 'CountryProd': 'UK',
 'CityProd': 'Kyiv',
-'QR': '186551'
+<!-- 'QR': '186551' autogenerate -->
