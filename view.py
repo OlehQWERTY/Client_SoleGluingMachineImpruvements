@@ -1,19 +1,33 @@
 # template language: Jinja 2
 
 from app import app
-
 from flask import make_response, request
-
 from flask import Flask, render_template, url_for, flash, redirect, abort, Response
 from forms import RegistrationForm, LoginForm
-
 from time import time
-
 import datetime
+import base64
 
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+db = SQLAlchemy(app)
 
 # app = Flask(__name__)
 # app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    password = db.Column(db.String(60), nullable=False)
+    # posts = db.relationship('Post', backref='author', lazy=True)
+    usertupe = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        # return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+        return f"User('{self.username}', '{self.email}')"
+
 
 tasks = [
 	{
@@ -174,3 +188,6 @@ def getcookie():
 	test = request.cookies.get('u1')
 	return '<h1>welcome '+str(name) + ' ' + str(test) +'</h1>'
 
+@app.route('/loading')
+def loading():
+	return render_template('loading.html', title='Loading...')
