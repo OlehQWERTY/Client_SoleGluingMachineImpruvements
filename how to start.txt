@@ -19,3 +19,9 @@ Windows:
 cd C:\Git\Client_SoleGluingMachineImpruvements && set FLASK_APP=main.py && flask run
 
 * Running on http://127.0.0.1:5000/
+
+
+
+to make it availiable in local network: 172.16.0.116:5000
+
+cd C:\Git\Client_SoleGluingMachineImpruvements && set FLASK_APP=main.py && flask run --host=0.0.0.0

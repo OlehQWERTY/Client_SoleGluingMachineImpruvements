@@ -1,12 +1,16 @@
 # template language: Jinja 2
 
 from app import app
-# from flask import render_template
+
+from flask import make_response, request
 
 from flask import Flask, render_template, url_for, flash, redirect, abort, Response
 from forms import RegistrationForm, LoginForm
 
 from time import time
+
+import datetime
+
 
 # app = Flask(__name__)
 # app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
@@ -131,10 +135,42 @@ def login():
 	global loggedIn
 	form = LoginForm()
 	if form.validate_on_submit():
-		if form.email.data == 'admin@controller.com' and form.password.data == '1234':
+		if form.email.data == 'admin@controller.com' and form.password.data == 'FCCF00907C168FFFD34A79979BDDFEEC1E97892C': # sha1 '1234' FCCF00907C168FFFD34A79979BDDFEEC1E97892C
 			flash('You have been logged in!', 'success')
 			return redirect(url_for('home'))
 		else:
 			flash('Login Unsuccessful. Please check username and password', 'danger')
 			# abort(401)
 	return render_template('login.html', title='Login', form=form)
+
+
+@app.route('/set')
+def index():
+	# resp = make_response('lol')  # render_template(...)
+	resp = make_response(render_template('taskAdd.html'))  # render_template(...)     ---- redirect to page ----
+	expire_date = datetime.datetime.now()
+	print(expire_date)
+	expire_date = expire_date + datetime.timedelta(seconds = 1)  # days=90
+	resp.set_cookie('userID', value='I am cookie')
+	key = 'u1'
+	guid = 'lo'
+	resp.set_cookie(key, guid, expires=expire_date) # expires=0 expires=expire_date
+	resp.set_cookie(key, guid, expires=0) # expires 0 (unix time == 0 and dell imidiatelly)
+	return resp 
+
+
+# user ????
+# @app.route('/del')
+# def index1():
+# 	# resp = make_response('lol')  # render_template(...)
+# 	resp = make_response(render_template('taskAdd.html'))  # render_template(...)     ---- redirect to page ----
+# 	resp.delete_cookie('username', path='/', domain='0.0.0.0')
+# 	# return '<h1>welcome</h1>'
+# 	return resp 
+
+@app.route('/get')
+def getcookie():
+	name = request.cookies.get('userID')
+	test = request.cookies.get('u1')
+	return '<h1>welcome '+str(name) + ' ' + str(test) +'</h1>'
+
