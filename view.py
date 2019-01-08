@@ -7,6 +7,7 @@ from forms import RegistrationForm, LoginForm
 from time import time
 import datetime
 import base64
+from flask import jsonify 
 
 from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -102,10 +103,21 @@ mProgress = [  # test temp: before db'll be added
 	}
 ]
 
-flgLoading = True  # show loading div instead of content
+flgLoading = False  # show loading div instead of content
+
+
+@app.route('/_add_numbers')  # ajax test
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
 
 @app.route('/')
 def home():
+	# if not request.script_root:
+	# 	# this assumes that the 'index' view function handles the path '/'
+	# 	request.script_root = url_for('home', _external=True)
 	return render_template('main.html', flgLoading=flgLoading)
 	# return 'Main, page!'
 
