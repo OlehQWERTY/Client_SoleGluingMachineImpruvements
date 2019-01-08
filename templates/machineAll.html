@@ -25,6 +25,13 @@
   <!-- <h4>{{mProgress[0]['1']}}</h4> -->
   <!-- <h4>{{mProgress[0]['1'][0][0]}}</h4> -->
 
+  {% if flgLoading %}
+    {{ super() }}  <!-- insert content section of base tamplete -->
+    <div id='my_content' style='display:none;'>  <!-- hide content because of loading -->
+  {% else %}
+    <div id='my_content'>
+  {% endif %}
+
   {% for x in machines %}
     <center><h2>Machine {{ x }} ({{ machines[x] }}) </h2></center>  <!--  {{ x }} -->
       {% for y in range(machines[x]) %}
@@ -77,5 +84,7 @@
   <div class="progress">
     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
   </div> -->
+
+  </div>  <!-- my_content -->
 
 {% endblock content %}

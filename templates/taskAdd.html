@@ -15,6 +15,15 @@
 
 {% block content %}
 	<!--форма ввода-->
+
+    {% if flgLoading %}
+      {{ super() }}  <!-- insert content section of base tamplete -->
+      <div id='my_content' style='display:none;'>  <!-- hide content because of loading -->
+    {% else %}
+	    <div id='my_content'>
+    {% endif %}
+
+
 	<div id = "inputTasksParam">
 	  <form class="needs-validation" novalidate>
  		<div class="form-row">
@@ -123,6 +132,8 @@
 	    <button class="btn btn-primary" type="submit">Submit form</button>
 	  </form>
 	</div>
+
+	</div>  <!-- my_content -->
 {% endblock content %}
 
 

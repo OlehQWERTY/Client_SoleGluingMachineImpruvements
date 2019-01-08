@@ -106,6 +106,9 @@
 
       {% block content %}
         <!-- some content -->
+        <!-- loading... -->
+        <div ><center><img src="{{ url_for('static', filename='images/loading.gif') }}" title="loading..." /></center></div>
+        <!-- style='display:none;' -->
       {% endblock content %}
 
     </div>

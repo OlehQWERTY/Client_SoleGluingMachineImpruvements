@@ -102,9 +102,11 @@ mProgress = [  # test temp: before db'll be added
 	}
 ]
 
+flgLoading = True  # show loading div instead of content
+
 @app.route('/')
 def home():
-	return render_template('main.html')
+	return render_template('main.html', flgLoading=flgLoading)
 	# return 'Main, page!'
 
 
@@ -116,23 +118,23 @@ def machineP(number=None):
 	else:
 		current_pos_ammount = machines[0][str(number)]
 
-	return render_template('machine.html', number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
+	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 
 @app.route('/machine/all')
 def machineAll():
-	return render_template('machineAll.html', machines=machines[0], mProgress=mProgress)
+	return render_template('machineAll.html', flgLoading=flgLoading, machines=machines[0], mProgress=mProgress)
 
 
 @app.route('/task/')
 @app.route('/task/list')
 # @app.route('/task/<name>')
 def taskP():
-	return render_template('task.html', tasks=tasks)  #  True if dict == dict1 else False
+	return render_template('task.html', flgLoading=flgLoading, tasks=tasks)  #  True if dict == dict1 else False
 
 
 @app.route('/task/add')
 def taskAddP():
-	return render_template('taskAdd.html')  # , tasks=tasks
+	return render_template('taskAdd.html', flgLoading=flgLoading)  # , tasks=tasks
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -141,7 +143,7 @@ def register():
 	if form.validate_on_submit():
 		flash(f'Account created for {form.username.data}!', 'success')
 		return redirect(url_for('home'))
-	return render_template('register.html', title='Register', form=form)
+	return render_template('register.html', flgLoading=flgLoading, title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -155,7 +157,7 @@ def login():
 		else:
 			flash('Login Unsuccessful. Please check username and password', 'danger')
 			# abort(401)
-	return render_template('login.html', title='Login', form=form)
+	return render_template('login.html', flgLoading=flgLoading, title='Login', form=form)
 
 
 @app.route('/set')
@@ -186,8 +188,4 @@ def index():
 def getcookie():
 	name = request.cookies.get('userID')
 	test = request.cookies.get('u1')
-	return '<h1>welcome '+str(name) + ' ' + str(test) +'</h1>'
-
-@app.route('/loading')
-def loading():
-	return render_template('loading.html', title='Loading...')
+	return '<h1>welcome '+ str(name) + ' ' + str(test) +'</h1>'
