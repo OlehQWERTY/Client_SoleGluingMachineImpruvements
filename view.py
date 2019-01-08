@@ -9,6 +9,8 @@ import datetime
 import base64
 from flask import jsonify 
 
+import random # random
+
 from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
@@ -105,8 +107,14 @@ mProgress = [  # test temp: before db'll be added
 
 flgLoading = False  # show loading div instead of content
 
+iop = 1000
+@app.route('/_add_mProgress')  # ajax test
+def add_mProgress():
 
-@app.route('/_add_numbers')  # ajax test
+    return jsonify(result=[random.randint(0, 10), 1000 - iop])
+
+
+@app.route('/_get_numbers')  # ajax test
 def add_numbers():
     a = request.args.get('a', 0, type=int)
     b = request.args.get('b', 0, type=int)
