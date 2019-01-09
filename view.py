@@ -5,7 +5,7 @@ from flask import make_response, request
 from flask import Flask, render_template, url_for, flash, redirect, abort, Response
 from forms import RegistrationForm, LoginForm
 from time import time
-import datetime
+from datetime import datetime, timedelta
 import base64
 from flask import jsonify 
 
@@ -19,17 +19,45 @@ db = SQLAlchemy(app)
 # app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    # image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
-    password = db.Column(db.String(60), nullable=False)
-    # posts = db.relationship('Post', backref='author', lazy=True)
-    usertupe = db.Column(db.String(20), nullable=False)
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(20), unique=True, nullable=False)
+	email = db.Column(db.String(120), unique=True, nullable=False)
+	# image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+	password = db.Column(db.String(60), nullable=False)
+	# posts = db.relationship('Post', backref='author', lazy=True)
+	# usertype = db.Column(db.String(20), nullable=False)
 
-    def __repr__(self):
-        # return f"User('{self.username}', '{self.email}', '{self.image_file}')"
-        return f"User('{self.username}', '{self.email}')"
+	def __repr__(self):
+		# return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+		return f"User('{self.username}', '{self.email}')"
+
+# user_1 = User(username='A_RIF_in', email='A_RIF_in@gmail.com', password='rif12345lolo')
+# user_2 = User(username='U_RIF_in', email='U_RIF_in@gmail.com', password='rifko156ko')
+
+class Post(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	title = db.Column(db.String(20), nullable=False)
+	data_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	content = db.Column(db.Text, nullable=False)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+	def __repr__(self):
+		return f"Post('{self.title}', '{self.data_posted}')"
+
+posts = [
+	{
+		'author': 'Corey Schafer',
+		'title': 'Blog Post 1',
+		'content': 'First post content',
+		'date_posted': 'April 20, 2018'
+	},
+	{
+		'author': 'Jane Doe',
+		'title': 'Blog Post 2',
+		'content': 'Second post content',
+		'date_posted': 'April 21, 2018'
+	}
+]
 
 
 tasks = [
@@ -111,14 +139,14 @@ iop = 1000
 @app.route('/_add_mProgress')  # ajax test
 def add_mProgress():
 
-    return jsonify(result=[random.randint(0, 10), 1000 - iop])
+	return jsonify(result=[random.randint(0, 10), 1000 - iop])
 
 
 @app.route('/_get_numbers')  # ajax test
 def add_numbers():
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    return jsonify(result=a + b)
+	a = request.args.get('a', 0, type=int)
+	b = request.args.get('b', 0, type=int)
+	return jsonify(result=a + b)
 
 
 @app.route('/')
@@ -183,10 +211,10 @@ def login():
 @app.route('/set')
 def index():
 	# resp = make_response('lol')  # render_template(...)
-	resp = make_response(render_template('taskAdd.html'))  # render_template(...)     ---- redirect to page ----
-	expire_date = datetime.datetime.now()
+	resp = make_response(render_template('taskAdd.html'))  # render_template(...)	 ---- redirect to page ----
+	expire_date = datetime.now()
 	print(expire_date)
-	expire_date = expire_date + datetime.timedelta(seconds = 1)  # days=90
+	expire_date = expire_date + timedelta(seconds = 1)  # days=90
 	resp.set_cookie('userID', value='I am cookie')
 	key = 'u1'
 	guid = 'lo'
@@ -199,7 +227,7 @@ def index():
 # @app.route('/del')
 # def index1():
 # 	# resp = make_response('lol')  # render_template(...)
-# 	resp = make_response(render_template('taskAdd.html'))  # render_template(...)     ---- redirect to page ----
+# 	resp = make_response(render_template('taskAdd.html'))  # render_template(...)	 ---- redirect to page ----
 # 	resp.delete_cookie('username', path='/', domain='0.0.0.0')
 # 	# return '<h1>welcome</h1>'
 # 	return resp 
