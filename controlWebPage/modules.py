@@ -1,6 +1,6 @@
-from view import db
-# from view import db, datetime
+from controlWebPage import db
 from datetime import datetime
+# from view import db, datetime
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

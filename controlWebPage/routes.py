@@ -1,26 +1,15 @@
-# template language: Jinja 2
-
-# from app import app
+from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
-from flask import Flask, render_template, url_for, flash, redirect, abort, Response
-from config import Configuration
-from forms import RegistrationForm, LoginForm
+from flask import jsonify  # for ajax
+from controlWebPage import app
+from controlWebPage.forms import RegistrationForm, LoginForm
+from controlWebPage.modules import User, Post
+# --------------------------
+
 from time import time
-from flask import jsonify 
 import random # random
 # from datetime import datetime, timedelta  # cookie test
 # import base64
-
-# 
-app = Flask(__name__)
-app.config.from_object(Configuration)
-app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-
-# db
-from flask_sqlalchemy import SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-from modules import User, Post
 
 posts = [
 	{
@@ -136,7 +125,6 @@ def home():
 	# return 'Main, page!'
 
 
-# @app.route('/machine/')
 @app.route('/machine/<number>')
 def machineP(number=None):
 	if number and int(number) > 8:
