@@ -88,8 +88,22 @@
                   </label>
             </div>
             
-            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Log in</a><!-- <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg active btn-sm disabled" role="button" aria-pressed="true">Log in</a> -->
-           
+            <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+              {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+            </div>
+
+            <!-- {% if current_user.is_autenticated %}
+              <a href="{{ url_for('logout') }}" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Logout</a>
+            {% else %}
+              <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Login</a>
+              <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Register</a>
+            {% endif %} -->
         </div>
         </nav>
 
