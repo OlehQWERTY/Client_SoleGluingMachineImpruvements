@@ -50,7 +50,7 @@ User.query.first() # show User
 
 # result: User('A_RIF_in', 'A_RIF_in@gmail.com') 
 
- User.query.all()
+User.query.all()
 
 User.query.filter_by(username='U_RIF_in')
 
