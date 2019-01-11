@@ -1,4 +1,6 @@
-from view import db, datetime
+from view import db
+# from view import db, datetime
+from datetime import datetime
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)

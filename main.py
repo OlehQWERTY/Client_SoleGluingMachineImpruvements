@@ -1,7 +1,4 @@
-from app import app
-import view
-# from forms import RegistrationForm
-
+from view import app
 
 if __name__ == "__main__":
 	app = app.run()  # debug=True

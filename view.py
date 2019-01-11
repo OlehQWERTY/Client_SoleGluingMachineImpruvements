@@ -1,26 +1,26 @@
 # template language: Jinja 2
 
-from app import app
+# from app import app
 from flask import make_response, request
 from flask import Flask, render_template, url_for, flash, redirect, abort, Response
+from config import Configuration
 from forms import RegistrationForm, LoginForm
 from time import time
-from datetime import datetime, timedelta
-import base64
 from flask import jsonify 
+import random # random
+# from datetime import datetime, timedelta  # cookie test
+# import base64
 
+# 
+app = Flask(__name__)
+app.config.from_object(Configuration)
+app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
+
+# db
 from flask_sqlalchemy import SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
-
 from modules import User, Post
-
-import random # random
-
-
-
-# app = Flask(__name__)
-# app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 posts = [
 	{
@@ -186,19 +186,19 @@ def login():
 	return render_template('login.html', flgLoading=flgLoading, title='Login', form=form)
 
 
-@app.route('/set')
-def index():
-	# resp = make_response('lol')  # render_template(...)
-	resp = make_response(render_template('taskAdd.html'))  # render_template(...)	 ---- redirect to page ----
-	expire_date = datetime.now()
-	print(expire_date)
-	expire_date = expire_date + timedelta(seconds = 1)  # days=90
-	resp.set_cookie('userID', value='I am cookie')
-	key = 'u1'
-	guid = 'lo'
-	resp.set_cookie(key, guid, expires=expire_date) # expires=0 expires=expire_date
-	resp.set_cookie(key, guid, expires=0) # expires 0 (unix time == 0 and dell imidiatelly)
-	return resp 
+# @app.route('/set')
+# def index():
+# 	# resp = make_response('lol')  # render_template(...)
+# 	resp = make_response(render_template('taskAdd.html'))  # render_template(...)	 ---- redirect to page ----
+# 	expire_date = datetime.now()
+# 	print(expire_date)
+# 	expire_date = expire_date + timedelta(seconds = 1)  # days=90
+# 	resp.set_cookie('userID', value='I am cookie')
+# 	key = 'u1'
+# 	guid = 'lo'
+# 	resp.set_cookie(key, guid, expires=expire_date) # expires=0 expires=expire_date
+# 	resp.set_cookie(key, guid, expires=0) # expires 0 (unix time == 0 and dell imidiatelly)
+# 	return resp 
 
 
 # user ????
@@ -210,8 +210,8 @@ def index():
 # 	# return '<h1>welcome</h1>'
 # 	return resp 
 
-@app.route('/get')
-def getcookie():
-	name = request.cookies.get('userID')
-	test = request.cookies.get('u1')
-	return '<h1>welcome '+ str(name) + ' ' + str(test) +'</h1>'
+# @app.route('/get')
+# def getcookie():
+# 	name = request.cookies.get('userID')
+# 	test = request.cookies.get('u1')
+# 	return '<h1>welcome '+ str(name) + ' ' + str(test) +'</h1>'
