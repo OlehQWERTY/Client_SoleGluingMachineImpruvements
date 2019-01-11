@@ -4,6 +4,7 @@ from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt
 from controlWebPage.forms import RegistrationForm, LoginForm
 from controlWebPage.modules import User, Post
+from flask_login import login_user
 # --------------------------
 
 from time import time
@@ -169,11 +170,12 @@ def login():
 	global loggedIn
 	form = LoginForm()
 	if form.validate_on_submit():
-		if form.email.data == 'admin@controller.com' and form.password.data == 'FCCF00907C168FFFD34A79979BDDFEEC1E97892C': # sha1 '1234' FCCF00907C168FFFD34A79979BDDFEEC1E97892C
-			flash('You have been logged in!', 'success')
+		user = User.query.filter_by(email=form.email.data).first()
+		if user and bcrypt.check_password_hash(user.password, form.password.data):
+			login_user(user, remember=form.remember.data)
 			return redirect(url_for('home'))
 		else:
-			flash('Login Unsuccessful. Please check username and password', 'danger')
+			flash('Login Unsuccessful. Please check email and password', 'danger')
 			# abort(401)
 	return render_template('login.html', flgLoading=flgLoading, title='Login', form=form)
 
