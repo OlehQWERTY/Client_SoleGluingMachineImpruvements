@@ -53,6 +53,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Machine
+                <span class="badge badge-primary badge-pill">1</span> <!-- number -->
               </a>
               <!-- needs to be changed automaticaly according to Machines ammount -->
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -90,10 +91,15 @@
             
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
-                {% if utype == 'admin' %}
+                  {% if 'admin' != utype %}
+                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                  {% else %}
+                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Admin<span class="badge badge-primary badge-pill"><font size="0.5">*</font></span></a>
+                  {% endif %}
+    
+                <!-- {% if utype == 'admin' %}
                   <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
-                {% endif %}
+                {% endif %} -->
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
               {% else %}
                 <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>

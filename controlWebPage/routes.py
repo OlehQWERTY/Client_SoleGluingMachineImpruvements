@@ -3,7 +3,7 @@ from flask import make_response, request
 from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt
 from controlWebPage.forms import RegistrationForm, LoginForm
-from controlWebPage.modules import User, Post
+from controlWebPage.modules import User, Log
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
 
@@ -173,12 +173,12 @@ def register():
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 		utype = 'admin' if form.usertype.data else 'user'
-		user = User(username=form.username.data, email=form.email.data, password=hashed_password, usertype=utype)
+		user = User(username=form.username.data, email=form.email.data, password=hashed_password, usertype=utype, createdby=current_user.username)
 		db.session.add(user)
 		db.session.commit()
 		flash('Your account has been created! You\'re able to log in', 'success')
 		return redirect(url_for('login'))
-	return render_template('register.html', flgLoading=flgLoading, title='Register', form=form, utype=utype)
+	return render_template('register.html', flgLoading=flgLoading, title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -195,7 +195,8 @@ def login():
 		else:
 			flash('Login Unsuccessful. Please check email and password', 'danger')
 			# abort(401)
-	return render_template('login.html', flgLoading=flgLoading, title='Login', form=form)
+			# utype=current_user.usertype - show register for admin user
+	return render_template('login.html', flgLoading=flgLoading, title='Login', form=form) 
 
 
 @app.route("/logout")

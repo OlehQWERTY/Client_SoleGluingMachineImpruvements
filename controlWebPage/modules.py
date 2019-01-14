@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
 	usertype = db.Column(db.String(20), nullable=False)
 	createdby = db.Column(db.String(20), nullable=False)
 	data_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	log = db.relationship('Post', backref='user_name', lazy=True)  # connected to Log table
+	log = db.relationship('Log', backref='user_name', lazy=True)  # connected to Log table
 
 	def __repr__(self):
 		# return f"User('{self.username}', '{self.email}', '{self.image_file}')"

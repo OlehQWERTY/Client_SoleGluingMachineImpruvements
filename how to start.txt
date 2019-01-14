@@ -41,7 +41,7 @@ db.create_all()
 from controlWebPage.modules import User, Log
 
 # password= 123456
-user_1 = User(username='admin', email='admin@controller.com', password='$2b$12$tkpKc43wJIpYTL5rRg8nM.lFPtKHTtkc01m97l8BrT7PYUukOiUfy', usertype='admin', createdby='Lord', data_created='12/12/12 17:17:17')
+user_1 = User(username='admin', email='admin@controller.com', password='$2b$12$tkpKc43wJIpYTL5rRg8nM.lFPtKHTtkc01m97l8BrT7PYUukOiUfy', usertype='admin', createdby='Lord')
 
 db.session.add(user_1)
 
