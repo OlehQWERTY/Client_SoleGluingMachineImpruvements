@@ -4,7 +4,7 @@ from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt
 from controlWebPage.forms import RegistrationForm, LoginForm
 from controlWebPage.modules import User, Post
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
 
 from time import time
@@ -111,6 +111,7 @@ def add_mProgress():
 
 
 @app.route('/_get_numbers')  # ajax test
+@login_required
 def add_numbers():
 	a = request.args.get('a', 0, type=int)
 	b = request.args.get('b', 0, type=int)
@@ -127,6 +128,7 @@ def home():
 
 
 @app.route('/machine/<number>')
+@login_required
 def machineP(number=None):
 	if number and int(number) > 8:
 		current_pos_ammount = None
@@ -136,6 +138,7 @@ def machineP(number=None):
 	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 
 @app.route('/machine/all')
+@login_required
 def machineAll():
 	return render_template('machineAll.html', flgLoading=flgLoading, machines=machines[0], mProgress=mProgress)
 
@@ -143,23 +146,34 @@ def machineAll():
 @app.route('/task/')
 @app.route('/task/list')
 # @app.route('/task/<name>')
+@login_required
 def taskP():
 	return render_template('task.html', flgLoading=flgLoading, tasks=tasks)  #  True if dict == dict1 else False
 
 
 @app.route('/task/add')
+@login_required
 def taskAddP():
 	return render_template('taskAdd.html', flgLoading=flgLoading)  # , tasks=tasks
 
 
 @app.route("/register", methods=['GET', 'POST'])
+# @login_required  # only admin can create new users
 def register(): 
-	if current_user.is_authenticated:
+	if current_user.is_authenticated:  # ordinary logic already login user can't register
 		return redirect(url_for('home'))
+
+	# in my prj only autentificated user is able to add new user
+	# if current_user.is_authenticated:
+	# 	for i in range(50):
+	# 		print(current_user.username)
+	# 		user = User.query.filter_by(username=current_user.username).first()
+	# 		print(user)
+		# return redirect(url_for('home'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-		user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+		user = User(username=form.username.data, email=form.email.data, password=hashed_password, usertype=form.usertype)
 		db.session.add(user)
 		db.session.commit()
 		flash('Your account has been created! You\'re able to log in', 'success')
@@ -176,7 +190,8 @@ def login():
 		user = User.query.filter_by(email=form.email.data).first()
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
 			login_user(user, remember=form.remember.data)
-			return redirect(url_for('home'))
+			next_page = request.args.get('next')
+			return redirect(next_page) if next_page else redirect(url_for('home'))
 		else:
 			flash('Login Unsuccessful. Please check email and password', 'danger')
 			# abort(401)
@@ -189,7 +204,7 @@ def logout():
 	return redirect(url_for('home'))
 
 @app.route("/account")
-# @login_required
+@login_required
 def account():
 	return render_template('account.html', title='Account')
 

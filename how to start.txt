@@ -40,13 +40,16 @@ db.create_all()
 # from view import User, Post
 from controlWebPage.modules import User, Post
 
-user_1 = User(username='A_RIF_in', email='A_RIF_in@gmail.com', password='rif12345lolo')  # , usertype='admin'
+# password= 123456
+user_1 = User(username='admin', email='admin@controller.com', password='$2b$12$tkpKc43wJIpYTL5rRg8nM.lFPtKHTtkc01m97l8BrT7PYUukOiUfy', usertype='admin')
 
 db.session.add(user_1)
 
-db.session.commit()  # commit to db
+# commit to db
+db.session.commit()  
 
-User.query.first() # show User
+# show User
+User.query.first()
 
 # result: User('A_RIF_in', 'A_RIF_in@gmail.com') 
 
@@ -68,7 +71,10 @@ user=User.query.get(1)
 
 user
 
-# db.drop_all() # del everything
+# del everything
+# db.drop_all()
+
+# recreate empty db
 # db.create_all() # recreate empty db
 
 
