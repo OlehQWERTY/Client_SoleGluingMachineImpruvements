@@ -32,7 +32,7 @@ class Log(db.Model):
 	# add parameters(operators) saving ???
 	content = db.Column(db.Text)
 	# user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-	# user_email = db.Column(db.String(120), db.ForeignKey('user.email'))  # db.ForeignKey('user.email') , nullable=False ... in case of delating users user_id isn't valid 
+	user_email = db.Column(db.String(120), db.ForeignKey('user.email'))  # db.ForeignKey('user.email') , nullable=False ... in case of delating users user_id isn't valid 
 	def __repr__(self):
 		return f"Log('{self.action}', '{self.date_performed}')"  # , '{self.user_email}'
 
