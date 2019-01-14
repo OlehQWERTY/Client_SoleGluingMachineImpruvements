@@ -16,21 +16,33 @@ class User(db.Model, UserMixin):
 	password = db.Column(db.String(60), nullable=False)
 	# posts = db.relationship('Post', backref='author', lazy=True)
 	usertype = db.Column(db.String(20), nullable=False)
+	createdby = db.Column(db.String(20), nullable=False)
+	data_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	log = db.relationship('Post', backref='user_name', lazy=True)  # connected to Log table
 
 	def __repr__(self):
 		# return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 		return f"User('{self.username}', '{self.email}', '{self.usertype}')"
 
-# user_1 = User(username='A_RIF_in', email='A_RIF_in@gmail.com', password='rif12345lolo')
-# user_2 = User(username='U_RIF_in', email='U_RIF_in@gmail.com', password='rifko156ko')
-
-
-class Post(db.Model):
+class Log(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	title = db.Column(db.String(20), nullable=False)
-	data_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	action_type = db.Column(db.String(20), nullable=False)
+	action = db.Column(db.String(20), nullable=False)
+	date_performed = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+	# add parameters(operators) saving ???
 	content = db.Column(db.Text, nullable=False)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
+	# user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+	user_email = db.Column(db.String(120), db.ForeignKey('user.email'), nullable=False)  # in case of delating users user_id isn't valid 
 	def __repr__(self):
-		return f"Post('{self.title}', '{self.data_posted}')"
+		return f"Log('{self.action}', '{self.date_performed}', '{self.user_email}')"
+
+
+# class Post(db.Model):
+# 	id = db.Column(db.Integer, primary_key=True)
+# 	title = db.Column(db.String(20), nullable=False)
+# 	data_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+# 	content = db.Column(db.Text, nullable=False)
+# 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+# 	def __repr__(self):
+# 		return f"Post('{self.title}', '{self.data_posted}')"

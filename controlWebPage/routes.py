@@ -158,18 +158,17 @@ def taskAddP():
 
 
 @app.route("/register", methods=['GET', 'POST'])
-# @login_required  # only admin can create new users
+@login_required  # only admin can create new users
 def register(): 
-	if current_user.is_authenticated:  # ordinary logic already login user can't register
+# 	if current_user.is_authenticated:  # ordinary logic already login user can't register
+# 		return redirect(url_for('home'))
+
+	# in this prj only autentificated user with usertype=='admin' is able to add new users
+	if not current_user.is_authenticated:
+		return redirect(url_for('home'))
+	elif current_user.usertype != 'admin':
 		return redirect(url_for('home'))
 
-	# in my prj only autentificated user is able to add new user
-	# if current_user.is_authenticated:
-	# 	for i in range(50):
-	# 		print(current_user.username)
-	# 		user = User.query.filter_by(username=current_user.username).first()
-	# 		print(user)
-		# return redirect(url_for('home'))
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -179,7 +178,7 @@ def register():
 		db.session.commit()
 		flash('Your account has been created! You\'re able to log in', 'success')
 		return redirect(url_for('login'))
-	return render_template('register.html', flgLoading=flgLoading, title='Register', form=form)
+	return render_template('register.html', flgLoading=flgLoading, title='Register', form=form, utype=utype)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -207,7 +206,7 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-	return render_template('account.html', title='Account')
+	return render_template('account.html', title='Account', utype=current_user.usertype)
 
 # @app.route('/set')
 # def index():
