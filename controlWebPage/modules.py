@@ -18,7 +18,7 @@ class User(db.Model, UserMixin):
 	usertype = db.Column(db.String(20), nullable=False)
 	createdby = db.Column(db.String(20), nullable=False)
 	data_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	# log = db.relationship('Log', backref='user_name', lazy=True)  # connected to Log table
+	log = db.relationship('Log', backref='user', lazy=True)  # connected to Log table
 
 	def __repr__(self):
 		# return f"User('{self.username}', '{self.email}', '{self.image_file}')"
@@ -31,8 +31,8 @@ class Log(db.Model):
 	date_performed = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 	# add parameters(operators) saving ???
 	content = db.Column(db.Text)
-	# user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-	user_email = db.Column(db.String(120), db.ForeignKey('user.email'))  # db.ForeignKey('user.email') , nullable=False ... in case of delating users user_id isn't valid 
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  # , nullable=False
+	# user_email = db.Column(db.String(120), db.ForeignKey('user.email'))  # db.ForeignKey('user.email') , nullable=False ... in case of delating users user_id isn't valid 
 	def __repr__(self):
 		return f"Log('{self.action}', '{self.date_performed}')"  # , '{self.user_email}'
 

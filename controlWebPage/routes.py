@@ -189,7 +189,7 @@ def login():
 		user = User.query.filter_by(email=form.email.data).first()
 		if user and bcrypt.check_password_hash(user.password, form.password.data):
 			login_user(user, remember=form.remember.data)
-			log("authentication", "login", "successful")
+			log("authentication", "login", "successful", current_user.id)
 			next_page = request.args.get('next')
 			return redirect(next_page) if next_page else redirect(url_for('home'))
 		else:
@@ -202,7 +202,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-	log("authentication", "logout", 'None')
+	log("authentication", "logout", 'None', current_user.id)
 	logout_user()
 	return redirect(url_for('home'))
 
@@ -212,10 +212,12 @@ def account():
 	return render_template('account.html', title='Account', utype=current_user.usertype)
 
 
-def log(a_type, act, cont):
-	db.session.add(Log(action_type=a_type, action=act, content=cont))
+def log(a_type, act, cont, u_id = None):
+	if u_id:
+		db.session.add(Log(action_type=a_type, action=act, content=cont, user_id=u_id))
+	else:
+		db.session.add(Log(action_type=a_type, action=act, content=cont))
 	db.session.commit()
-	
 
 # @app.route('/set')
 # def index():

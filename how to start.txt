@@ -78,3 +78,19 @@ user
 # db.create_all() # recreate empty db
 
 
+----------------
+
+#add to field 
+Log.query.first().user_id = '1'
+
+# get data by id
+db.session.query(User.username, User.email).filter(User.id == 1).first()
+ # or 
+db.session.query(User.username).filter(User.id == 1).first()
+
+# get user according to firs log.user_id
+db.session.query(User).get((Log.query.first().user_id))
+
+# get all logs for User.id
+db.session.query(Log).filter(Log.user_id == 1).all()
+
