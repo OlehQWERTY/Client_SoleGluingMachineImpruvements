@@ -8,7 +8,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
 from time import time
 import random # random
-# from datetime import datetime, timedelta  # cookie test
+from datetime import datetime, timedelta  # cookie test
 # import base64
 
 posts = [
@@ -218,6 +218,15 @@ def log(a_type, act, cont, u_id = None):
 	else:
 		db.session.add(Log(action_type=a_type, action=act, content=cont))
 	db.session.commit()
+
+# @app.route("/logClear")
+# exeption processing
+def logClear(days_ago):  # days_ago
+	days_ago = 3
+	Log.query.filter(Log.date_performed > (datetime.now() - timedelta(days=days_ago))).delete()
+	db.session.commit()
+	# return redirect(url_for('home'))
+
 
 # @app.route('/set')
 # def index():

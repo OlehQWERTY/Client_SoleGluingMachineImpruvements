@@ -94,3 +94,10 @@ db.session.query(User).get((Log.query.first().user_id))
 # get all logs for User.id
 db.session.query(Log).filter(Log.user_id == 1).all()
 
+# get log erlier date
+Log.query.filter(Log.date_performed > '2019-01-15 11:58:06.226228').all()
+
+Log.query.filter(Log.date_performed > (datetime.now() - timedelta(days=days_ago))).all()  # days_ago 3 e.x.
+
+# del
+Log.query.filter(Log.date_performed > (datetime.now() - timedelta(days=3))).delete()
