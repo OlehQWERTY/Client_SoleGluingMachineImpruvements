@@ -208,8 +208,16 @@ def logout():
 
 
 @app.route("/account")
+@app.route("/account/<command>")
 @login_required
-def account():
+def account(command=None):
+	if command == '+clearAll':
+		logClear(100000)
+	elif command == '+clear3d':
+		logClear(3)
+
+	print(command)
+
 	logTable = getLogTable()
 	userTable = getUserTable()
 	return render_template('account.html', title='Account', utype=current_user.usertype, logTable=logTable, userTable=userTable)

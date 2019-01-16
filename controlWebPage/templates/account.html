@@ -36,10 +36,12 @@
 								<center><a class="navbar-brand"> Output: </a></center>
 								<ul class="nav nav-pills">
 									<li class="nav-item">
-										<a class="nav-link" href="#clearAll">@clear all</a>
+										<!-- <a class="nav-link" href="#clearAll">@clear all</a> -->
+										<a class="nav-link" href="{{ url_for('account') + '/+clearAll' }}">@clear all</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="#clear3d">@clear after: 3 days</a>
+										<a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">@clear after: 3 days</a>
+										<!-- <a class="nav-link" href="+clear3d">@clear after: 3 days</a> -->
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="#fat">@today</a>
