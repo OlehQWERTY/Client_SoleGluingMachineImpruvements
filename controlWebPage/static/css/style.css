@@ -36,6 +36,8 @@ p{
 #logAdmin {
 	overflow-y: scroll;
 	position: relative;
-	height: 200;
-	border: 1px solid #BFC9CA;
+	height: 500;  /*crutch*/
+	/*border: 1px solid #BFC9CA;*/
+	border: none;
+	background: #F2F3F4
 }

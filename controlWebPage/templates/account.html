@@ -3,45 +3,82 @@
 {% block content %}
 	<center><h1>Hello, {{ current_user.username }}!</h1></center>
 
-	{% if utype == 'admin' %}
-		<center><h1>You're in admin list. Avaliable options:</h1></center>	
-		<!-- list -->
-		<ul class="list-group">
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				<a class="nav-item nav-link" href="{{ url_for('register') }}">Register a new user</a>
-				<span class="badge badge-primary badge-pill">14</span>
-			</li>
+	
+	<!-- 	<center><h1>You're in admin list. Avaliable options:</h1></center>	 -->
+	<div class="list-group">
+		<!-- <button type="button" class="list-group-item list-group-item-action active">
+			Avaliable options:
+		</button> -->
+		<!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+			<button type="button" class="list-group-item list-group-item-action">First func()</button>
+			<span class="badge badge-primary badge-pill">14</span>
+		</li>
+		<button type="button" class="list-group-item list-group-item-action">Second func()</button> -->
+		<!-- <a href="http://google.com" type="button" class="list-group-item list-group-item-action">Third func()</a> -->
+		
+			<div class="row">
+				<div class="col-4">
+					<div class="list-group" id="list-tab" role="tablist">	
+						{% if utype == 'admin' %}
+							<!-- newuser  non admin -->
+							<a class="list-group-item list-group-item-action" id="list-newuser-list" data-toggle="list" href="#list-newuser" role="tab" aria-controls="newuser" disabled>Register a new user</a>
+							<!-- log -->
+							<a class="list-group-item list-group-item-action" id="list-log-list" data-toggle="list" href="#list-log" role="tab" aria-controls="log">Log</a>
+							<!-- userlist -->
+							<a class="list-group-item list-group-item-action" id="list-userlist-list" data-toggle="list" href="#list-userlist" role="tab" aria-controls="userlist">User list</a>
+							<!-- hide all -->
+							<!-- <a class="list-group-item list-group-item-action" id="list-hideall-list" data-toggle="list" href="#list-hideall" role="tab" aria-controls="hideall">Hide all</a> -->
+						{% else %}  <!-- non admin -->
+							<a class="list-group-item list-group-item-action" id="list-someopt-list" data-toggle="list" href="#list-someopt" role="tab" aria-controls="someopt">Some options</a>
+						{% endif %}
+					</div>
+				</div>
 
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				<a class="nav-item nav-link" href="{{ url_for('register') }}">Register a new user</a>
-				<span class="badge badge-primary badge-pill">2</span>
-			</li>
+				<div class="col-8" id="logAdmin">
+					<div class="tab-content" id="nav-tabContent">
+						{% if utype == 'admin' %}
+							<!-- log -->
+							<div class="tab-pane fade" id="list-log" role="tabpanel" aria-labelledby="list-log-list"> 
 
-			<li class="list-group-item d-flex justify-content-between align-items-center">
-				<a class="nav-item nav-link" href="{{ url_for('register') }}">Register a new user</a>
-				<span class="badge badge-primary badge-pill">1</span>
-			</li>
-		</ul>
+								<nav id="navbar-example2" class="navbar navbar-light bg-light">
+									<center><a class="navbar-brand"> Output: </a></center>
+									<ul class="nav nav-pills">
+										<li class="nav-item">
+											<a class="nav-link" href="#fat">@today</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" href="#mdo">@rest</a>
+										</li>
+									</ul>
+								</nav>
 
-		<!-- log -->
-		<nav id="navbar-example2" class="navbar navbar-light bg-light">
-			<center><a class="navbar-brand">Log</a></center>
-			<ul class="nav nav-pills">
-				<li class="nav-item">
-					<a class="nav-link" href="#fat">@today</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#mdo">@rest</a>
-				</li>
-			</ul>
-		</nav>
+								<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+									<h4 id="fat">@today</h4>
+									<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+									<h4 id="mdo">@rest</h4>
+									<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+								</div>
 
-		<div data-spy="scroll" data-target="#navbar-example2" data-offset="0" id="logAdmin">
-			<h4 id="fat">@today</h4>
-			<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-			<h4 id="mdo">@rest</h4>
-			<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-		</div>
-	{% endif %}
+							</div>
+							<!-- hide all -->
+							<!-- <div class="tab-pane fade" id="list-hideall" role="tabpanel" aria-labelledby="list-hideall-list">	 </div> -->
+
+							<!-- userlist -->
+							<div class="tab-pane fade" id="list-userlist" role="tabpanel" aria-labelledby="list-userlist-list"> User list </div>
+							
+							<!-- newuser -->
+							<div class="tab-pane fade" id="list-newuser" role="tabpanel" aria-labelledby="list-newuser-list">	
+								<a style="border: none; background: #F2F3F4" href="/register" type="button" class="list-group-item list-group-item-action"> Click here to register a new user </a>
+							</div>
+						{% else %}  <!-- non admin -->
+							<!-- someopt -->
+							<div class="tab-pane fade" id="list-someopt" role="tabpanel" aria-labelledby="list-someopt-list"> Some options </div>
+						{% endif %}
+						
+					</div>
+				</div>
+			</div>
+
+	</div>
 
 {% endblock content %}
