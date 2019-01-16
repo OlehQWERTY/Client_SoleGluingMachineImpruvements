@@ -1,0 +1,41 @@
+/*#navbar-example2{
+	background: #f050f0;
+	color: #a52a2a;
+	overflow-y: scroll;
+	position: relative;
+	height: 100;
+}*/
+/*
+p{
+	background: #f050f0;
+	color: #a52a2a;
+}
+*/
+/*body{
+	background: #f050f0;
+}*/
+
+/*.navbar {
+	background: #f050f0;
+	color: #a52a2a;
+	position: relative;
+}*/
+
+/*#A {
+	background: #f050f0;
+	color: #a52a2a;
+	position: relative;
+}
+
+#Xerny {
+	overflow-y: scroll;
+	position: relative;
+	height: 200;
+}*/
+
+#logAdmin {
+	overflow-y: scroll;
+	position: relative;
+	height: 200;
+	border: 1px solid #ED1C24;
+}
