@@ -105,7 +105,6 @@ flgLoading = False  # show loading div instead of content
 iop = 1000
 @app.route('/_add_mProgress')  # ajax test
 def add_mProgress():
-
 	return jsonify(result=[random.randint(0, 10), 1000 - iop])
 
 
@@ -135,6 +134,7 @@ def machineP(number=None):
 		current_pos_ammount = machines[0][str(number)]
 
 	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
+
 
 @app.route('/machine/all')
 @login_required
@@ -206,10 +206,13 @@ def logout():
 	logout_user()
 	return redirect(url_for('home'))
 
+
 @app.route("/account")
 @login_required
 def account():
-	return render_template('account.html', title='Account', utype=current_user.usertype)
+	logTable = getLogTable()
+	userTable = getUserTable()
+	return render_template('account.html', title='Account', utype=current_user.usertype, logTable=logTable, userTable=userTable)
 
 
 def log(a_type, act, cont, u_id = None):
@@ -219,6 +222,7 @@ def log(a_type, act, cont, u_id = None):
 		db.session.add(Log(action_type=a_type, action=act, content=cont))
 	db.session.commit()
 
+
 # @app.route("/logClear")
 # exeption processing
 def logClear(days_ago):  # days_ago
@@ -226,6 +230,14 @@ def logClear(days_ago):  # days_ago
 	Log.query.filter(Log.date_performed > (datetime.now() - timedelta(days=days_ago))).delete()
 	db.session.commit()
 	# return redirect(url_for('home'))
+
+
+def getLogTable():
+	return Log.query.all()
+
+
+def getUserTable():
+	return User.query.all()
 
 
 # @app.route('/set')
