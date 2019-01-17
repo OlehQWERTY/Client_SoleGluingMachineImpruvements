@@ -35,14 +35,13 @@ class Log(db.Model):
 	# user_email = db.Column(db.String(120), db.ForeignKey('user.email'))  # db.ForeignKey('user.email') , nullable=False ... in case of delating users user_id isn't valid 
 	def __repr__(self):
 		return f"Log('{self.action_type}', '{self.action}', '{self.date_performed}', '{self.user_id}')"  # , '{self.user_email}'
+# test
+class Two(db.Model):
+    __bind_key__ = 'two'
+    id = db.Column(db.Integer, primary_key=True)
+    numb = db.Column(db.Integer)
 
-
-# class Post(db.Model):
-# 	id = db.Column(db.Integer, primary_key=True)
-# 	title = db.Column(db.String(20), nullable=False)
-# 	data_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-# 	content = db.Column(db.Text, nullable=False)
-# 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
-# 	def __repr__(self):
-# 		return f"Post('{self.title}', '{self.data_posted}')"
+class Three(db.Model):
+    __bind_key__ = 'three'
+    id = db.Column(db.Integer, primary_key=True)
+    numb = db.Column(db.Integer)
