@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
-from controlWebPage import app, db, bcrypt #, session_three
+from controlWebPage import app, db, bcrypt, mycursor #, session_three
 from controlWebPage.forms import RegistrationForm, LoginForm
 from controlWebPage.modules import User, Log #, Two, Three
 from flask_login import login_user, current_user, logout_user, login_required
@@ -246,6 +246,11 @@ def getLogTable():
 
 def getUserTable():
 	return User.query.all()
+
+
+def getSole_1():
+	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
+	return mycursor
 
 # no need now
 # @app.route("/db_test")

@@ -27,13 +27,13 @@ mycursor = mydb.cursor()
 # print(mycursor)
 # query = ("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
 # mycursor.execute(query)
-mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
+# mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
 
 # mycursor.execute("USE sole_1")
 # mycursor.execute("SHOW DATABASES")
 
-for x in mycursor:
-  print(x)
+# for x in mycursor:
+#   print(x)
 
 
 app = Flask(__name__)
