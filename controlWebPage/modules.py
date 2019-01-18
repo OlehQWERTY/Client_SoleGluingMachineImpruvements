@@ -35,23 +35,17 @@ class Log(db.Model):
 	# user_email = db.Column(db.String(120), db.ForeignKey('user.email'))  # db.ForeignKey('user.email') , nullable=False ... in case of delating users user_id isn't valid 
 	def __repr__(self):
 		return f"Log('{self.action_type}', '{self.action}', '{self.date_performed}', '{self.user_id}')"  # , '{self.user_email}'
-# test
-class Two(db.Model):
-    __bind_key__ = 'two'
-    id = db.Column(db.Integer, primary_key=True)
-    numb = db.Column(db.Integer)
+		
+# no need now
+# class Two(db.Model):
+#     __bind_key__ = 'two'
+#     id = db.Column(db.Integer, primary_key=True)
+#     numb = db.Column(db.Integer)
 
-class Three(db.Model):
-    __bind_key__ = 'three'
-    id = db.Column(db.Integer, primary_key=True)
-    numb = db.Column(db.Integer)
-
-
-# class Machine(db.Model):
-#     __bind_key__ = 'machine'
-    # id = db.Column(db.Integer, primary_key=True)
-    # numb = db.Column(db.Integer)
-
+# class Three(db.Model):
+#     __bind_key__ = 'three'
+#     id = db.Column(db.Integer, primary_key=True)
+#     numb = db.Column(db.Integer)
 
 #     CREATE TABLE glueMachine (
 #     RecID int auto_increment primary key,

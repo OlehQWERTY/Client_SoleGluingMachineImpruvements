@@ -1,9 +1,9 @@
 from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
-from controlWebPage import app, db, bcrypt, session_three
+from controlWebPage import app, db, bcrypt #, session_three
 from controlWebPage.forms import RegistrationForm, LoginForm
-from controlWebPage.modules import User, Log, Two, Three
+from controlWebPage.modules import User, Log #, Two, Three
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
 from time import time
@@ -247,22 +247,22 @@ def getLogTable():
 def getUserTable():
 	return User.query.all()
 
-# test
-@app.route("/db_test")
-def index():
-	second = Two(numb=634)
-	db.session.add(second)
-	db.session.commit()
+# no need now
+# @app.route("/db_test")
+# def index():
+# 	second = Two(numb=634)
+# 	db.session.add(second)
+# 	db.session.commit()
 
-	getTwo = Two.query.filter(Two.id > 638).first()
-	# print(type(Two.query.filter(Two.id > 638).first()))  # ????????????????????????
-	# db.session.commit()
-	print(getTwo.id)
+# 	getTwo = Two.query.filter(Two.id > 638).first()
+# 	# print(type(Two.query.filter(Two.id > 638).first()))  # ????????????????????????
+# 	# db.session.commit()
+# 	print(getTwo.id)
 
-	# session_three.add(Three(numb=12))
-	# session_three.commit()
+# 	# session_three.add(Three(numb=12))
+# 	# session_three.commit()
 
-	return("<h1>Added a value to the 3 table!</h1>")
+# 	return("<h1>Added a value to the 3 table!</h1>")
 
 
 # @app.route('/set')
