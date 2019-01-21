@@ -6,13 +6,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
-import mysql.connector
+import mysql.connector as mSql
 
 # some_engine = create_engine('mysql+mysqldb://monitor:password@172.16.2.142:3306/sole_1')
 # python -m pip install mysql-connector
 
 
-mydb = mysql.connector.connect(
+mydb = mSql.connect(
   host="172.16.2.142",
   user="monitor",
   passwd="password",

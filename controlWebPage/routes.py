@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
-from controlWebPage import app, db, bcrypt, mycursor #, session_three
+from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor #, session_three
 from controlWebPage.forms import RegistrationForm, LoginForm
 from controlWebPage.modules import User, Log #, Two, Three
 from flask_login import login_user, current_user, logout_user, login_required
@@ -251,6 +251,63 @@ def getUserTable():
 def getSole_1():
 	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
 	return mycursor
+
+@app.route("/testInsert")
+def testInsert():
+	command = {
+		'UnitID':'11',
+		'Articul':'Nasty',
+		'ProcessID':'101',
+		'OperatorName':'Zoya Semenovna',
+		'OperationDate':'06/08/06 11:12:13',
+		'Pull':'New_4925NG_Poland',
+		'OrderNumber':'2564',
+		'LocalNumber':'197',
+		'ReadyDate':'06/08/06 11:12:13'
+	}
+	# insertSole_1(**command)
+	# for i in range(1870, 1940):
+	delRecIDSole_1(1600, 1900)
+	return("<h1> --- testInsert --- </h1>")
+
+
+def insertSole_1(**data):
+	query = "INSERT INTO glueMachine (UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
+	+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
+	'\'' + ', ' + data['ProcessID'] + ', ' + '\'' + str(data['OperatorName']) + '\'' + ', ' + '\'' + \
+	str(data['OperationDate']) + '\'' + ', ' + '\'' + str(data['Pull']) + '\'' + ', ' + '\'' + \
+	str(data['OrderNumber']) + '\'' + ', ' + '\'' + str(data['LocalNumber']) + '\'' + ', ' + '\'' + \
+	str(data['ReadyDate'])  + '\'' + ')'
+
+	try:
+		mycursor.execute(query)
+		mydb.commit()
+	except mSql.Error as err:
+		print("Failed inserting to database: {}".format(err))
+
+
+def delRecIDSole_1(id, id_2=None):
+	try:
+		mycursor.execute("SELECT COUNT(1) FROM glueMachine WHERE RecID = " + str(id))
+		for x in mycursor:
+			if id_2:  # del RecID in range(id, id_2). Unsafe because it doesn't include check procedure.
+				query_2 = "DELETE FROM glueMachine WHERE RecID BETWEEN " + str(id) + " AND " + str(id_2)
+				mycursor.execute(query_2)
+				print("id = " + str(id) + '-' + str(id_2) + " should be delated")
+				mydb.commit()
+			else:  # del one RecID[id]
+				query_1 = "DELETE FROM glueMachine WHERE RecID=" + str(id)
+				if False if int(x[0]) > 0 else True:
+					print("id = " + str(id) + " doesn't exist!")
+					return False  # do not exist
+				else:
+					mycursor.execute(query_1)
+					print("id = " + str(id) + " was del")
+					mydb.commit()
+	except mSql.Error as err:
+		print("Failed inserting to database: {}".format(err))
+	else:
+		return True
 
 # no need now
 # @app.route("/db_test")
