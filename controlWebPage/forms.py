@@ -5,7 +5,7 @@ from controlWebPage.modules import User
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
-                           validators=[DataRequired(), Length(min=2, max=20)])
+                           validators=[DataRequired(), Length(min=2, max=255)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -31,7 +31,36 @@ class RegistrationForm(FlaskForm):
 
 class LoginForm(FlaskForm):
 	email = StringField('Email',
-	            validators=[DataRequired(), Email()])
+	         validators=[DataRequired(), Email()])
 	password = PasswordField('Password', validators=[DataRequired()])
 	remember = BooleanField('Remember Me')
 	submit = SubmitField('Login')
+
+class TaskAddForm(FlaskForm):
+    bunch = StringField('bunch',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "BG58RZK87", "id": "validationTooltip04" })
+    pull = StringField('pull',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "190045", "id": "validationTooltip05" })
+    localNumber = StringField('localNumber',
+                           validators=[DataRequired(), Length(min=1, max=255)])
+    cityOrder = StringField('cityOrder',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    stateOrder = StringField('stateOrder',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    plantOrder = StringField('plantOrder',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    cityProduction = StringField('cityProduction',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    stateProduction = StringField('stateProduction',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    plantProduction = StringField('plantProduction',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    dateEnteredTask = StringField('dateEnteredTask',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    dateEnteredToProduction = StringField('dateEnteredToProduction',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    dateRequired = StringField('dateRequired',
+                           validators=[DataRequired(), Length(min=2, max=255)])
+    submit = SubmitField('ADD TASK')
+
+    # validate

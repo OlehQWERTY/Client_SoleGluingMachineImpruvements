@@ -79,3 +79,21 @@ CREATE TABLE Config (
     OperatorSecondName varchar(255),
 	ReloadDate varchar(255)
 );
+
+
+
+CREATE TABLE Tasks (
+	id int auto_increment primary key,
+	Bunch varchar(255),
+	Pull varchar(255),
+	LocalNumber varchar(255),
+	CityOrder varchar(255),
+	StateOrder varchar(255),
+	PlantOrder varchar(255),
+	CityProduction varchar(255),
+	StateProduction varchar(255),
+	PlantProduction varchar(255),
+	DateEnteredTask varchar(255),
+	DateEnteredToProduction varchar(255),
+	DateRequired varchar(255)
+);

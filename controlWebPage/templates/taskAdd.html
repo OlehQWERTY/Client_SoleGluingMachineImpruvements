@@ -36,14 +36,16 @@
           </div> -->
           <div class="col-md-6 mb-3">
             <label for="validationTooltip04">Bunch</label>
-            <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required>
+            {{ form.bunch(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required> -->
             <div class="invalid-tooltip">
               Please provide a valid city.
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationTooltip05">Pull</label>
-            <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required>
+            {{ form.pull(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required> -->
             <div class="invalid-tooltip">
               Please provide a valid state.
             </div>
@@ -129,7 +131,8 @@
 	      </div>
 	    </div>
 
-	    <button class="btn btn-primary" type="submit">Submit form</button>
+	    {{ form.submit(class="btn btn-outline-info") }}
+	    <!-- <button class="btn btn-primary" type="submit">Submit form</button> -->
 	  </form>
 	</div>
 

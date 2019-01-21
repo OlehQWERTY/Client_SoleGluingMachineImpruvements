@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor #, session_three
-from controlWebPage.forms import RegistrationForm, LoginForm
+from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm
 from controlWebPage.modules import User, Log #, Two, Three
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
@@ -150,10 +150,27 @@ def taskP():
 	return render_template('task.html', flgLoading=flgLoading, tasks=tasks)  #  True if dict == dict1 else False
 
 
-@app.route('/task/add')
+@app.route('/task/add', methods=['GET', 'POST'])
 @login_required
 def taskAddP():
-	return render_template('taskAdd.html', flgLoading=flgLoading)  # , tasks=tasks
+	form = TaskAddForm()
+	if form.validate_on_submit():
+		query = {
+			'Bunch': form.bunch.data,
+			'Pull': form.pull.data,
+			'LocalNumber': form.localNumber.data,
+			'CityOrder': form.cityOrder.data,
+			'StateOrder': form.stateOrder.data,
+			'PlantOrder': form.plantOrder.data,
+			'CityProduction': form.cityProduction.data,
+			'StateProduction': form.stateProduction.data,
+			'PlantProduction': form.plantProduction.data,
+			'DateEnteredTask': form.dateEnteredTask.data,
+			'DateEnteredToProduction': form.dateEnteredToProduction.data,
+			'DateRequired': form.dateRequired.data
+		}
+		insertSole_1(query, 'Tasks')  # add check
+	return render_template('taskAdd.html', flgLoading=flgLoading, form=form)  # , tasks=tasks
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -252,32 +269,65 @@ def getSole_1():
 	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
 	return mycursor
 
-@app.route("/testInsert")
-def testInsert():
-	command = {
-		'UnitID':'11',
-		'Articul':'Nasty',
-		'ProcessID':'101',
-		'OperatorName':'Zoya Semenovna',
-		'OperationDate':'06/08/06 11:12:13',
-		'Pull':'New_4925NG_Poland',
-		'OrderNumber':'2564',
-		'LocalNumber':'197',
-		'ReadyDate':'06/08/06 11:12:13'
-	}
-	# insertSole_1(**command)
-	# for i in range(1870, 1940):
-	delRecIDSole_1(1600, 1900)
-	return("<h1> --- testInsert --- </h1>")
+# @app.route("/testInsert")
+# def testInsert():
+# 	# command = {
+# 	# 	'UnitID':'11',
+# 	# 	'Articul':'Nasty',
+# 	# 	'ProcessID':'101',
+# 	# 	'OperatorName':'Zoya Semenovna',
+# 	# 	'OperationDate':'06/08/06 11:12:13',
+# 	# 	'Pull':'New_4925NG_Poland',
+# 	# 	'OrderNumber':'2564',
+# 	# 	'LocalNumber':'197',
+# 	# 	'ReadyDate':'06/08/06 11:12:13'
+# 	# 	'SQL_Table_NAME_': 'glueMachine'
+# 	# }
+
+# 	command = {
+# 		'Bunch': "varchar(255)",
+# 		'Pull': "varchar(255)",
+# 		'LocalNumber': "varchar(255)",
+# 		'CityOrder': "varchar(255)",
+# 		'StateOrder': "varchar(255)",
+# 		'PlantOrder': "varchar(255)",
+# 		'CityProduction': "varchar(255)",
+# 		'StateProduction': "varchar(255)",
+# 		'PlantProduction': "varchar(255)",
+# 		'DateEnteredTask': "varchar(255)",
+# 		'DateEnteredToProduction': "varchar(255)",
+# 		'DateRequired': "varchar(255)",
+# 		'SQL_Table_NAME_': 'Tasks'
+# 	}
+
+
+
+# 	# insertSole_1(**command, 'glueMachine')
+# 	insertSole_1(**command)
+
+# 	# delRecIDSole_1(1600, 1900)
+# 	return("<h1> --- testInsert --- </h1>")
 
 
 def insertSole_1(**data):
-	query = "INSERT INTO glueMachine (UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
-	+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
-	'\'' + ', ' + data['ProcessID'] + ', ' + '\'' + str(data['OperatorName']) + '\'' + ', ' + '\'' + \
-	str(data['OperationDate']) + '\'' + ', ' + '\'' + str(data['Pull']) + '\'' + ', ' + '\'' + \
-	str(data['OrderNumber']) + '\'' + ', ' + '\'' + str(data['LocalNumber']) + '\'' + ', ' + '\'' + \
-	str(data['ReadyDate'])  + '\'' + ')'
+	if table == "glueMachine":
+		query = "INSERT INTO" + str(data['SQL_Table_NAME_']) + " (UnitID, Articul, ProcessID, OperatorName, OperationDate, \
+		Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
+		+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
+		'\'' + ', ' + data['ProcessID'] + ', ' + '\'' + str(data['OperatorName']) + '\'' + ', ' + '\'' + \
+		str(data['OperationDate']) + '\'' + ', ' + '\'' + str(data['Pull']) + '\'' + ', ' + '\'' + \
+		str(data['OrderNumber']) + '\'' + ', ' + '\'' + str(data['LocalNumber']) + '\'' + ', ' + '\'' + \
+		str(data['ReadyDate'])  + '\'' + ')'
+
+	elif table == "Tasks":
+		query = "INSERT INTO" + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
+		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
+		+ data['Bunch'] + ', '  + '\'' + str(data['Pull']) + \
+		'\'' + ', ' + data['LocalNumber'] + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
+		str(data['StateOrder']) + '\'' + ', ' + '\'' + str(data['PlantOrder']) + '\'' + ', ' + '\'' + \
+		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
+		str(data['PlantProduction'])  + '\'' + '\'' + str(data['DateEnteredTask']) + '\'' + '\'' + \
+		str(data['DateEnteredToProduction']) + '\'' + '\'' + str(data['DateRequired']) + '\'' + ')'
 
 	try:
 		mycursor.execute(query)
