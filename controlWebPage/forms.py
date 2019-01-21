@@ -41,26 +41,26 @@ class TaskAddForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "BG58RZK87", "id": "validationTooltip04" })
     pull = StringField('pull',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "190045", "id": "validationTooltip05" })
-    localNumber = StringField('localNumber',
-                           validators=[DataRequired(), Length(min=1, max=255)])
-    cityOrder = StringField('cityOrder',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    stateOrder = StringField('stateOrder',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    plantOrder = StringField('plantOrder',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    cityProduction = StringField('cityProduction',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    stateProduction = StringField('stateProduction',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    plantProduction = StringField('plantProduction',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    dateEnteredTask = StringField('dateEnteredTask',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    dateEnteredToProduction = StringField('dateEnteredToProduction',
-                           validators=[DataRequired(), Length(min=2, max=255)])
-    dateRequired = StringField('dateRequired',
-                           validators=[DataRequired(), Length(min=2, max=255)])
+    localNumber = StringField('local number',
+                           validators=[DataRequired(), Length(min=1, max=255)], render_kw={"placeholder": "127", "id": "validationTooltip06" })
+    cityOrder = StringField('city order',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "ArcoBaleno", "id": "validationTooltip07" })
+    stateOrder = StringField('state order',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "PL", "id": "validationTooltip08" })
+    plantOrder = StringField('plant order',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-10", "id": "validationTooltip09" })
+    cityProduction = StringField('city production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "Berdichev", "id": "validationTooltip10" })
+    stateProduction = StringField('state production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
+    plantProduction = StringField('plant production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    dateEnteredTask = StringField('date entered task',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "21/01/18 15-21-13", "id": "validationTooltip13" })
+    dateEnteredToProduction = StringField('date entered to production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "18/01/18 12-20-15", "id": "validationTooltip14" })
+    dateRequired = StringField('date required',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "30/02/18 15-21-13", "id": "validationTooltip15" })
     submit = SubmitField('ADD TASK')
 
     # validate

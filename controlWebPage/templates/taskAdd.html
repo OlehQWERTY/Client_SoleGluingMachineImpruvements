@@ -35,7 +35,8 @@
             </div>
           </div> -->
           <div class="col-md-6 mb-3">
-            <label for="validationTooltip04">Bunch</label>
+            <!-- <label for="validationTooltip04">Bunch</label> -->
+            {{ form.bunch.label(class="col-form-label") }}
             {{ form.bunch(class="form-control form-control-md") }}
             <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required> -->
             <div class="invalid-tooltip">
@@ -43,7 +44,8 @@
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="validationTooltip05">Pull</label>
+            <!-- <label for="validationTooltip05">Pull</label> -->
+            {{ form.pull.label(class="col-form-label") }}
             {{ form.pull(class="form-control form-control-md") }}
             <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required> -->
             <div class="invalid-tooltip">
@@ -51,8 +53,10 @@
             </div>
           </div>
           <div class="col-md-2 mb-3">
-            <label for="validationTooltip06">Local number</label>
-            <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required>
+            <!-- <label for="validationTooltip06">Local number</label> -->
+            {{ form.localNumber.label(class="col-form-label") }}
+            {{ form.localNumber(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required> -->
             <div class="invalid-tooltip">
               Please provide a valid plant id.
             </div>
@@ -61,22 +65,28 @@
 
 	    <div class="form-row">
 	      <div class="col-md-6 mb-3">
-	        <label for="validationTooltip04">City Order</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="ArcoBaleno" required>
+	      	{{ form.cityOrder.label(class="col-form-label") }}
+            {{ form.cityOrder(class="form-control form-control-md") }}
+	       <!--  <label for="validationTooltip04">City Order</label>
+	        <input type="text" class="form-control" id="validationTooltip04" placeholder="ArcoBaleno" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid city.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip05">State Order</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="PL" required>
+	      	{{ form.stateOrder.label(class="col-form-label") }}
+            {{ form.stateOrder(class="form-control form-control-md") }}
+	        <!-- <label for="validationTooltip05">State Order</label>
+	        <input type="text" class="form-control" id="validationTooltip05" placeholder="PL" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid state.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip06">Plant Order</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-10" required>
+			{{ form.plantOrder.label(class="col-form-label") }}
+			{{ form.plantOrder(class="form-control form-control-md") }}
+	       <!--  <label for="validationTooltip06">Plant Order</label>
+	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-10" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid zip.
 	        </div>
@@ -85,22 +95,28 @@
 
 	   	<div class="form-row">
 	      <div class="col-md-6 mb-3">
-	        <label for="validationTooltip04">City Production</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="Berdichev" required>
+	      	{{ form.cityProduction.label(class="col-form-label") }}
+			{{ form.cityProduction(class="form-control form-control-md") }}
+	        <!-- <label for="validationTooltip04">City Production</label>
+	        <input type="text" class="form-control" id="validationTooltip04" placeholder="Berdichev" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid city.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip05">State Production</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="UK" required>
+	      	{{ form.stateProduction.label(class="col-form-label") }}
+			{{ form.stateProduction(class="form-control form-control-md") }}
+	       <!--  <label for="validationTooltip05">State Production</label>
+	        <input type="text" class="form-control" id="validationTooltip05" placeholder="UK" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid state.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip06">Plant Production</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-1" required>
+	      	{{ form.plantProduction.label(class="col-form-label") }}
+			{{ form.plantProduction(class="form-control form-control-md") }}
+	       <!--  <label for="validationTooltip06">Plant Production</label>
+	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-1" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid zip.
 	        </div>
@@ -109,22 +125,28 @@
 		
 		<div class="form-row">
 	      <div class="col-md-6 mb-3">
-	        <label for="validationTooltip04">Date entered (task)</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="21/01/18 15-21-13" required>
+	      	{{ form.dateEnteredTask.label(class="col-form-label") }}
+			{{ form.dateEnteredTask(class="form-control form-control-md") }}
+	        <!-- <label for="validationTooltip04">Date entered (task)</label>
+	        <input type="text" class="form-control" id="validationTooltip04" placeholder="21/01/18 15-21-13" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid city.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip05">Date entered (to production)</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="18/01/18 12-20-15" required>
+	      	{{ form.dateEnteredToProduction.label(class="col-form-label") }}
+			{{ form.dateEnteredToProduction(class="form-control form-control-md") }}
+	        <!-- <label for="validationTooltip05">Date entered (to production)</label>
+	        <input type="text" class="form-control" id="validationTooltip05" placeholder="18/01/18 12-20-15" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid state.
 	        </div>
 	      </div>
 	      <div class="col-md-3 mb-3">
-	        <label for="validationTooltip06">Date required</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="30/02/18 15-21-13" required>
+	      	{{ form.dateRequired.label(class="col-form-label") }}
+			{{ form.dateRequired(class="form-control form-control-md") }}
+	       <!--  <label for="validationTooltip06">Date required</label>
+	        <input type="text" class="form-control" id="validationTooltip06" placeholder="30/02/18 15-21-13" required> -->
 	        <div class="invalid-tooltip">
 	          Please provide a valid zip.
 	        </div>

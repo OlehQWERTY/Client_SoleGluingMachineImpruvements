@@ -155,6 +155,7 @@ def taskP():
 def taskAddP():
 	form = TaskAddForm()
 	if form.validate_on_submit():
+		print("validate_on_submit")
 		query = {
 			'Bunch': form.bunch.data,
 			'Pull': form.pull.data,
@@ -328,7 +329,12 @@ def insertSole_1(**data):
 		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
 		str(data['PlantProduction'])  + '\'' + '\'' + str(data['DateEnteredTask']) + '\'' + '\'' + \
 		str(data['DateEnteredToProduction']) + '\'' + '\'' + str(data['DateRequired']) + '\'' + ')'
-
+	else:
+		prrint("Table is incorect or data is empty!")
+		return False
+	# print(query)
+	print("Data: !!!")
+	print(data)
 	try:
 		mycursor.execute(query)
 		mydb.commit()
