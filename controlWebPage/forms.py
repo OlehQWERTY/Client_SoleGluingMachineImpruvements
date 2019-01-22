@@ -1,7 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.fields.html5 import DateField  # pip install wtforms-html5
+from wtforms.fields.html5 import DateTimeField  # pip install wtforms-html5
 from controlWebPage.modules import User
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
@@ -55,8 +58,9 @@ class TaskAddForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     plantProduction = StringField('plant production',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
-    dateEnteredTask = StringField('date entered task',
-                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "21/01/18 15-21-13", "id": "validationTooltip13" })
+    dateEnteredTask = DateField('date entered task') #, format='%d/%m/%Y %H:%M:%S') #,
+    # dateEnteredTask = DateTimeField('date entered task') #, format='%d/%m/%Y %H:%M:%S') #,
+                           #validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "21/01/18 15-21-13", "id": "validationTooltip13" })
     dateEnteredToProduction = StringField('date entered to production',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "18/01/18 12-20-15", "id": "validationTooltip14" })
     dateRequired = StringField('date required',
@@ -64,3 +68,7 @@ class TaskAddForm(FlaskForm):
     submit = SubmitField('ADD TASK')
 
     # validate
+    def validate_localNumber(self, localNumber):
+        localNumber = localNumber.data
+        if not localNumber.isdigit():  # isdigit only detects positive integers
+            raise ValidationError('Local number should be a positive digit')
