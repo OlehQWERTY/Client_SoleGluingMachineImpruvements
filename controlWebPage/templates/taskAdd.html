@@ -126,11 +126,8 @@
 		
 		<div class="form-row">
 	      <div class="col-md-6 mb-3">
-	      	<!-- {{ form.dateEnteredTask.label(class="col-form-label") }} -->
-			<!-- {{ form.dateEnteredTask(class="form-control form-control-md") }} -->
-			<!-- {{ form.dateEnteredTask(class='datepicker') }} -->
-			{{ form.dateEnteredTask(class='datepicker') }}
-			
+			{{ form.dateEnteredTask.label(class="col-form-label") }}
+			{{ form.dateEnteredTask(class="form-control form-control-md") }}
 	        <!-- <label for="validationTooltip04">Date entered (task)</label>
 	        <input type="text" class="form-control" id="validationTooltip04" placeholder="21/01/18 15-21-13" required> -->
 	        <div class="invalid-tooltip">
@@ -164,26 +161,3 @@
 
 	</div>  <!-- my_content -->
 {% endblock content %}
-
-
-
-<!-- 'RecID': '1', ??? --> 
-<!-- 'UnitID': '1', machine number --> 
-'Articul': 'Kate',
-'ProcessID': '101',
-<!-- 'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error", -->
-<!-- 'OperatorName': 'Zoya Semenovna', -->
-<!-- 'OperationDate': '17/11/18:17-25-42', automatic -> if close task was confirmed -->
-'Pull': '199poi',
-'OrderNumber': '199987',
-<!-- 'LocalNumber': '13', automatic (for first time possible to correct)-->
-<!-- 'PartLocalNumber': '1', automatic (send to machene 500) -->
-<!-- 'ReadyDate': '18/11/18:25-30-36' automatic -> if close task was confirmed, -->
-'CountryOrder': 'PL',
-'CityOrder': 'Lublin',
-'PlantOrder': 'RIF - 5',
-'DateEntered': '18/12/19:25-25-36',
-'RequiredRDate': '17/11/18:17-0-0',
-'CountryProd': 'UK',
-'CityProd': 'Kyiv',
-<!-- 'QR': '186551' autogenerate -->

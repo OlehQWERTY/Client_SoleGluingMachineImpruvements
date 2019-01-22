@@ -157,7 +157,7 @@ def taskAddP():
 	# print("validation")
 	# print(form.is_submitted())
 	# print(form.validate_on_submit())
-	if form.is_submitted():
+	if form.validate_on_submit():
 	
 	# print(form.bunch.data)
 		query = {

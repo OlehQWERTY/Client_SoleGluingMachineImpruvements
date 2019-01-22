@@ -1,8 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-from wtforms.fields.html5 import DateField  # pip install wtforms-html5
-from wtforms.fields.html5 import DateTimeField  # pip install wtforms-html5
+# from wtforms.fields.html5 import DateField  # pip install wtforms-html5
+# from wtforms.fields.html5 import DateTimeField  # pip install wtforms-html5
+# from flask_bootstrap import Bootstrap
+from wtforms import StringField, BooleanField
+from wtforms.fields.html5 import DateTimeLocalField
+from wtforms_components import DateRange  # pip install wtforms_components
+from datetime import datetime, timedelta, date  # DateRange
 from controlWebPage.modules import User
 
 
@@ -58,13 +63,14 @@ class TaskAddForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     plantProduction = StringField('plant production',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
-    dateEnteredTask = DateField('date entered task') #, format='%d/%m/%Y %H:%M:%S') #,
-    # dateEnteredTask = DateTimeField('date entered task') #, format='%d/%m/%Y %H:%M:%S') #,
-                           #validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "21/01/18 15-21-13", "id": "validationTooltip13" })
-    dateEnteredToProduction = StringField('date entered to production',
-                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "18/01/18 12-20-15", "id": "validationTooltip14" })
-    dateRequired = StringField('date required',
-                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "30/02/18 15-21-13", "id": "validationTooltip15" })
+    # dateEnteredTask = DateField('date entered task', id = 'datepicker', format='%d/%m/%Y %H:%M:%S')
+    # DateTimeLocalField
+    dateEnteredTask = DateTimeLocalField(label = 'date entered task', format = "%d%b%Y %H:%M", 
+                            validators=[DataRequired(), DateRange(min=datetime.now(), max=(datetime.now() + timedelta(days=7)))])  # default= datetime.utcnow
+    dateEnteredToProduction = DateTimeLocalField(label = 'date entered to production', format = "%d%b%Y %H:%M", 
+                            validators=[DataRequired(), DateRange(min=datetime.now())])  # validators=[DataRequired(), DateRange(min=datetime.now(), max=(datetime.now() + timedelta(days=7)))]
+    dateRequired = DateTimeLocalField(label = 'date required', format = "%d%b%Y %H:%M", 
+                            validators=[DataRequired(), DateRange(min=datetime.now())])
     submit = SubmitField('ADD TASK')
 
     # validate
