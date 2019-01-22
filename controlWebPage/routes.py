@@ -154,8 +154,12 @@ def taskP():
 @login_required
 def taskAddP():
 	form = TaskAddForm()
-	if form.validate_on_submit():
-		print("validate_on_submit")
+	# print("validation")
+	# print(form.is_submitted())
+	# print(form.validate_on_submit())
+	if form.is_submitted():
+	
+	# print(form.bunch.data)
 		query = {
 			'Bunch': form.bunch.data,
 			'Pull': form.pull.data,
@@ -168,9 +172,10 @@ def taskAddP():
 			'PlantProduction': form.plantProduction.data,
 			'DateEnteredTask': form.dateEnteredTask.data,
 			'DateEnteredToProduction': form.dateEnteredToProduction.data,
-			'DateRequired': form.dateRequired.data
+			'DateRequired': form.dateRequired.data,
+			'SQL_Table_NAME_': 'Tasks'
 		}
-		insertSole_1(query, 'Tasks')  # add check
+		insertSole_1(**query)  # add check 'Tasks'
 	return render_template('taskAdd.html', flgLoading=flgLoading, form=form)  # , tasks=tasks
 
 
@@ -311,8 +316,8 @@ def getSole_1():
 
 
 def insertSole_1(**data):
-	if table == "glueMachine":
-		query = "INSERT INTO" + str(data['SQL_Table_NAME_']) + " (UnitID, Articul, ProcessID, OperatorName, OperationDate, \
+	if data['SQL_Table_NAME_'] == "glueMachine":
+		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (UnitID, Articul, ProcessID, OperatorName, OperationDate, \
 		Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
 		+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
 		'\'' + ', ' + data['ProcessID'] + ', ' + '\'' + str(data['OperatorName']) + '\'' + ', ' + '\'' + \
@@ -320,21 +325,21 @@ def insertSole_1(**data):
 		str(data['OrderNumber']) + '\'' + ', ' + '\'' + str(data['LocalNumber']) + '\'' + ', ' + '\'' + \
 		str(data['ReadyDate'])  + '\'' + ')'
 
-	elif table == "Tasks":
-		query = "INSERT INTO" + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
+	elif data['SQL_Table_NAME_'] == "Tasks":
+		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
 		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
-		+ data['Bunch'] + ', '  + '\'' + str(data['Pull']) + \
-		'\'' + ', ' + data['LocalNumber'] + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
+		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
+		'\'' + ', ' + str(data['LocalNumber']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
 		str(data['StateOrder']) + '\'' + ', ' + '\'' + str(data['PlantOrder']) + '\'' + ', ' + '\'' + \
 		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
-		str(data['PlantProduction'])  + '\'' + '\'' + str(data['DateEnteredTask']) + '\'' + '\'' + \
-		str(data['DateEnteredToProduction']) + '\'' + '\'' + str(data['DateRequired']) + '\'' + ')'
+		str(data['PlantProduction'])  + '\'' + ', ' + '\'' + str(data['DateEnteredTask']) + '\'' + ', ' + '\'' + \
+		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + ')'
 	else:
 		prrint("Table is incorect or data is empty!")
 		return False
 	# print(query)
 	print("Data: !!!")
-	print(data)
+	print(query)
 	try:
 		mycursor.execute(query)
 		mydb.commit()
@@ -361,7 +366,7 @@ def delRecIDSole_1(id, id_2=None):
 					print("id = " + str(id) + " was del")
 					mydb.commit()
 	except mSql.Error as err:
-		print("Failed inserting to database: {}".format(err))
+		print("Failed deleting from database: {}".format(err))
 	else:
 		return True
 
