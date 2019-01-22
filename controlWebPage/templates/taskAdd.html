@@ -5,7 +5,7 @@
 {% block head %}
   {{ super() }}
   <style type="text/css">
-    .important { color: #336699; }
+	.important { color: #336699; }
   </style>
 {% endblock head %}
  
@@ -15,147 +15,159 @@
 
 {% block content %}
 	<!--форма ввода-->
+	{% if flgLoading %}
+	  {{ super() }}  <!-- insert content section of base tamplete -->
+	  <div id='my_content' style='display:none;'>  <!-- hide content because of loading -->
+	{% else %}
+		<div id='my_content'>
+	{% endif %}
 
-    {% if flgLoading %}
-      {{ super() }}  <!-- insert content section of base tamplete -->
-      <div id='my_content' style='display:none;'>  <!-- hide content because of loading -->
-    {% else %}
-	    <div id='my_content'>
-    {% endif %}
+<!-- ------------- -->
+	<script>
+		// костиль для запуску вікна завантаження поки бд опрацьовує щось
+			// var timerId = setTimeout(function tick() {
+			// 	window.location = "{{ url_for('taskAddP') }}";
+			// 	timerId = setTimeout(tick, 2000);
+			// }, 2000);
+
+			function func() {
+				// alert("{{ flgLoading }}");
+				// alert(my_content.getAttribute('style'));
+				// if({{ flgLoading }}) {
+				window.location = "{{ url_for('taskAddP') }}";
+
+				// try to make it under js not in python ----------------------- !!!
+				// my_content.style = null
+				// var img = document.getElementById('loading_gif');
+    // 			img.style.visibility = 'hidden';
+    			// hidden
+    			// visible
+				// }
+  				// alert( 'Привет' );
+			}
+			if(my_content.getAttribute('style') == "display:none;")
+				setTimeout(func, 2000);
+  		</script>
+
+  		<!-- ------------------ -->
 
 
 	<div id = "inputTasksParam">
-	  <!-- <form class="needs-validation" novalidate> -->
 	  	<form method="POST" action="">
- 		<div class="form-row">
-          <!-- <div class="col-md-1 mb-3">
-            <label for="validationTooltip04">Позиція</label>
-            <input type="text" class="form-control" id="validationTooltip04" placeholder="{{ x }}" value="{{ x }}" readonly>
-            <div class="invalid-tooltip">
-              Please provide a valid position number.
-            </div>
-          </div> -->
-          <div class="col-md-6 mb-3">
-            <!-- <label for="validationTooltip04">Bunch</label> -->
-            {{ form.bunch.label(class="col-form-label") }}
-            {{ form.bunch(class="form-control form-control-md") }}
-            <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required> -->
-            <div class="invalid-tooltip">
-              Please provide a valid city.
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <!-- <label for="validationTooltip05">Pull</label> -->
-            {{ form.pull.label(class="col-form-label") }}
-            {{ form.pull(class="form-control form-control-md") }}
-            <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required> -->
-            <div class="invalid-tooltip">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div class="col-md-2 mb-3">
-            <!-- <label for="validationTooltip06">Local number</label> -->
-            {{ form.localNumber.label(class="col-form-label") }}
-            {{ form.localNumber(class="form-control form-control-md") }}
-            <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required> -->
-            <div class="invalid-tooltip">
-              Please provide a valid plant id.
-            </div>
-          </div>
-        </div>
 
-	    <div class="form-row">
-	      <div class="col-md-6 mb-3">
-	      	{{ form.cityOrder.label(class="col-form-label") }}
-            {{ form.cityOrder(class="form-control form-control-md") }}
-	       <!--  <label for="validationTooltip04">City Order</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="ArcoBaleno" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid city.
-	        </div>
-	      </div>
-	      <div class="col-md-3 mb-3">
-	      	{{ form.stateOrder.label(class="col-form-label") }}
-            {{ form.stateOrder(class="form-control form-control-md") }}
-	        <!-- <label for="validationTooltip05">State Order</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="PL" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid state.
-	        </div>
-	      </div>
-	      <div class="col-md-3 mb-3">
+  		<center><legend class="border-bottom mb-4">Add new task:</legend></center>
+
+ 		<div class="form-row">
+		  <div class="col-md-6 mb-3">
+			{{ form.bunch.label(class="col-form-label") }}
+			{{ form.bunch(class="form-control form-control-md") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid bunch.
+			</div>
+		  </div>
+		  <div class="col-md-4 mb-3">
+			{{ form.pull.label(class="col-form-label") }}
+			{{ form.pull(class="form-control form-control-md") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid pull.
+			</div>
+		  </div>
+		  <div class="col-md-2 mb-3">
+		  	<fieldset class="form-group">
+				<div class="form-group">
+					{{ form.localNumber.label(class="col-form-label") }}
+					{% if form.localNumber.errors %}
+						{{ form.localNumber(class="form-control form-control-lg is-invalid") }}
+						<div class="invalid-feedback">
+							{% for error in form.localNumber.errors %}
+								<span>{{ error }}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{ form.localNumber(class="form-control form-control-md") }}
+					{% endif %}
+				</div>
+			</fieldset>
+
+			<div class="invalid-tooltip">
+			  Please provide a valid plant id.
+			</div>
+		  </div>
+		</div>
+
+		<div class="form-row">
+		  <div class="col-md-6 mb-3">
+		  	{{ form.cityOrder.label(class="col-form-label") }}
+			{{ form.cityOrder(class="form-control form-control-md") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid cityOrder.
+			</div>
+		  </div>
+		  <div class="col-md-3 mb-3">
+		  	{{ form.stateOrder.label(class="col-form-label") }}
+			{{ form.stateOrder(class="form-control form-control-md") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid stateOrder.
+			</div>
+		  </div>
+		  <div class="col-md-3 mb-3">
 			{{ form.plantOrder.label(class="col-form-label") }}
 			{{ form.plantOrder(class="form-control form-control-md") }}
-	       <!--  <label for="validationTooltip06">Plant Order</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-10" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid zip.
-	        </div>
-	      </div>
-	    </div>
+			<div class="invalid-tooltip">
+			  Please provide a valid plantOrder.
+			</div>
+		  </div>
+		</div>
 
 	   	<div class="form-row">
-	      <div class="col-md-6 mb-3">
-	      	{{ form.cityProduction.label(class="col-form-label") }}
+		  <div class="col-md-6 mb-3">
+		  	{{ form.cityProduction.label(class="col-form-label") }}
 			{{ form.cityProduction(class="form-control form-control-md") }}
-	        <!-- <label for="validationTooltip04">City Production</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="Berdichev" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid city.
-	        </div>
-	      </div>
-	      <div class="col-md-3 mb-3">
-	      	{{ form.stateProduction.label(class="col-form-label") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid cityProduction.
+			</div>
+		  </div>
+		  <div class="col-md-3 mb-3">
+		  	{{ form.stateProduction.label(class="col-form-label") }}
 			{{ form.stateProduction(class="form-control form-control-md") }}
-	       <!--  <label for="validationTooltip05">State Production</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="UK" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid state.
-	        </div>
-	      </div>
-	      <div class="col-md-3 mb-3">
-	      	{{ form.plantProduction.label(class="col-form-label") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid stateProduction.
+			</div>
+		  </div>
+		  <div class="col-md-3 mb-3">
+		  	{{ form.plantProduction.label(class="col-form-label") }}
 			{{ form.plantProduction(class="form-control form-control-md") }}
-	       <!--  <label for="validationTooltip06">Plant Production</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="RIF-1" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid zip.
-	        </div>
-	      </div>
-	    </div>
+			<div class="invalid-tooltip">
+			  Please provide a valid plantProduction.
+			</div>
+		  </div>
+		</div>
 		
 		<div class="form-row">
-	      <div class="col-md-6 mb-3">
+		  <div class="col-md-6 mb-3">
 			{{ form.dateEnteredTask.label(class="col-form-label") }}
 			{{ form.dateEnteredTask(class="form-control form-control-md") }}
-	        <!-- <label for="validationTooltip04">Date entered (task)</label>
-	        <input type="text" class="form-control" id="validationTooltip04" placeholder="21/01/18 15-21-13" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid city.
-	        </div>
-	      </div>
-	      <div class="col-md-3 mb-3">
-	      	{{ form.dateEnteredToProduction.label(class="col-form-label") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid dateEnteredTask.
+			</div>
+		  </div>
+		  <div class="col-md-3 mb-3">
+		  	{{ form.dateEnteredToProduction.label(class="col-form-label") }}
 			{{ form.dateEnteredToProduction(class="form-control form-control-md") }}
-	        <!-- <label for="validationTooltip05">Date entered (to production)</label>
-	        <input type="text" class="form-control" id="validationTooltip05" placeholder="18/01/18 12-20-15" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid state.
-	        </div>
-	      </div>
-	      <div class="col-md-3 mb-3">
-	      	{{ form.dateRequired.label(class="col-form-label") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid dateEnteredToProduction.
+			</div>
+		  </div>
+		  <div class="col-md-3 mb-3">
+		  	{{ form.dateRequired.label(class="col-form-label") }}
 			{{ form.dateRequired(class="form-control form-control-md") }}
-	       <!--  <label for="validationTooltip06">Date required</label>
-	        <input type="text" class="form-control" id="validationTooltip06" placeholder="30/02/18 15-21-13" required> -->
-	        <div class="invalid-tooltip">
-	          Please provide a valid zip.
-	        </div>
-	      </div>
-	    </div>
+			<div class="invalid-tooltip">
+			  Please provide a valid dateRequired.
+			</div>
+		  </div>
+		</div>
 
-	    {{ form.submit(class="btn btn-outline-info") }}
-	    <!-- <button class="btn btn-primary" type="submit">Submit form</button> -->
+		{{ form.submit(class="btn btn-outline-info") }}
 	  </form>
 	</div>
 

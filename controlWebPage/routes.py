@@ -153,13 +153,18 @@ def taskP():
 @app.route('/task/add', methods=['GET', 'POST'])
 @login_required
 def taskAddP():
+	global flgLoading  # crutch: change it --------- !
+	flgLoading = False
+	print(flgLoading)
+
 	form = TaskAddForm()
 	# print("validation")
 	# print(form.is_submitted())
 	# print(form.validate_on_submit())
-	if form.validate_on_submit():
-	
-	# print(form.bunch.data)
+	if form.is_submitted():
+
+		print(form.dateRequired.data)
+
 		query = {
 			'Bunch': form.bunch.data,
 			'Pull': form.pull.data,
@@ -175,7 +180,10 @@ def taskAddP():
 			'DateRequired': form.dateRequired.data,
 			'SQL_Table_NAME_': 'Tasks'
 		}
-		insertSole_1(**query)  # add check 'Tasks'
+		if insertSole_1(**query):  # add check 'Tasks'
+			# global flgLoading
+			flgLoading = True
+
 	return render_template('taskAdd.html', flgLoading=flgLoading, form=form)  # , tasks=tasks
 
 
@@ -316,7 +324,8 @@ def getSole_1():
 
 
 def insertSole_1(**data):
-	if data['SQL_Table_NAME_'] == "glueMachine":
+	if data['SQL_Table_NAME_'] == "glueMachine":  # is not used
+	# Error with bracets 'data['UnitID']'
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (UnitID, Articul, ProcessID, OperatorName, OperationDate, \
 		Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
 		+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
@@ -338,13 +347,16 @@ def insertSole_1(**data):
 		prrint("Table is incorect or data is empty!")
 		return False
 	# print(query)
-	print("Data: !!!")
+	# print("Data: !!!")
 	print(query)
 	try:
 		mycursor.execute(query)
 		mydb.commit()
 	except mSql.Error as err:
 		print("Failed inserting to database: {}".format(err))
+		return False
+
+	return True
 
 
 def delRecIDSole_1(id, id_2=None):
