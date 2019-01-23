@@ -7,6 +7,15 @@
   <style type="text/css">
 	.important { color: #336699; }
   </style>
+	
+
+	<!--  my_content.style = "display:none;";
+	loading.style = "display:block;"; -->
+
+	<!-- my_content.style = "display:block;"
+	loading.style = "display:none;" -->
+
+
 {% endblock head %}
  
 {% block topBar %}
@@ -15,41 +24,10 @@
 
 {% block content %}
 	<!--форма ввода-->
-	{% if flgLoading %}
-	  {{ super() }}  <!-- insert content section of base tamplete -->
-	  <div id='my_content' style='display:none;'>  <!-- hide content because of loading -->
-	{% else %}
-		<div id='my_content'>
-	{% endif %}
+	
+	{{ super() }}  <!-- insert content section of base tamplete -->
 
-<!-- ------------- -->
-	<script>
-		// костиль для запуску вікна завантаження поки бд опрацьовує щось
-			// var timerId = setTimeout(function tick() {
-			// 	window.location = "{{ url_for('taskAddP') }}";
-			// 	timerId = setTimeout(tick, 2000);
-			// }, 2000);
-
-			function func() {
-				// alert("{{ flgLoading }}");
-				// alert(my_content.getAttribute('style'));
-				// if({{ flgLoading }}) {
-				window.location = "{{ url_for('taskAddP') }}";
-
-				// try to make it under js not in python ----------------------- !!!
-				// my_content.style = null
-				// var img = document.getElementById('loading_gif');
-    // 			img.style.visibility = 'hidden';
-    			// hidden
-    			// visible
-				// }
-  				// alert( 'Привет' );
-			}
-			if(my_content.getAttribute('style') == "display:none;")
-				setTimeout(func, 2000);
-  		</script>
-
-  		<!-- ------------------ -->
+	<div id='my_content'>
 
 
 	<div id = "inputTasksParam">

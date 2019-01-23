@@ -140,7 +140,7 @@
       {% block content %}
         <!-- some content -->
         <!-- loading... -->
-        <div ><center><img id="loading_gif" src="{{ url_for('static', filename='images/loading.gif') }}" title="loading..." /></center></div>
+        <div id='loading' style='display:none;'><center><img id="loading_gif" src="{{ url_for('static', filename='images/loading.gif') }}" title="loading..." /></center></div>
         <!-- style='display:none;' -->
       {% endblock content %}
 

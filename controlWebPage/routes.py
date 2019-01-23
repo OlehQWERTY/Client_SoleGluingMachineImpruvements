@@ -10,6 +10,8 @@ from time import time
 import random # random
 from datetime import datetime, timedelta  # cookie test
 # import base64
+# from time import sleep
+
 
 posts = [
 	{
@@ -136,9 +138,14 @@ def machineP(number=None):
 	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 
 
-@app.route('/machine/all')
+@app.route('/machine/all')  # with ajax
 @login_required
 def machineAll():
+	# setCookie('test', 'val')  # save cookies
+	# print(getCookie('test'))
+	# delCookie('u1')
+	# delCookie('userID')
+
 	return render_template('machineAll.html', flgLoading=flgLoading, machines=machines[0], mProgress=mProgress)
 
 
@@ -153,15 +160,15 @@ def taskP():
 @app.route('/task/add', methods=['GET', 'POST'])
 @login_required
 def taskAddP():
-	global flgLoading  # crutch: change it --------- !
-	flgLoading = False
-	print(flgLoading)
+	# global flgLoading  # crutch: change it --------- !
+	# flgLoading = False
+	# print(flgLoading)
 
 	form = TaskAddForm()
 	# print("validation")
 	# print(form.is_submitted())
 	# print(form.validate_on_submit())
-	if form.is_submitted():
+	if form.validate_on_submit():
 
 		print(form.dateRequired.data)
 
@@ -180,9 +187,11 @@ def taskAddP():
 			'DateRequired': form.dateRequired.data,
 			'SQL_Table_NAME_': 'Tasks'
 		}
-		if insertSole_1(**query):  # add check 'Tasks'
-			# global flgLoading
-			flgLoading = True
+
+		global flgLoading  # temp crutch
+		flgLoading = True
+		insertSole_1(**query)
+		# flgLoading = False
 
 	return render_template('taskAdd.html', flgLoading=flgLoading, form=form)  # , tasks=tasks
 
@@ -399,20 +408,34 @@ def delRecIDSole_1(id, id_2=None):
 
 # 	return("<h1>Added a value to the 3 table!</h1>")
 
+# -----------------------------------------------
 
-# @app.route('/set')
-# def index():
-# 	# resp = make_response('lol')  # render_template(...)
-# 	resp = make_response(render_template('taskAdd.html'))  # render_template(...)	 ---- redirect to page ----
-# 	expire_date = datetime.now()
-# 	print(expire_date)
-# 	expire_date = expire_date + timedelta(seconds = 1)  # days=90
-# 	resp.set_cookie('userID', value='I am cookie')
-# 	key = 'u1'
-# 	guid = 'lo'
-# 	resp.set_cookie(key, guid, expires=expire_date) # expires=0 expires=expire_date
-# 	resp.set_cookie(key, guid, expires=0) # expires 0 (unix time == 0 and dell imidiatelly)
-# 	return resp 
+# @app.route("/setCookie")
+def setCookie(name, val, who_call):  # name, val
+	# name, val = ['lolo', 'koko']
+	# resp = make_response('lol')  # render_template(...)
+	resp = make_response("render_template('" + who_call + "')")  # render_template(base.html)	 ---- redirect to page ----
+	expire_date = datetime.now()
+	print(expire_date)
+	expire_date = expire_date + timedelta(days=4)  # seconds = 1 days=90
+	print(expire_date)
+	resp.set_cookie(name, value=val, expires=expire_date)
+	# resp.set_cookie('language', value='I am cookie', expires=expire_date)
+	# key = 'u1'
+	# guid = 'lo'
+	# resp.set_cookie(key, guid, expires=expire_date) # expires=0 expires=expire_date
+	# resp.set_cookie(key, guid, expires=0) # expires 0 (unix time == 0 and dell imidiatelly)
+	# return resp
+	return redirect(url_for(who_call))
+
+def delCookie(name): 
+	resp = make_response("")
+	resp.set_cookie(name, 'del_me', expires=0)
+
+def getCookie(name):
+	val = request.cookies.get(name)
+	return val
+
 
 
 # user ????
@@ -424,8 +447,8 @@ def delRecIDSole_1(id, id_2=None):
 # 	# return '<h1>welcome</h1>'
 # 	return resp 
 
-# @app.route('/get')
-# def getcookie():
-# 	name = request.cookies.get('userID')
-# 	test = request.cookies.get('u1')
-# 	return '<h1>welcome '+ str(name) + ' ' + str(test) +'</h1>'
+@app.route('/get')
+def getcookie():
+	name = request.cookies.get('userID')
+	test = request.cookies.get('u1')
+	return '<h1>welcome '+ str(name) + ' ' + str(test) +'</h1>'
