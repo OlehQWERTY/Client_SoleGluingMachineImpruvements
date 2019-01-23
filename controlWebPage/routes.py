@@ -411,6 +411,8 @@ def delRecIDSole_1(id, id_2=None):
 # -----------------------------------------------
 
 # @app.route("/setCookie")
+
+# make_response( cheak string and so on
 def setCookie(name, val, who_call):  # name, val
 	# name, val = ['lolo', 'koko']
 	# resp = make_response('lol')  # render_template(...)
