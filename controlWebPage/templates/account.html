@@ -31,24 +31,32 @@
 					{% if utype == 'admin' %}
 						<!-- log -->
 						<div class="tab-pane fade" id="list-log" role="tabpanel" aria-labelledby="list-log-list"> 
-
+						
 							<nav id="navbar-example2" class="navbar navbar-light bg-light">
 								<center><a class="navbar-brand"> Output: </a></center>
 								<ul class="nav nav-pills">
-									<li class="nav-item">
-										<!-- <a class="nav-link" href="#clearAll">@clear all</a> -->
-										<a class="nav-link" href="{{ url_for('account') + '/+clearAll' }}">@clear all</a>
+									<!-- links: it is possible to use it to navigation inside big text of page -->
+
+									<!-- <li class="nav-item">
+										 <a class="nav-link" href="#clearAll">@clear all</a> -->
+										<!--<a class="nav-link" href="{{ url_for('account') + '/+clearAll' }}">@clear all</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">@clear after: 3 days</a>
+										<a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">@clear after: 3 days</a>-->
 										<!-- <a class="nav-link" href="+clear3d">@clear after: 3 days</a> -->
-									</li>
+									<!-- </li> -->
+
 									<li class="nav-item">
 										<!-- <a class="nav-link" href="#fat">@today</a> -->
 
 										<!-- Modal -->
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-										  Запустить модальное окно
+										<!-- <button type="'button'" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
+										<button type="'button'" class="btn btn-primary" data-toggle="modal" data-target="#clear3dButton">
+										  Clear 3 days
+										</button>
+
+										<button type="'button'" class="btn btn-primary" data-toggle="modal" data-target="#clearAllButton">
+										  Clear all
 										</button>
 										<!-- Modal -->
 									</li>
@@ -102,28 +110,52 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you shure?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Ok</button> -->
-        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">Yes (@clear after: 3 days)</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
+			<!-- Modal windows -->
+
+			<!-- 3 days clear -->
+			<div class="modal fade" id="clear3dButton" tabindex="-1" role="dialog" aria-labelledby="clear3dButtonLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="clear3dButtonLabel">Confirm</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Are you shure? This operation delate permanently log for the last 3 days.
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <!-- <button type="button" class="btn btn-primary">Ok</button> -->
+			        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">Yes: clear last: 3 days</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- clear all -->
+			<div class="modal fade" id="clearAllButton" tabindex="-1" role="dialog" aria-labelledby="clearAllButtonLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="clearAllButtonLabel">Confirm</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        Are you shure? This operation delate permanently all log data.
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <!-- <button type="button" class="btn btn-primary">Ok</button> -->
+			        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">Yes: clear all</a>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- Modal -->
 		</div>
 
 	</div>
