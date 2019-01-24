@@ -120,10 +120,10 @@
 
             <div class="btn-group btn-group-sm btn-group-toggle btn-sm" data-toggle="buttons" id = "languageSelector">
               {% if language == "UK" %}
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked> Англ
-                </label>
                 <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="option1" autocomplete="off" checked href="123"> Англ
+                </label>
+                <label class="btn btn-secondary active">
                   <input type="radio" name="options" id="option2" autocomplete="off"> Укр
                 </label>
               {% else %}
@@ -211,7 +211,7 @@
     <div id="footer">
       {% block footer %}
         {% if language == "UK" %}
-          <center>&copy; Копірайт 2018 <a lang="uk" href="https://www.facebook.com/oleg.gordiichenko/">Олег</a>.<center>
+          <center>&copy; Copyright 2018 <a lang="uk" href="https://www.facebook.com/oleg.gordiichenko/">Олег</a>.<center>
         {% else %}
           <center>&copy; Copyright 2018 by <a lang="en" href="https://www.facebook.com/oleg.gordiichenko/">Oleg</a>.<center>
         {% endif %}

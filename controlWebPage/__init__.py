@@ -22,7 +22,7 @@ mydb = mSql.connect(
 
 # print(mydb)
 
-mycursor = mydb.cursor()
+mycursor = mydb.cursor(buffered=True)
 
 # mycursor.execute("SHOW DATABASES")
 # print(mycursor)
