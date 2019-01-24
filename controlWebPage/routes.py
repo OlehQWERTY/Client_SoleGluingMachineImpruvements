@@ -168,7 +168,7 @@ def taskAddP():
 	# print("validation")
 	# print(form.is_submitted())
 	# print(form.validate_on_submit())
-	if form.validate_on_submit():
+	if form.is_submitted():
 
 		print(form.dateRequired.data)
 
@@ -356,7 +356,7 @@ def insertSole_1(**data):
 	else:
 		prrint("Table is incorect or data is empty!")
 		return False
-	# print(query)
+	print(query)
 	# print("Data: !!!")
 	print(query)
 	try:
