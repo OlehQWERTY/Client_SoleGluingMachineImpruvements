@@ -154,6 +154,7 @@ def machineAll():
 # @app.route('/task/<name>')
 @login_required
 def taskP():
+	taskTable = getRecsSole_1("Tasks")  # get tasks from db
 	return render_template('task.html', flgLoading=flgLoading, language='UK', tasks=tasks)  #  True if dict == dict1 else False
 
 
@@ -367,6 +368,23 @@ def insertSole_1(**data):
 		return False
 
 	return True
+
+
+def getRecsSole_1(tableName):
+	db_response = []
+	query = "SELECT * FROM " + tableName # + " WHERE RecID = " + str(id)
+	try:
+		mycursor.execute(query)
+		# mydb.commit()
+	except mSql.Error as err:
+		print("Failed getting from database: {}".format(err))
+		return False
+
+	for x in mycursor:
+		db_response.append(x)
+
+	print(db_response)
+	# return db_response
 
 
 def delRecIDSole_1(id, id_2=None):

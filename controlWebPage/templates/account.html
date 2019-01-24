@@ -71,8 +71,9 @@
 								<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
 								<h4 id="mdo">@rest</h4>
 								<p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p> -->
+
 								{% for x in logTable %}
-									{{ x }}
+									# {{loop.index}}: {{ x }}
 									<h6> </h6>
 								{% endfor %}
 							</div>
@@ -90,7 +91,7 @@
 
 							<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
 								{% for x in userTable %}
-									{{ x }}
+									# {{loop.index}}: {{ x }}
 									<h6> </h6>
 								{% endfor %}
 							</div>
