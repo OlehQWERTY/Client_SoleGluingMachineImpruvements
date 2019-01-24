@@ -32,19 +32,35 @@
 
 	<div id = "inputTasksParam">
 	  	<form method="POST" action="">
-
-  		<center><legend class="border-bottom mb-4">Add new task:</legend></center>
+		{% if language == "UK" %}
+			<center><legend class="border-bottom mb-4">Додавання нового завдання:</legend></center>
+			<center><h6><font color="red">* Не допустимо введення інформації кирилицею. Використовуйте лише латиницю (a, b, c...)</font></h6></center>
+		{% else %}
+			<center><legend class="border-bottom mb-4">Add new task:</legend></center>
+		{% endif %}
+  		
 
  		<div class="form-row">
 		  <div class="col-md-6 mb-3">
-			{{ form.bunch.label(class="col-form-label") }}
+		  	{% if language == "UK" %}  
+		  		<label for="validationTooltip04">гілка (завдань)</label>
+			{% else %}
+				<label for="validationTooltip04">bunch</label>
+			{% endif %}
+			<!-- {{ form.bunch.label(class="col-form-label") }} -->
 			{{ form.bunch(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid bunch.
 			</div>
 		  </div>
 		  <div class="col-md-4 mb-3">
-			{{ form.pull.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">завдання</label>
+			{% else %}
+				<label for="validationTooltip04">pull</label>
+			{% endif %}
+		  	
+			<!-- {{ form.pull.label(class="col-form-label") }} -->
 			{{ form.pull(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid pull.
@@ -53,7 +69,13 @@
 		  <div class="col-md-2 mb-3">
 		  	<fieldset class="form-group">
 				<div class="form-group">
-					{{ form.localNumber.label(class="col-form-label") }}
+					{% if language == "UK" %}
+						<label for="validationTooltip04">місцевий номер</label>
+					{% else %}
+						<label for="validationTooltip04">local number</label>
+					{% endif %}
+					
+					<!-- {{ form.localNumber.label(class="col-form-label") }} -->
 					{% if form.localNumber.errors %}
 						{{ form.localNumber(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
@@ -75,21 +97,39 @@
 
 		<div class="form-row">
 		  <div class="col-md-6 mb-3">
-		  	{{ form.cityOrder.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">місто замовник</label>
+			{% else %}
+				<label for="validationTooltip04">city order</label>
+			{% endif %}
+		  	
+		  	<!-- {{ form.cityOrder.label(class="col-form-label") }} -->
 			{{ form.cityOrder(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid cityOrder.
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{{ form.stateOrder.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">країна замовник</label>
+			{% else %}
+				<label for="validationTooltip04">state order</label>
+			{% endif %}
+		  	
+		  	<!-- {{ form.stateOrder.label(class="col-form-label") }} -->
 			{{ form.stateOrder(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid stateOrder.
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-			{{ form.plantOrder.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">фабрика замовник</label>
+			{% else %}
+				<label for="validationTooltip04">plant order</label>
+			{% endif %}
+		  	
+			<!-- {{ form.plantOrder.label(class="col-form-label") }} -->
 			{{ form.plantOrder(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid plantOrder.
@@ -99,21 +139,39 @@
 
 	   	<div class="form-row">
 		  <div class="col-md-6 mb-3">
-		  	{{ form.cityProduction.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">місто виробник</label>
+			{% else %}
+				<label for="validationTooltip04">city production</label>
+			{% endif %}
+		  	
+		  	<!-- {{ form.cityProduction.label(class="col-form-label") }} -->
 			{{ form.cityProduction(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid cityProduction.
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{{ form.stateProduction.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">країна виробник</label>
+			{% else %}
+				<label for="validationTooltip04">state production</label>
+			{% endif %}
+		  	
+		  	<!-- {{ form.stateProduction.label(class="col-form-label") }} -->
 			{{ form.stateProduction(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid stateProduction.
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{{ form.plantProduction.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">фабрика виробник</label>
+			{% else %}
+				<label for="validationTooltip04">plant production</label>
+			{% endif %}
+
+		  	<!-- {{ form.plantProduction.label(class="col-form-label") }} -->
 			{{ form.plantProduction(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid plantProduction.
@@ -123,29 +181,47 @@
 		
 		<div class="form-row">
 		  <div class="col-md-6 mb-3">
-			{{ form.dateEnteredTask.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">дата отримання завдання</label>
+			{% else %}
+				<label for="validationTooltip04">date entered task</label>
+			{% endif %}
+		  	
+			<!-- {{ form.dateEnteredTask.label(class="col-form-label") }} -->
 			{{ form.dateEnteredTask(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid dateEnteredTask.
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{{ form.dateEnteredToProduction.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">дата початку виконання</label>
+			{% else %}
+				<label for="validationTooltip04">data entered to production</label>
+			{% endif %}
+		  	
+		  	<!-- {{ form.dateEnteredToProduction.label(class="col-form-label") }} -->
 			{{ form.dateEnteredToProduction(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid dateEnteredToProduction.
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{{ form.dateRequired.label(class="col-form-label") }}
+		  	{% if language == "UK" %}
+		  		<label for="validationTooltip04">виготовити до</label>
+			{% else %}
+				<label for="validationTooltip04">data required</label>
+			{% endif %}
+		  	
+		  	<!-- {{ form.dateRequired.label(class="col-form-label") }} -->
 			{{ form.dateRequired(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
 			  Please provide a valid dateRequired.
 			</div>
 		  </div>
 		</div>
-
-		{{ form.submit(class="btn btn-outline-info") }}
+		<!-- btn-outline-info -->
+		{{ form.submit(class="btn btn-primary") }}
 	  </form>
 	</div>
 

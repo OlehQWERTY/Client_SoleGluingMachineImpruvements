@@ -47,6 +47,9 @@ class LoginForm(FlaskForm):
 class TaskAddForm(FlaskForm):
     bunch = StringField('bunch',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "BG58RZK87", "id": "validationTooltip04" })
+    # 'bunch' is label --- {{ form.bunch.label(class="col-form-label") }} --- in tamplate to use it
+    # bunch = StringField('bunch',
+                           # validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "BG58RZK87", "id": "validationTooltip04" })
     pull = StringField('pull',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "190045", "id": "validationTooltip05" })
     localNumber = StringField('local number',
