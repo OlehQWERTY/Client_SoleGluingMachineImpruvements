@@ -1,9 +1,9 @@
 from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
-from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor #, session_three
+from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor
 from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm#, TopBar  # -------------------------
-from controlWebPage.modules import User, Log #, Two, Three
+from controlWebPage.modules import User, Log
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
 from time import time
@@ -275,13 +275,10 @@ def log(a_type, act, cont, u_id = None):
 	db.session.commit()
 
 
-# @app.route("/logClear")
-# exeption processing
 def logClear(days_ago):  # days_ago
 	days_ago = 3
 	Log.query.filter(Log.date_performed > (datetime.now() - timedelta(days=days_ago))).delete()
 	db.session.commit()
-	# return redirect(url_for('home'))
 
 
 def getLogTable():
@@ -295,45 +292,6 @@ def getUserTable():
 def getSole_1():
 	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
 	return mycursor
-
-# @app.route("/testInsert")
-# def testInsert():
-# 	# command = {
-# 	# 	'UnitID':'11',
-# 	# 	'Articul':'Nasty',
-# 	# 	'ProcessID':'101',
-# 	# 	'OperatorName':'Zoya Semenovna',
-# 	# 	'OperationDate':'06/08/06 11:12:13',
-# 	# 	'Pull':'New_4925NG_Poland',
-# 	# 	'OrderNumber':'2564',
-# 	# 	'LocalNumber':'197',
-# 	# 	'ReadyDate':'06/08/06 11:12:13'
-# 	# 	'SQL_Table_NAME_': 'glueMachine'
-# 	# }
-
-# 	command = {
-# 		'Bunch': "varchar(255)",
-# 		'Pull': "varchar(255)",
-# 		'LocalNumber': "varchar(255)",
-# 		'CityOrder': "varchar(255)",
-# 		'StateOrder': "varchar(255)",
-# 		'PlantOrder': "varchar(255)",
-# 		'CityProduction': "varchar(255)",
-# 		'StateProduction': "varchar(255)",
-# 		'PlantProduction': "varchar(255)",
-# 		'DateEnteredTask': "varchar(255)",
-# 		'DateEnteredToProduction': "varchar(255)",
-# 		'DateRequired': "varchar(255)",
-# 		'SQL_Table_NAME_': 'Tasks'
-# 	}
-
-
-
-# 	# insertSole_1(**command, 'glueMachine')
-# 	insertSole_1(**command)
-
-# 	# delRecIDSole_1(1600, 1900)
-# 	return("<h1> --- testInsert --- </h1>")
 
 
 def insertSole_1(**data):
@@ -413,25 +371,6 @@ def delRecIDSole_1(id, id_2=None):
 	else:
 		return True
 
-# no need now
-# @app.route("/db_test")
-# def index():
-# 	second = Two(numb=634)
-# 	db.session.add(second)
-# 	db.session.commit()
-
-# 	getTwo = Two.query.filter(Two.id > 638).first()
-# 	# print(type(Two.query.filter(Two.id > 638).first()))  # ????????????????????????
-# 	# db.session.commit()
-# 	print(getTwo.id)
-
-# 	# session_three.add(Three(numb=12))
-# 	# session_three.commit()
-
-# 	return("<h1>Added a value to the 3 table!</h1>")
-
-# -----------------------------------------------
-
 # @app.route("/setCookie")
 
 # NOT TESTED
@@ -460,8 +399,6 @@ def delCookie(name):
 def getCookie(name):
 	val = request.cookies.get(name)
 	return val
-
-
 
 # user ????
 # @app.route('/del')
