@@ -3,6 +3,13 @@
 {% block title %}Main page{% endblock title %}
 
 {% block head %}
+
+  <!-- localisation -->
+  <script type=text/javascript>
+    translate("{{ url_for('static', filename='localisation/lang_db.json') }}");
+  </script>
+  <!-- localisation -->
+
   <!-- {{ super() }} -->
   <style type="text/css">
     .important { color: #336699; }
@@ -71,7 +78,6 @@
   {% endif %}
 
   
-
 </div>  <!-- my_content -->
 
 {% endblock content %}

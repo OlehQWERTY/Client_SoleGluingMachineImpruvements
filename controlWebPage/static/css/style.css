@@ -36,17 +36,10 @@ p{
 #logAdmin {
 	overflow-y: scroll;
 	position: relative;
-	height: 500;  /*crutch*/
-	/*border: 1px solid #BFC9CA;*/
-	border: none;
-	background: #F2F3F4
-}
-
-#taskTable {
-	overflow-y: scroll;
-	position: relative;
-	height: 400;  /*crutch*/
-	/*border: 1px solid #BFC9CA;*/
-	border: none;
-	background: #F2F3F4
+	height: 500;  /*correct to get better view*/
+	background: #F2F3F4;
+	
+	/*border: none;*/
+	border: 1px solid #BFC9CA;
+	border-radius: 8px;
 }

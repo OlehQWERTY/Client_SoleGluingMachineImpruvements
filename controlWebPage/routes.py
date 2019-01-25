@@ -103,7 +103,7 @@ mProgress = [  # test temp: before db'll be added
 ]
 
 flgLoading = False  # show loading div instead of content
-glob_language = 'UK'
+glob_language = 'EN' # UK EN
 
 iop = 1000
 @app.route('/_add_mProgress')  # ajax test
