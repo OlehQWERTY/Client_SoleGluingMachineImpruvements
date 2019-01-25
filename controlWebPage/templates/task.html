@@ -28,112 +28,77 @@
   {% endif %}
 
 
-
-	<h1> Task #1254554788: </h1>
+  <center><legend class="border-bottom mb-4">Список завдань:</legend></center>
+<!-- 	<h1> Task #1254554788: </h1>
 	<div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-</div>
-
-<h1> Task #156844225: </h1>
-
-<div class="progress">
-  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-
-<font color="red"><h1> * Task #55654888522 is done: </h1></font>
-
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-
-
-<!-- 
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-<div class="progress">
-  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-</div> -->
-
-<div class="col-8" id="logAdmin">
-              <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Bunch</th>
-        <th scope="col">___________________________Pull___________________________</th>
-        <th scope="col">LocalNumber</th>
-        <th scope="col">DateRequired</th>
-        <th scope="col">TotalAmmount</th>
-        <th scope="col">Percentage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for x in tasks_list %}
-        <!-- # {{loop.index}}: {{ x }} -->
-        <tr>
-          <th scope="row">{{loop.index}}</th>
-          {% for y in x %}
-            {{loop.index}}
-            {% if loop.index == 2 %}
-              <td>
-                <div class="progress">
-  <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-
-                <!-- {{loop.index}} -->
-              </td>
-            {% else %}
-              <td>{{ y }}</td>
-            {% endif %}
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-
-  </div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
   </div>
 
-<!-- Bunch, Pull, LocalNumber, DateRequired -->
+  <h1> Task #156844225: </h1>
 
- <!-- table  -->
-  <!-- <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table> -->
-<!-- table -->
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+
+  <font color="red"><h1> * Task #55654888522 is done: </h1></font>
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  </div> -->
+
+
+  <!-- 
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+  </div> -->
+
+    <div class="col-12" id="logAdmin">
+      <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+  <!-- table -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Bunch</th>
+              <th scope="col">Pull</th>
+              <th scope="col">LocalNumber</th>
+              <th scope="col">DateRequired</th>
+              <th scope="col">TotalAmmount</th>
+              <th scope="col">Percentage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in tasks_list %}
+              <!-- # {{loop.index}}: {{ x }} -->
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                {% for y in x %}
+                  <!-- {{loop.index}} -->
+                  {% if loop.index == 2 %}
+                    <td>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+
+                      <!-- {{loop.index}} -->
+                    </td>
+                  {% else %}
+                    <td>{{ y }}</td>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+  <!-- table -->
+      </div>
+    </div> 
 
 
   </div>  <!-- my_content -->
