@@ -32,21 +32,11 @@
 
 	<div id = "inputTasksParam">
 	  	<form method="POST" action="">
-		{% if language == "UK" %}
-			<center><legend class="border-bottom mb-4">Додавання нового завдання:</legend></center>
-			<center><h6><font color="red">* Не допустимо введення інформації кирилицею. Використовуйте лише латиницю (a, b, c...)</font></h6></center>
-		{% else %}
-			<center><legend class="border-bottom mb-4">Add new task:</legend></center>
-		{% endif %}
-  		
+		<center><legend class="border-bottom mb-4">Add new task:</legend></center>
 
  		<div class="form-row">
 		  <div class="col-md-6 mb-3">
-		  	{% if language == "UK" %}  
-		  		<label for="validationTooltip04">гілка (завдань)</label>
-			{% else %}
-				<label for="validationTooltip04">bunch</label>
-			{% endif %}
+			<label for="validationTooltip04">bunch</label>
 			<!-- {{ form.bunch.label(class="col-form-label") }} -->
 			{{ form.bunch(class="form-control form-control-md") }}
 			<div class="invalid-tooltip">
@@ -54,11 +44,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-4 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">завдання</label>
-			{% else %}
-				<label for="validationTooltip04">pull</label>
-			{% endif %}
+			<label for="validationTooltip04">pull</label>
 		  	
 			<!-- {{ form.pull.label(class="col-form-label") }} -->
 			{{ form.pull(class="form-control form-control-md") }}
@@ -69,11 +55,7 @@
 		  <div class="col-md-2 mb-3">
 		  	<fieldset class="form-group">
 				<div class="form-group">
-					{% if language == "UK" %}
-						<label for="validationTooltip04">місцевий номер</label>
-					{% else %}
-						<label for="validationTooltip04">local number</label>
-					{% endif %}
+					<label for="validationTooltip04">local number</label>
 					
 					<!-- {{ form.localNumber.label(class="col-form-label") }} -->
 					{% if form.localNumber.errors %}
@@ -97,11 +79,7 @@
 
 		<div class="form-row">
 		  <div class="col-md-6 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">місто замовник</label>
-			{% else %}
-				<label for="validationTooltip04">city order</label>
-			{% endif %}
+			<label for="validationTooltip04">city order</label>
 		  	
 		  	<!-- {{ form.cityOrder.label(class="col-form-label") }} -->
 			{{ form.cityOrder(class="form-control form-control-md") }}
@@ -110,11 +88,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">країна замовник</label>
-			{% else %}
-				<label for="validationTooltip04">state order</label>
-			{% endif %}
+			<label for="validationTooltip04">state order</label>
 		  	
 		  	<!-- {{ form.stateOrder.label(class="col-form-label") }} -->
 			{{ form.stateOrder(class="form-control form-control-md") }}
@@ -123,11 +97,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">фабрика замовник</label>
-			{% else %}
-				<label for="validationTooltip04">plant order</label>
-			{% endif %}
+			<label for="validationTooltip04">plant order</label>
 		  	
 			<!-- {{ form.plantOrder.label(class="col-form-label") }} -->
 			{{ form.plantOrder(class="form-control form-control-md") }}
@@ -139,11 +109,7 @@
 
 	   	<div class="form-row">
 		  <div class="col-md-6 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">місто виробник</label>
-			{% else %}
-				<label for="validationTooltip04">city production</label>
-			{% endif %}
+			<label for="validationTooltip04">city production</label>
 		  	
 		  	<!-- {{ form.cityProduction.label(class="col-form-label") }} -->
 			{{ form.cityProduction(class="form-control form-control-md") }}
@@ -152,11 +118,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">країна виробник</label>
-			{% else %}
-				<label for="validationTooltip04">state production</label>
-			{% endif %}
+			<label for="validationTooltip04">state production</label>
 		  	
 		  	<!-- {{ form.stateProduction.label(class="col-form-label") }} -->
 			{{ form.stateProduction(class="form-control form-control-md") }}
@@ -165,11 +127,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">фабрика виробник</label>
-			{% else %}
-				<label for="validationTooltip04">plant production</label>
-			{% endif %}
+			<label for="validationTooltip04">plant production</label>
 
 		  	<!-- {{ form.plantProduction.label(class="col-form-label") }} -->
 			{{ form.plantProduction(class="form-control form-control-md") }}
@@ -181,11 +139,7 @@
 		
 		<div class="form-row">
 		  <div class="col-md-6 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">дата отримання завдання</label>
-			{% else %}
-				<label for="validationTooltip04">date entered task</label>
-			{% endif %}
+			<label for="validationTooltip04">date entered task</label>
 		  	
 			<!-- {{ form.dateEnteredTask.label(class="col-form-label") }} -->
 			{{ form.dateEnteredTask(class="form-control form-control-md") }}
@@ -194,11 +148,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">дата початку виконання</label>
-			{% else %}
-				<label for="validationTooltip04">data entered to production</label>
-			{% endif %}
+			<label for="validationTooltip04">data entered to production</label>
 		  	
 		  	<!-- {{ form.dateEnteredToProduction.label(class="col-form-label") }} -->
 			{{ form.dateEnteredToProduction(class="form-control form-control-md") }}
@@ -207,11 +157,7 @@
 			</div>
 		  </div>
 		  <div class="col-md-3 mb-3">
-		  	{% if language == "UK" %}
-		  		<label for="validationTooltip04">виготовити до</label>
-			{% else %}
-				<label for="validationTooltip04">data required</label>
-			{% endif %}
+			<label for="validationTooltip04">data required</label>
 		  	
 		  	<!-- {{ form.dateRequired.label(class="col-form-label") }} -->
 			{{ form.dateRequired(class="form-control form-control-md") }}

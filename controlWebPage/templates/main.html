@@ -8,47 +8,11 @@
   <script type=text/javascript>
     translate("{{ url_for('static', filename='localisation/lang_db.json') }}");
   </script>
-  <!-- localisation -->
 
   <!-- {{ super() }} -->
   <style type="text/css">
     .important { color: #336699; }
   </style>
-  
-  <!-- prj's root path -->
-  <!-- <script> $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}; </script>
-
-
-    <script type=text/javascript>
-      $(function() {
-        $('a#calculate').bind('click', function() {
-          $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
-            a: $('input[name="a"]').val(),
-            b: $('input[name="b"]').val()
-          }, function(data) {
-            $("#result").text(data.result);
-          });
-          return false;
-        });
-      });
-    </script>
-  <h1>jQuery Example</h1>
-  <p><input type=text size=5 name=a> +
-     <input type=text size=5 name=b> =
-     <span id=result>?</span>
-  <p><a href=# id=calculate>calculate server side</a> -->
-
-  <!-- timer -->
-
-  <!-- <script>
-    var timerId = setTimeout(function tick() {
-      alert("0K")
-      // alert( a.getAttribute('style') );
-      // a.setAttribute('style', "width: 100%")
-      timerId = setTimeout(tick, 2000);
-    }, 2000);
-  </script> -->
-
 
 {% endblock head %}
 
@@ -61,22 +25,11 @@
     <div id='my_content'>
   {% endif %}
 
-  {% if language == "UK" %}
-    <center> <font color="red"><h2 color = red>Ви знаходитесь на головній сторінці. Дана система контролю не завершена та працює в тестовому режимі. Розробники не несуть відповідальності за жодні збитки чи пошкодження викликані цим програмним продуктом.</h2></font>
-    <h4>Як використовувати:</h4> </center>
-    <ul>
-    <li>Task -> Add - для додавання нових завдань в список завдань;</li>
-    <li>Task -> List - для перегляду поточних завдань або їх редагування;</li>
-    <li>Machine -> Machine # - для перегляду завдань та їх поточного прогресу на машині з номером #.</li>
-    </ul>
-  {% else %}
-    <center> <font color="red"><h2 color = "red">This is the main page. Currently it is not finnished and started only to try it out. Developers aren't responsible for any damege or problems caused by this app.</h2></font>
-    <h4>How to use:</h4> </center>
-    <li>Task -> Add - for adding new task in task list;</li>
-    <li>Task -> List - to see all tasks list or additing task list;</li>
-    <li>Machine -> Machine # - to see Machine # task list and current progress.</li>
-  {% endif %}
-
+  <center> <font color="red"><h2 color = "red">This is the main page. Currently it is not finnished and started only to try it out. Developers aren't responsible for any damege or problems caused by this app.</h2></font>
+  <h4>How to use:</h4> </center>
+  <li>Task -> Add - for adding new task in task list;</li>
+  <li>Task -> List - to see all tasks list or additing task list;</li>
+  <li>Machine -> Machine # - to see Machine # task list and current progress.</li>
   
 </div>  <!-- my_content -->
 

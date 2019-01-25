@@ -37,11 +37,7 @@
         <div data-include='1.html'></div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <font color="#3247E0" font-style="oblique" font-family="Impact, Charcoal, sans-serif"><a class="navbar-brand" href="{{url_for('home')}}">
-          {% if language == "UK" %}
-            Inblu Контроллер
-          {% else %}
-            Inblu Controller
-          {% endif %}
+          Inblu Controller
         </a></font>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -54,57 +50,30 @@
             <!--</li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {% if language == "UK" %}
-                  Завдання
-                {% else %}
-                  Task
-                {% endif %}
-                
+                Task 
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if language == "UK" %}
-                  <a class="dropdown-item" href="{{url_for('taskAddP')}}">Додати</a>
-                  <a class="dropdown-item" href="{{url_for('taskP')}}">Список</a>
-                {% else %}
-                  <a class="dropdown-item" href="{{url_for('taskAddP')}}">Add</a>
-                  <a class="dropdown-item" href="{{url_for('taskP')}}">List</a>
-                {% endif %}
+                <a class="dropdown-item" href="{{url_for('taskAddP')}}">Add</a>
+                <a class="dropdown-item" href="{{url_for('taskP')}}">List</a>
               </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {% if language == "UK" %}
-                  Машини
-                {% else %}
-                  Machine
-                {% endif %}
+                Machine
                 <span class="badge badge-primary badge-pill">1</span> <!-- number -->
               </a>
               <!-- needs to be changed automaticaly according to Machines ammount -->
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% if language == "UK" %}
-                  <a class="dropdown-item" href="/machine/1">Машина #1</a>
-                  <a class="dropdown-item" href="/machine/2">Машина #2</a>
-                  <a class="dropdown-item" href="/machine/3">Машина #3</a>
-                  <a class="dropdown-item" href="/machine/4">Машина #4</a>
-                  <a class="dropdown-item" href="/machine/5">Машина #5</a>
-                  <a class="dropdown-item" href="/machine/6">Машина #6</a>
-                  <a class="dropdown-item" href="/machine/7">Машина #7</a>
-                  <a class="dropdown-item" href="/machine/8">Машина #8</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{url_for('machineAll')}}">Всі машини</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
-                {% else %}
-                  <a class="dropdown-item" href="/machine/1">Machine #1</a>
-                  <a class="dropdown-item" href="/machine/2">Machine #2</a>
-                  <a class="dropdown-item" href="/machine/3">Machine #3</a>
-                  <a class="dropdown-item" href="/machine/4">Machine #4</a>
-                  <a class="dropdown-item" href="/machine/5">Machine #5</a>
-                  <a class="dropdown-item" href="/machine/6">Machine #6</a>
-                  <a class="dropdown-item" href="/machine/7">Machine #7</a>
-                  <a class="dropdown-item" href="/machine/8">Machine #8</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{{url_for('machineAll')}}">All machines</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
-                {% endif %}
+                <a class="dropdown-item" href="/machine/1">Machine #1</a>
+                <a class="dropdown-item" href="/machine/2">Machine #2</a>
+                <a class="dropdown-item" href="/machine/3">Machine #3</a>
+                <a class="dropdown-item" href="/machine/4">Machine #4</a>
+                <a class="dropdown-item" href="/machine/5">Machine #5</a>
+                <a class="dropdown-item" href="/machine/6">Machine #6</a>
+                <a class="dropdown-item" href="/machine/7">Machine #7</a>
+                <a class="dropdown-item" href="/machine/8">Machine #8</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url_for('machineAll')}}">All machines</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
               </div>
             </li>
 
@@ -119,58 +88,28 @@
           <!--</form>-->
 
             <div class="btn-group btn-group-sm btn-group-toggle btn-sm" data-toggle="buttons" id = "languageSelector">
-              {% if language == "UK" %}
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked href="123"> Англ
-                </label>
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Укр
-                </label>
-              {% else %}
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="options" id="option1" autocomplete="off" checked> En
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="options" id="option2" autocomplete="off"> Uk
-                </label>
-              {% endif %}
-              
+              <!-- change active state and according to it change language -->
+              <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> En
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Uk
+              </label>     
             </div>
             
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
                   {% if 'admin' != utype %}
-                    {% if language == "UK" %}
-                      <a class="nav-item nav-link" href="{{ url_for('account') }}">Профіль</a>
-                    {% else %}
-                      <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
-                    {% endif %}
-                  {% else %}
-                    {% if language == "UK" %}
-                      <a class="nav-item nav-link" href="{{ url_for('account') }}">Адмін<span class="badge badge-primary badge-pill"><font size="0.5">*</font></span></a>
-                    {% else %}
-                      <a class="nav-item nav-link" href="{{ url_for('account') }}">Admin<span class="badge badge-primary badge-pill"><font size="0.5">*</font></span></a>
-                    {% endif %}
-                    
+                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Admin<span class="badge badge-primary badge-pill"><font size="0.5">*</font></span></a>            
                   {% endif %}
+              {% endif %}
     
                 <!-- {% if utype == 'admin' %}
                   <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
                 {% endif %} -->
 
-                {% if language == "UK" %}
-                  <a class="nav-item nav-link" href="{{ url_for('logout') }}">Вийти</a>
-                {% else %}
-                  <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
-                {% endif %}
-                
-              {% else %}
-                {% if language == "UK" %}
-                  <a class="nav-item nav-link" href="{{ url_for('login') }}">Ввійти</a>
-                {% else %}
-                  <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                {% endif %}
-              {% endif %}
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
             </div>
 
             <!-- {% if current_user.is_autenticated %}
@@ -210,11 +149,7 @@
     
     <div id="footer">
       {% block footer %}
-        {% if language == "UK" %}
-          <center>&copy; Copyright 2018 <a lang="uk" href="https://www.facebook.com/oleg.gordiichenko/">Олег</a>.<center>
-        {% else %}
-          <center>&copy; Copyright 2018 by <a lang="en" href="https://www.facebook.com/oleg.gordiichenko/">Oleg</a>.<center>
-        {% endif %}
+        <center>&copy; Copyright 2018 by <a lang="en" href="https://www.facebook.com/oleg.gordiichenko/">Oleg</a>.<center>
       {% endblock footer %}
     </div>
   </body>

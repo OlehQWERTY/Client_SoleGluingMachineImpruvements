@@ -103,7 +103,6 @@ mProgress = [  # test temp: before db'll be added
 ]
 
 flgLoading = False  # show loading div instead of content
-glob_language = 'EN' # UK EN
 
 iop = 1000
 @app.route('/_add_mProgress')  # ajax test
@@ -124,7 +123,7 @@ def home():
 	# if not request.script_root:
 	# 	# this assumes that the 'index' view function handles the path '/'
 	# 	request.script_root = url_for('home', _external=True)
-	return render_template('main.html', flgLoading=flgLoading, language=glob_language) # UK EN
+	return render_template('main.html', flgLoading=flgLoading)
 	# return 'Main, page!'
 
 
@@ -136,7 +135,7 @@ def machineP(number=None):
 	else:
 		current_pos_ammount = machines[0][str(number)]
 
-	return render_template('machine.html', flgLoading=flgLoading, language=glob_language, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
+	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 
 
 @app.route('/machine/all')  # with ajax
@@ -147,7 +146,7 @@ def machineAll():
 	# delCookie('u1')
 	# delCookie('userID')
 
-	return render_template('machineAll.html', flgLoading=flgLoading, language=glob_language, machines=machines[0], mProgress=mProgress)
+	return render_template('machineAll.html', flgLoading=flgLoading, machines=machines[0], mProgress=mProgress)
 
 
 @app.route('/task/')
@@ -156,7 +155,7 @@ def machineAll():
 @login_required
 def taskP():
 	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateRequired, StateProduction, StateProduction", "Tasks")  # get tasks from db
-	return render_template('task.html', flgLoading=flgLoading, language=glob_language, tasks_list=taskTable)  #  True if dict == dict1 else False
+	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable)  #  True if dict == dict1 else False
 
 
 @app.route('/task/add', methods=['GET', 'POST'])
@@ -196,7 +195,7 @@ def taskAddP():
 		insertSole_1(**query)
 		# flgLoading = False
 
-	return render_template('taskAdd.html', flgLoading=flgLoading, language=glob_language, form=form)  # , tasks=tasks
+	return render_template('taskAdd.html', flgLoading=flgLoading, form=form)  # , tasks=tasks
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -220,7 +219,7 @@ def register():
 		db.session.commit()
 		flash('Your account has been created! You\'re able to log in', 'success')
 		return redirect(url_for('login'))
-	return render_template('register.html', flgLoading=flgLoading, language=glob_language, title='Register', form=form)
+	return render_template('register.html', flgLoading=flgLoading, title='Register', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -241,7 +240,7 @@ def login():
 			log("authentication", "login", "unsuccessful")
 			# abort(401)
 			# utype=current_user.usertype - show register for admin user
-	return render_template('login.html', flgLoading=flgLoading, language=glob_language, title='Login', form=form) 
+	return render_template('login.html', flgLoading=flgLoading, title='Login', form=form) 
 
 
 @app.route("/logout")
@@ -264,7 +263,7 @@ def account(command=None):
 
 	logTable = getLogTable()
 	userTable = getUserTable()
-	return render_template('account.html', title='Account', language=glob_language, utype=current_user.usertype, logTable=logTable, userTable=userTable)
+	return render_template('account.html', title='Account', utype=current_user.usertype, logTable=logTable, userTable=userTable)
 
 
 def log(a_type, act, cont, u_id = None):
