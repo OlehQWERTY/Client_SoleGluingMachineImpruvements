@@ -25,7 +25,7 @@ function translate(strJson, language){
 				for(let i=0; i<lang.length; i++){  // replase text english to ukranian one
 					// var re = new RegExp("{[(" + d.ua[i] + ")]}", 'g'); // reg expression all (DO NOT WORK: WHY???)
 					var ammount = html.split("{[(" + lang[i] + ")]}").length;  // ammount of similar strings 
-					console.log(ammount, d.en[i]);
+					// console.log(ammount, d.en[i]);
 					for(var n=0;n<=ammount;n++){  // teaplase all similar
 						html = html.replace("{[(" + lang[i] + ")]}", trans[i]);  // replase string with translated string
 						// console.log(n);

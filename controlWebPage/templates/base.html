@@ -18,7 +18,10 @@
     <!-- translate page !!!should be the last script because other scripts wouldn't work!!! -->
     <!-- usage in head as last script: -->
     <!-- translate("{{ url_for('static', filename='localisation/lang_db.json') }}"); -->
-    <script type=text/javascript src="{{ url_for('static', filename='localisation/lang.js') }}"></script> 
+    <script type=text/javascript src="{{ url_for('static', filename='localisation/lang.js') }}"></script>
+
+    <!-- cookie func  -->
+    <script type=text/javascript src="{{ url_for('static', filename='cookie_js/cookie_js.js') }}"></script> 
 
     <title>{% block title %}{% endblock title %} - Controller</title>
 
@@ -29,6 +32,7 @@
     <!-- call localisation func() -->
     <script type=text/javascript>
       translate("{{ url_for('static', filename='localisation/lang_db.json') }}", "ua");  // language "en", "ua"...
+      // setCookie("Vasy", "test");
     </script>
 
   </head>
@@ -84,7 +88,7 @@
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> {[(En)]}
               </label>
               <label class="btn btn-secondary">
-                <input type="radio" name="options" id="option2" autocomplete="off"> {[(Uk)]}
+                <input type="radio" name="options" id="option2" autocomplete="off"> {[(Ua)]}
               </label>     
             </div>
             
