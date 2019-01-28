@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor
-from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm#, TopBar  # -------------------------
+from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm#, MachineForm
 from controlWebPage.modules import User, Log
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
@@ -135,6 +135,32 @@ def machineP(number=None):
 	else:
 		current_pos_ammount = machines[0][str(number)]
 
+
+	# form = MachineForm()
+	# if form.is_submitted():
+
+	# 	# print(form.dateRequired.data)
+
+	# 	query = {
+	# 		'Bunch': form.bunch.data,
+	# 		'Pull': form.pull.data,
+	# 		'LocalNumber': form.localNumber.data,
+	# 		'CityOrder': form.cityOrder.data,
+	# 		'StateOrder': form.stateOrder.data,
+	# 		'PlantOrder': form.plantOrder.data,
+	# 		'CityProduction': form.cityProduction.data,
+	# 		'StateProduction': form.stateProduction.data,
+	# 		'PlantProduction': form.plantProduction.data,
+	# 		'DateEnteredTask': form.dateEnteredTask.data,
+	# 		'DateEnteredToProduction': form.dateEnteredToProduction.data,
+	# 		'DateRequired': form.dateRequired.data,
+	# 		'SQL_Table_NAME_': 'Tasks'
+	# 	}
+
+
+		# insertSole_1(**query)
+
+	# return render_template('machine.html', flgLoading=flgLoading, form=form, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 
 

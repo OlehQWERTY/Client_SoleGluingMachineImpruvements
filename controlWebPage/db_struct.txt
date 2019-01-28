@@ -56,6 +56,8 @@ CREATE TABLE glueMachine (
 # monitor: password
 
 CREATE TABLE Config (
+	id int auto_increment primary key,
+	RecType varchar(255),
 	Pos_1 varchar(255),
 	Pos_2 varchar(255),
 	Pos_3 varchar(255),
@@ -72,12 +74,14 @@ CREATE TABLE Config (
 	Pos_14 varchar(255),
 	Pos_15 varchar(255),
 	Pos_16 varchar(255),
-    MachineID int,
-    City varchar(255),
-    Index varchar(255),
-    OperatorFirstName varchar(255),
-    OperatorSecondName varchar(255),
-	ReloadDate varchar(255)
+	MachineID int,
+	MachinePos int,
+	City varchar(255),
+	OperatorFirstName varchar(255),
+	OperatorSecondName varchar(255),
+	OperatorWorkingChange varchar(255),
+	ReloadDate varchar(255),
+	TasksLine text
 );
 
 
