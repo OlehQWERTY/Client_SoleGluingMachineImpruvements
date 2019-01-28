@@ -82,35 +82,31 @@ class TaskAddForm(FlaskForm):
         if not localNumber.isdigit():  # isdigit only detects positive integers
             raise ValidationError('Local number should be a positive digit')
 
-    #class TopBar(FlaskForm):
 
+class MachineForm(FlaskForm):
+    operatorsName = StringField('Operator\'s Name',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "BG58RZK87", "id": "validationTooltip04" })
+    operatorsSecondname = StringField('Operators secondname',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "Portman", "id": "validationTooltip05" })
+    workingChange = StringField('Working change',
+                           validators=[DataRequired(), Length(min=1, max=255)], render_kw={"placeholder": "127", "id": "validationTooltip06" })
+    cityProduction = StringField('City production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "ArcoBaleno", "id": "validationTooltip07" })
+    stateProduction = StringField('State production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "PL", "id": "validationTooltip08" })
+    plantProduction = StringField('Plant production',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-10", "id": "validationTooltip09" })
+    bunch = StringField('Bunch',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
+    pull = StringField('Pull',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    localNumber = StringField('Local numb',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+ 
+    submit = SubmitField('Submit form')
 
-# class MachineForm(FlaskForm):
-#     bunch = StringField('bunch',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "BG58RZK87", "id": "validationTooltip04" })
-#     pull = StringField('pull',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "190045", "id": "validationTooltip05" })
-#     localNumber = StringField('local number',
-#                            validators=[DataRequired(), Length(min=1, max=255)], render_kw={"placeholder": "127", "id": "validationTooltip06" })
-#     cityOrder = StringField('city order',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "ArcoBaleno", "id": "validationTooltip07" })
-#     stateOrder = StringField('state order',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "PL", "id": "validationTooltip08" })
-#     plantOrder = StringField('plant order',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-10", "id": "validationTooltip09" })
-#     cityProduction = StringField('city production',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "Berdichev", "id": "validationTooltip10" })
-#     stateProduction = StringField('state production',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
-#     plantProduction = StringField('plant production',
-#                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
-#     dateEnteredTask = DateTimeLocalField(label = 'date entered task', format = '%Y-%m-%dT%H:%M', validators=[DataRequired()])
-#     dateEnteredToProduction = DateTimeField(label = 'date entered to production', default= datetime.utcnow) #, format = "%d%b%Y %H:%M", 
-#     dateRequired = DateTimeLocalField(label = 'date required', format = '%Y-%m-%dT%H:%M') #, format = "%d%b%Y %H:%M", 
-#     submit = SubmitField('Add task')
-
-#     # validate
-#     def validate_localNumber(self, localNumber):
-#         localNumber = localNumber.data
-#         if not localNumber.isdigit():  # isdigit only detects positive integers
-#             raise ValidationError('Local number should be a positive digit')
+    # validate
+    def validate_localNumber(self, localNumber):
+        localNumber = localNumber.data
+        if not localNumber.isdigit():  # isdigit only detects positive integers
+            raise ValidationError('Local number should be a positive digit')

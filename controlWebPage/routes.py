@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor
-from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm#, MachineForm
+from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm, MachineForm
 from controlWebPage.modules import User, Log
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
@@ -136,32 +136,32 @@ def machineP(number=None):
 		current_pos_ammount = machines[0][str(number)]
 
 
-	# form = MachineForm()
-	# if form.is_submitted():
+	form = MachineForm()
+	if form.is_submitted():
 
-	# 	# print(form.dateRequired.data)
+		print(form.operatorsName.data)  # не виводить якогось дива
 
-	# 	query = {
-	# 		'Bunch': form.bunch.data,
-	# 		'Pull': form.pull.data,
-	# 		'LocalNumber': form.localNumber.data,
-	# 		'CityOrder': form.cityOrder.data,
-	# 		'StateOrder': form.stateOrder.data,
-	# 		'PlantOrder': form.plantOrder.data,
-	# 		'CityProduction': form.cityProduction.data,
-	# 		'StateProduction': form.stateProduction.data,
-	# 		'PlantProduction': form.plantProduction.data,
-	# 		'DateEnteredTask': form.dateEnteredTask.data,
-	# 		'DateEnteredToProduction': form.dateEnteredToProduction.data,
-	# 		'DateRequired': form.dateRequired.data,
-	# 		'SQL_Table_NAME_': 'Tasks'
-	# 	}
-
+		query = {
+			'OperatorsName': form.operatorsName.data,
+			'OperatorsSecondname': form.operatorsSecondname.data,
+			'WorkingChange': form.workingChange.data,
+			'CityProduction': form.cityProduction.data,
+			'stateProduction': form.stateProduction.data,
+			'PlantOrder': form.plantOrder.data,
+			'CityProduction': form.cityProduction.data,
+			'StateProduction': form.stateProduction.data,
+			'PlantProduction': form.plantProduction.data,
+			'Bunch': form.bunch.data,
+			'Pull': form.pull.data,
+			'localNumber': form.localNumber.data,
+			'SQL_Table_NAME_': 'Config'
+		}
 
 		# insertSole_1(**query)
+		print(getRecsSole_1("MachineID, Pos_1", "Config"))
 
-	# return render_template('machine.html', flgLoading=flgLoading, form=form, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
-	return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
+	return render_template('machine.html', flgLoading=flgLoading, form=form, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
+	# return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 
 
 @app.route('/machine/all')  # with ajax
@@ -197,7 +197,7 @@ def taskAddP():
 	# print(form.validate_on_submit())
 	if form.is_submitted():
 
-		print(form.dateRequired.data)
+		# print(form.dateRequired.data)
 
 		query = {
 			'Bunch': form.bunch.data,
@@ -331,6 +331,15 @@ def insertSole_1(**data):
 		str(data['ReadyDate'])  + '\'' + ')'
 
 	elif data['SQL_Table_NAME_'] == "Tasks":
+		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
+		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
+		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
+		'\'' + ', ' + str(data['LocalNumber']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
+		str(data['StateOrder']) + '\'' + ', ' + '\'' + str(data['PlantOrder']) + '\'' + ', ' + '\'' + \
+		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
+		str(data['PlantProduction'])  + '\'' + ', ' + '\'' + str(data['DateEnteredTask']) + '\'' + ', ' + '\'' + \
+		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + ')'
+	elif data['SQL_Table_NAME_'] == "Config":  # continue point
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
 		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
 		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
