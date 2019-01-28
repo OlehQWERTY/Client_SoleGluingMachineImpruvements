@@ -13,15 +13,15 @@
 				<div class="list-group" id="list-tab" role="tablist">	
 					{% if utype == 'admin' %}
 						<!-- newuser  non admin -->
-						<a class="list-group-item list-group-item-action" id="list-newuser-list" data-toggle="list" href="#list-newuser" role="tab" aria-controls="newuser" disabled>Register a new user</a>
+						<a class="list-group-item list-group-item-action" id="list-newuser-list" data-toggle="list" href="#list-newuser" role="tab" aria-controls="newuser" disabled>{[(Register a new user)]}</a>
 						<!-- log -->
-						<a class="list-group-item list-group-item-action" id="list-log-list" data-toggle="list" href="#list-log" role="tab" aria-controls="log">Log</a>
+						<a class="list-group-item list-group-item-action" id="list-log-list" data-toggle="list" href="#list-log" role="tab" aria-controls="log">{[(Log)]}</a>
 						<!-- userlist -->
-						<a class="list-group-item list-group-item-action" id="list-userlist-list" data-toggle="list" href="#list-userlist" role="tab" aria-controls="userlist">User list</a>
+						<a class="list-group-item list-group-item-action" id="list-userlist-list" data-toggle="list" href="#list-userlist" role="tab" aria-controls="userlist">{[(User list)]}</a>
 						<!-- hide all -->
 						<!-- <a class="list-group-item list-group-item-action" id="list-hideall-list" data-toggle="list" href="#list-hideall" role="tab" aria-controls="hideall">Hide all</a> -->
 					{% else %}  <!-- non admin -->
-						<a class="list-group-item list-group-item-action" id="list-someopt-list" data-toggle="list" href="#list-someopt" role="tab" aria-controls="someopt">Some options</a>
+						<a class="list-group-item list-group-item-action" id="list-someopt-list" data-toggle="list" href="#list-someopt" role="tab" aria-controls="someopt">{[(Some options)]}</a>
 					{% endif %}
 				</div>
 			</div>
@@ -33,7 +33,7 @@
 						<div class="tab-pane fade" id="list-log" role="tabpanel" aria-labelledby="list-log-list"> 
 						
 							<nav id="navbar-example2" class="navbar navbar-light bg-light">
-								<center><a class="navbar-brand"> Output: </a></center>
+								<center><a class="navbar-brand"> {[(Output)]}: </a></center>
 								<ul class="nav nav-pills">
 									<!-- links: it is possible to use it to navigation inside big text of page -->
 
@@ -52,11 +52,11 @@
 										<!-- Modal -->
 										<!-- <button type="'button'" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> -->
 										<button type="button" class="btn btn-light" data-toggle="modal" data-target="#clear3dButton">
-										  Clear 3 days
+										  {[(Clear 3 days)]}
 										</button>
 
 										<button type="button" class="btn btn-light" data-toggle="modal" data-target="#clearAllButton">
-										  Clear all
+										  {[(Clear all)]}
 										</button>
 										<!-- Modal -->
 									</li>
@@ -86,7 +86,7 @@
 						<div class="tab-pane fade" id="list-userlist" role="tabpanel" aria-labelledby="list-userlist-list">
 							
 							<nav id="navbar-example2" class="navbar navbar-light bg-light">
-								<center><a class="navbar-brand"> Output: </a></center>
+								<center><a class="navbar-brand"> {[(Output)]}: </a></center>
 							</nav>
 
 							<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
@@ -99,11 +99,11 @@
 						
 						<!-- newuser -->
 						<div class="tab-pane fade" id="list-newuser" role="tabpanel" aria-labelledby="list-newuser-list">	
-							<a style="border: none; background: #F2F3F4" href="/register" type="button" class="list-group-item list-group-item-action"> Click here to register a new user </a>
+							<a style="border: none; background: #F2F3F4" href="/register" type="button" class="list-group-item list-group-item-action"> {[(Click here to register a new user)]} </a>
 						</div>
 					{% else %}  <!-- non admin -->
 						<!-- someopt -->
-						<div class="tab-pane fade" id="list-someopt" role="tabpanel" aria-labelledby="list-someopt-list"> Some options </div>
+						<div class="tab-pane fade" id="list-someopt" role="tabpanel" aria-labelledby="list-someopt-list"> {[(Some options)]} </div>
 					{% endif %}
 					
 				</div>
@@ -118,18 +118,18 @@
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="clear3dButtonLabel">Confirm</h5>
+			        <h5 class="modal-title" id="clear3dButtonLabel">{[(Confirm)]}</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        Are you shure? This operation delate permanently log for the last 3 days.
+			        {[(Are you shure? This operation delate permanently log for the last 3 days.)]}
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">{[(Close)]}</button>
 			        <!-- <button type="button" class="btn btn-primary">Ok</button> -->
-			        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">Yes: clear last 3 days</a>
+			        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">{[(Yes)]}: {[(clear last 3 days)]}</a>
 			      </div>
 			    </div>
 			  </div>
@@ -140,18 +140,18 @@
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="clearAllButtonLabel">Confirm</h5>
+			        <h5 class="modal-title" id="clearAllButtonLabel">{[(Confirm)]}</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        Are you shure? This operation delate permanently all log data.
+			        {[(Are you shure? This operation delate permanently all log data.)]}
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">{[(Close)]}</button>
 			        <!-- <button type="button" class="btn btn-primary">Ok</button> -->
-			        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">Yes: clear all</a>
+			        <a class="nav-link" href="{{ url_for('account') + '/+clear3d' }}">{[(Yes: clear all)]}</a>
 			      </div>
 			    </div>
 			  </div>

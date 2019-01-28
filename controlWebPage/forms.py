@@ -74,7 +74,7 @@ class TaskAddForm(FlaskForm):
                             #validators=[DataRequired(), DateRange(min=datetime.now())])  # validators=[DataRequired(), DateRange(min=datetime.now(), max=(datetime.now() + timedelta(days=7)))]
     dateRequired = DateTimeLocalField(label = 'date required', format = '%Y-%m-%dT%H:%M') #, format = "%d%b%Y %H:%M", 
                             #validators=[DataRequired(), DateRange(min=datetime.now())])
-    submit = SubmitField('ADD TASK')
+    submit = SubmitField('Add task')
 
     # validate
     def validate_localNumber(self, localNumber):

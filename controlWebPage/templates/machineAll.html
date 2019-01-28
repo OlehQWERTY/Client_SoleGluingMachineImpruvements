@@ -98,9 +98,9 @@
   {% endif %}
 
   {% for x in machines %}
-    <center><h2>Machine {{ x }} ({{ machines[x] }}) </h2></center>  <!--  {{ x }} -->
+    <center><h2>{[(Machine)]} {{ x }} ({{ machines[x] }}) </h2></center>  <!--  {{ x }} -->
       {% for y in range(machines[x]) %}
-        <h5> Позиція {{ y + 1 }} ({{mProgress[0][x][y][0]}} / {{mProgress[0][x][y][1]}}): </h5>
+        <h5> {[(Pos)]} {{ y + 1 }} ({{mProgress[0][x][y][0]}} / {{mProgress[0][x][y][1]}}): </h5>
         {% if True %}
           <!-- {{y ~ 1}} -->
           {% set tempStr = ("progress" ~ x ~ "_" ~ y) %}
