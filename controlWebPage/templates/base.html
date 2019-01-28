@@ -38,7 +38,7 @@
         <div data-include='1.html'></div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <font color="#3247E0" font-style="oblique" font-family="Impact, Charcoal, sans-serif"><a class="navbar-brand" href="{{url_for('home')}}">
-          Inblu Controller
+          {[(Inblu Controller)]}
         </a></font>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -51,54 +51,54 @@
             <!--</li>-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Task 
+                {[(Task)]} 
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{url_for('taskAddP')}}">Add</a>
-                <a class="dropdown-item" href="{{url_for('taskP')}}">List</a>
+                <a class="dropdown-item" href="{{url_for('taskAddP')}}">{[(Add)]}</a>
+                <a class="dropdown-item" href="{{url_for('taskP')}}">{[(List)]}</a>
               </div>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Machine
+                {[(Machine)]}
                 <span class="badge badge-primary badge-pill">1</span> <!-- number -->
               </a>
               <!-- needs to be changed automaticaly according to Machines ammount -->
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/machine/1">Machine #1</a>
-                <a class="dropdown-item" href="/machine/2">Machine #2</a>
-                <a class="dropdown-item" href="/machine/3">Machine #3</a>
-                <a class="dropdown-item" href="/machine/4">Machine #4</a>
-                <a class="dropdown-item" href="/machine/5">Machine #5</a>
-                <a class="dropdown-item" href="/machine/6">Machine #6</a>
-                <a class="dropdown-item" href="/machine/7">Machine #7</a>
-                <a class="dropdown-item" href="/machine/8">Machine #8</a>
+                <a class="dropdown-item" href="/machine/1">{[(Machine)]} #1</a>
+                <a class="dropdown-item" href="/machine/2">{[(Machine)]} #2</a>
+                <a class="dropdown-item" href="/machine/3">{[(Machine)]} #3</a>
+                <a class="dropdown-item" href="/machine/4">{[(Machine)]} #4</a>
+                <a class="dropdown-item" href="/machine/5">{[(Machine)]} #5</a>
+                <a class="dropdown-item" href="/machine/6">{[(Machine)]} #6</a>
+                <a class="dropdown-item" href="/machine/7">{[(Machine)]} #7</a>
+                <a class="dropdown-item" href="/machine/8">{[(Machine)]} #8</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{url_for('machineAll')}}">All machines</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
+                <a class="dropdown-item" href="{{url_for('machineAll')}}">{[(All machines)]}</a> <!-- href = "#" - link to stay here; href="machine"; href="/machine/1" - absolute path -->
               </div>
             </li>
           </ul>
             <div class="btn-group btn-group-sm btn-group-toggle btn-sm" data-toggle="buttons" id = "languageSelector">
               <!-- change active state and according to it change language -->
               <label class="btn btn-secondary active">
-                <input type="radio" name="options" id="option1" autocomplete="off" checked> En
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> {[(En)]}
               </label>
               <label class="btn btn-secondary">
-                <input type="radio" name="options" id="option2" autocomplete="off"> Uk
+                <input type="radio" name="options" id="option2" autocomplete="off"> {[(Uk)]}
               </label>     
             </div>
             
             <div class="navbar-nav">
               {% if current_user.is_authenticated %}
                 {% if 'admin' != utype %}
-                  <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                  <a class="nav-item nav-link" href="{{ url_for('account') }}">{[(Account)]}</a>
                 {% else %}
-                  <a class="nav-item nav-link" href="{{ url_for('account') }}">Admin<span class="badge badge-primary badge-pill"><font size="0.5">*</font></span></a>
+                  <a class="nav-item nav-link" href="{{ url_for('account') }}">{[(Admin)]}<span class="badge badge-primary badge-pill"><font size="0.5">*</font></span></a>
                 {% endif %}
                
-                <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout') }}">{[(Logout)]}</a>
               {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('login') }}">{[(Login)]}</a>
               {% endif %}
             </div>
         </div>
@@ -132,7 +132,7 @@
     
     <div id="footer">
       {% block footer %}
-        <center>&copy; Copyright 2018 by <a lang="en" href="https://www.facebook.com/oleg.gordiichenko/">Oleg</a>.<center>
+        <center>&copy; Copyright 2018 by <a lang="en" href="https://www.facebook.com/oleg.gordiichenko/">{[(Oleg)]}</a>.<center>
       {% endblock footer %}
     </div>
   </body>
