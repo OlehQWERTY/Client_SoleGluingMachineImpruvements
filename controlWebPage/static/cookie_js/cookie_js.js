@@ -9,6 +9,9 @@ function getCookie(name) {
 // document.cookie = "userName=Vasya";
 
 function setCookie(name, value) {
+	if(name == "language"){
+		location.reload();  // reload page
+	}
 	var date = new Date(0);
 	document.cookie = name + '=' + value + "; path=/;";
 	// document.cookie = "userName=Vasya";

@@ -31,8 +31,20 @@
 
     <!-- call localisation func() -->
     <script type=text/javascript>
-      translate("{{ url_for('static', filename='localisation/lang_db.json') }}", "ua");  // language "en", "ua"...
+      if(getCookie("language") == "en"){
+        translate("{{ url_for('static', filename='localisation/lang_db.json') }}", "en");  // language "en", "ua"...
+      } else {
+        translate("{{ url_for('static', filename='localisation/lang_db.json') }}", "ua");
+      }
       // setCookie("Vasy", "test");
+
+      // window.onload = function () {
+      //   if (document.getElementById("option1").checked) {
+      //     setCookie("language", "en");
+      //   } else {
+      //     setCookie("language", "ua");
+      //   }
+      // }
     </script>
 
   </head>
@@ -83,11 +95,14 @@
             </li>
           </ul>
             <div class="btn-group btn-group-sm btn-group-toggle btn-sm" data-toggle="buttons" id = "languageSelector">
-              <!-- change active state and according to it change language -->
-              <label class="btn btn-secondary active">
+              <label class="btn btn-secondary" onclick="setCookie('language', 'en')" active>
+                <!-- active -->
+                <!-- <input type="radio" name="options" id="option1" autocomplete="off" checked> {[(En)]} -->
+                <!-- {{ url_for('static', filename='favicon.ico') }} -->
+                <!-- <img src="{{ url_for('static', filename='langIco/UA-Ukraine-Flag-icon.png') }}"> -->
                 <input type="radio" name="options" id="option1" autocomplete="off" checked> {[(En)]}
               </label>
-              <label class="btn btn-secondary">
+              <label class="btn btn-secondary" onclick="setCookie('language', 'ua')">
                 <input type="radio" name="options" id="option2" autocomplete="off"> {[(Ua)]}
               </label>     
             </div>
