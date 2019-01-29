@@ -58,16 +58,16 @@
 				<div class="form-group">
 					<label for="validationTooltip04">{[(Local numb)]}</label>
 					
-					<!-- {{ form.localNumber.label(class="col-form-label") }} -->
-					{% if form.localNumber.errors %}
-						{{ form.localNumber(class="form-control form-control-lg is-invalid") }}
+					<!-- {{ form.localNumb.label(class="col-form-label") }} -->
+					{% if form.localNumb.errors %}
+						{{ form.localNumb(class="form-control form-control-lg is-invalid") }}
 						<div class="invalid-feedback">
-							{% for error in form.localNumber.errors %}
+							{% for error in form.localNumb.errors %}
 								<span>{{ error }}</span>
 							{% endfor %}
 						</div>
 					{% else %}
-						{{ form.localNumber(class="form-control form-control-md") }}
+						{{ form.localNumb(class="form-control form-control-md") }}
 					{% endif %}
 				</div>
 			</fieldset>

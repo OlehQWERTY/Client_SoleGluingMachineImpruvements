@@ -114,11 +114,10 @@
 
         <center><h3> {[(Positions)]}: </h3></center>
 
-        {% for x in range(1, machine + 1) %}
+        <!-- % for x in range(1, machine + 1) %  {} -->
 
-          <div class="form-row">
+          <!-- <div class="form-row">
             <div class="col-md-1 mb-3">
-              <!-- put here more appropriate element -->
               <button type="button" class="btn btn-lg btn btn-success" disabled>{{ x }}</button>
               <div class="invalid-tooltip">
                 Please provide a valid data!
@@ -127,7 +126,6 @@
             <div class="col-md-5 mb-3">
               <label for="validationTooltip04">{[(Bunch)]}</label>
               {{ form.bunch_1(class="form-control form-control-md") }}
-              <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required> -->
               <div class="invalid-tooltip">
                 Please provide a valid data!
               </div>
@@ -135,7 +133,6 @@
             <div class="col-md-4 mb-3">
               <label for="validationTooltip05">{[(Pull)]}</label>
               {{ form.pull_1(class="form-control form-control-md") }}
-              <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required> -->
               <div class="invalid-tooltip">
                 Please provide a valid data!
               </div>
@@ -143,16 +140,391 @@
             <div class="col-md-2 mb-3">
               <label for="validationTooltip06">{[(Local numb)]}</label>
               {{ form.localNumb_1(class="form-control form-control-md") }}
-              <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required> -->
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div> -->
+
+        <!-- % endfor %   {} -->
+
+<!-- better solution upper but I don't know how to change form var -->
+<!-- crutch  -->
+      {% if machine >= 4 %}
+        <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>1</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_1(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_1(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_1(class="form-control form-control-md") }}
               <div class="invalid-tooltip">
                 Please provide a valid data!
               </div>
             </div>
           </div>
 
-        {% endfor %}
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>2</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_2(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_2(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_2(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>3</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_3(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_3(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_3(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>4</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_4(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_4(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_4(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+        {% endif%}
+
+      {% if machine >= 6 %}
+        <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>5</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_5(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_5(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_5(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>6</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_6(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_6(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_6(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+      {% endif%}
+
+      {% if machine >= 8 %}
+        <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>7</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_7(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_7(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_7(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>8</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_8(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_8(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_8(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+      {% endif%}
+
+      {% if machine >= 10 %}
+        <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>9</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_9(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_9(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_9(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>10</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_10(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_10(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_10(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+      {% endif%}
+
+      {% if machine >= 12 %}
+        <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>11</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_11(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_11(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_11(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <button type="button" class="btn btn-lg btn btn-success" disabled>12</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_12(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_12(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_12(class="form-control form-control-md") }}
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+      {% endif%}
+ <!-- crutch  -->
         
-        <!-- test after translation -->
         <!-- <button class="btn btn-primary" type="submit">{[(Submit form)]}</button>  -->
         {{ form.submit(class="btn btn-primary") }}
       </form>

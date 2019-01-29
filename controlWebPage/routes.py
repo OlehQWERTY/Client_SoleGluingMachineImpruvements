@@ -13,68 +13,68 @@ from datetime import datetime, timedelta  # cookie test
 # from time import sleep
 
 
-posts = [
-	{
-		'author': 'Corey Schafer',
-		'title': 'Blog Post 1',
-		'content': 'First post content',
-		'date_posted': 'April 20, 2018'
-	},
-	{
-		'author': 'Jane Doe',
-		'title': 'Blog Post 2',
-		'content': 'Second post content',
-		'date_posted': 'April 21, 2018'
-	}
-]
+# posts = [
+# 	{
+# 		'author': 'Corey Schafer',
+# 		'title': 'Blog Post 1',
+# 		'content': 'First post content',
+# 		'date_posted': 'April 20, 2018'
+# 	},
+# 	{
+# 		'author': 'Jane Doe',
+# 		'title': 'Blog Post 2',
+# 		'content': 'Second post content',
+# 		'date_posted': 'April 21, 2018'
+# 	}
+# ]
 
 
-tasks = [
-	{
-		'RecID': '1',
-		'UnitID': '1',
-		'Articul': 'Nasty',
-		'ProcessID': '101',
-		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
-		'OperatorName': 'Zoya Semenovna',
-		'OperationDate': '17/11/18:17-25-36',
-		'Pull': '197mljfuy',
-		'OrderNumber': '145878925loi',
-		'LocalNumb': '12',
-		'PartLocalNumb': '4',
-		'ReadyDate': '18/11/18:25-30-36',
-		'CountryOrder': 'PL',
-		'CityOrder': 'Lublin',
-		'PlantOrder': 'RIF - 5',
-		'DateEntered': '18/12/19:25-25-36',
-		'RequiredRDate': '17/11/18:17-0-0',
-		'CountryProd': 'UK',
-		'CityProd': 'Kyiv',
-		'QR': '186547'
-	},
-	{
-		'RecID': '1',
-		'UnitID': '1',
-		'Articul': 'Kate',
-		'ProcessID': '101',
-		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
-		'OperatorName': 'Zoya Semenovna',
-		'OperationDate': '17/11/18:17-25-42',
-		'Pull': '199poi',
-		'OrderNumber': '199987',
-		'LocalNumb': '13',
-		'PartLocalNumb': '1',
-		'ReadyDate': '18/11/18:25-30-36',
-		'CountryOrder': 'PL',
-		'CityOrder': 'Lublin',
-		'PlantOrder': 'RIF - 5',
-		'DateEntered': '18/12/19:25-25-36',
-		'RequiredRDate': '17/11/18:17-0-0',
-		'CountryProd': 'UK',
-		'CityProd': 'Kyiv',
-		'QR': '186551'
-	}
-]
+# tasks = [
+# 	{
+# 		'RecID': '1',
+# 		'UnitID': '1',
+# 		'Articul': 'Nasty',
+# 		'ProcessID': '101',
+# 		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
+# 		'OperatorName': 'Zoya Semenovna',
+# 		'OperationDate': '17/11/18:17-25-36',
+# 		'Pull': '197mljfuy',
+# 		'OrderNumber': '145878925loi',
+# 		'LocalNumb': '12',
+# 		'PartLocalNumb': '4',
+# 		'ReadyDate': '18/11/18:25-30-36',
+# 		'CountryOrder': 'PL',
+# 		'CityOrder': 'Lublin',
+# 		'PlantOrder': 'RIF - 5',
+# 		'DateEntered': '18/12/19:25-25-36',
+# 		'RequiredRDate': '17/11/18:17-0-0',
+# 		'CountryProd': 'UK',
+# 		'CityProd': 'Kyiv',
+# 		'QR': '186547'
+# 	},
+# 	{
+# 		'RecID': '1',
+# 		'UnitID': '1',
+# 		'Articul': 'Kate',
+# 		'ProcessID': '101',
+# 		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
+# 		'OperatorName': 'Zoya Semenovna',
+# 		'OperationDate': '17/11/18:17-25-42',
+# 		'Pull': '199poi',
+# 		'OrderNumber': '199987',
+# 		'LocalNumb': '13',
+# 		'PartLocalNumb': '1',
+# 		'ReadyDate': '18/11/18:25-30-36',
+# 		'CountryOrder': 'PL',
+# 		'CityOrder': 'Lublin',
+# 		'PlantOrder': 'RIF - 5',
+# 		'DateEntered': '18/12/19:25-25-36',
+# 		'RequiredRDate': '17/11/18:17-0-0',
+# 		'CountryProd': 'UK',
+# 		'CityProd': 'Kyiv',
+# 		'QR': '186551'
+# 	}
+# ]
 
 machines = [  # from machines config db
 	{
@@ -85,7 +85,7 @@ machines = [  # from machines config db
 		'5': 4,
 		'6': 6,
 		'7': 4,
-		'8': 6
+		'8': 8
 	}
 ]
 
@@ -185,7 +185,8 @@ def machineP(number=None):
 			'Bunch_12': form.bunch_12.data,
 			'Pull_12': form.pull_12.data,
 			'LocalNumb_12': form.localNumb_12.data,
-			'SQL_Table_NAME_': 'Config'
+			'SQL_Table_NAME_': 'Config',
+			"MachineID": number
 		}
 
 		insertSole_1(**query)
@@ -211,7 +212,7 @@ def machineAll():
 # @app.route('/task/<name>')
 @login_required
 def taskP():
-	taskTable = getRecsSole_1("Bunch, Pull, LocalNumb, DateRequired, StateProduction, StateProduction", "Tasks")  # get tasks from db
+	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateRequired, StateProduction, StateProduction", "Tasks")  # get tasks from db
 	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable)  #  True if dict == dict1 else False
 
 
@@ -227,8 +228,8 @@ def taskAddP():
 	# print("validation")
 	# print(form.is_submitted())
 	print(form.validate_on_submit())
-	# if form.is_submitted():
-	if form.validate_on_submit():
+	if form.is_submitted():
+	# if form.validate_on_submit():  # doesn't work **** ???
 
 		# print(form.dateRequired.data)
 
@@ -348,7 +349,7 @@ def getUserTable():
 
 
 def getSole_1():
-	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumb, ReadyDate FROM glueMachine")
+	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
 	return mycursor
 
 
@@ -356,7 +357,7 @@ def insertSole_1(**data):
 	if data['SQL_Table_NAME_'] == "glueMachine":  # is not used
 	# Error with bracets 'data['UnitID']'
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (UnitID, Articul, ProcessID, OperatorName, OperationDate, \
-		Pull, OrderNumber, LocalNumb, ReadyDate) VALUES (" \
+		Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
 		+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
 		'\'' + ', ' + data['ProcessID'] + ', ' + '\'' + str(data['OperatorName']) + '\'' + ', ' + '\'' + \
 		str(data['OperationDate']) + '\'' + ', ' + '\'' + str(data['Pull']) + '\'' + ', ' + '\'' + \
@@ -364,7 +365,7 @@ def insertSole_1(**data):
 		str(data['ReadyDate'])  + '\'' + ')'
 
 	elif data['SQL_Table_NAME_'] == "Tasks":
-		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumb, CityOrder, StateOrder,	PlantOrder, CityProduction, \
+		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
 		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
 		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
 		'\'' + ', ' + str(data['LocalNumb']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
@@ -373,14 +374,39 @@ def insertSole_1(**data):
 		str(data['PlantProduction'])  + '\'' + ', ' + '\'' + str(data['DateEnteredTask']) + '\'' + ', ' + '\'' + \
 		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + ')'
 
-	elif data['SQL_Table_NAME_'] == "Config":  # continue point
+	elif data['SQL_Table_NAME_'] == "Config":
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (OperatorFirstName, OperatorSecondName, OperatorWorkingChange, \
-		CityProduction, StateProduction, plantProduction, Bunch_1, Pull_1, LocalNumb_1) VALUES (" \
+		CityProduction, StateProduction, plantProduction, Bunch_1, Pull_1, LocalNumb_1, Bunch_2, Pull_2, LocalNumb_2, \
+		Bunch_3, Pull_3, LocalNumb_3, Bunch_4, Pull_4, LocalNumb_4, Bunch_5, Pull_5, LocalNumb_5, \
+		Bunch_6, Pull_6, LocalNumb_6, Bunch_7, Pull_7, LocalNumb_7, Bunch_8, Pull_8, LocalNumb_8, \
+		Bunch_9, Pull_9, LocalNumb_9, Bunch_10, Pull_10, LocalNumb_10, Bunch_11, Pull_11, LocalNumb_11, \
+		Bunch_12, Pull_12, LocalNumb_12, MachineID) VALUES (" \
 		+ '\'' + str(data['OperatorFirstName']) + '\'' + ', '  + '\'' + str(data['OperatorSecondName']) + \
 		'\'' + ', ' + '\'' + str(data['OperatorWorkingChange']) + '\'' + ', ' + '\'' + str(data['CityProduction']) + '\'' + ', ' + '\'' + \
 		str(data['StateProduction']) + '\'' + ', ' + '\'' + str(data['PlantProduction']) + '\'' + ', ' + '\'' + \
 		str(data['Bunch_1']) + '\'' + ', ' + '\'' + str(data['Pull_1'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_1']) + '\'' + ')'
+		str(data['LocalNumb_1']) + '\'' + ', ' + '\'' + str(data['Bunch_2']) + '\'' + ', ' + '\'' + str(data['Pull_2'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_2']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_3']) + '\'' + ', ' + '\'' + str(data['Pull_3'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_3']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_4']) + '\'' + ', ' + '\'' + str(data['Pull_4'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_4']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_5']) + '\'' + ', ' + '\'' + str(data['Pull_5'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_5']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_6']) + '\'' + ', ' + '\'' + str(data['Pull_6'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_6']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_7']) + '\'' + ', ' + '\'' + str(data['Pull_7'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_7']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_8']) + '\'' + ', ' + '\'' + str(data['Pull_8'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_8']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_9']) + '\'' + ', ' + '\'' + str(data['Pull_9'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_9']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_10']) + '\'' + ', ' + '\'' + str(data['Pull_10'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_10']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_11']) + '\'' + ', ' + '\'' + str(data['Pull_11'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_11']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_12']) + '\'' + ', ' + '\'' + str(data['Pull_12'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_12']) + '\'' + ', ' + '\'' + str(data['MachineID'])  + '\'' + ')'
 	else:
 		prrint("Table is incorect or data is empty!")
 		return False
