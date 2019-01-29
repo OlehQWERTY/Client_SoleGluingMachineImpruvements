@@ -13,69 +13,6 @@ from datetime import datetime, timedelta  # cookie test
 # from time import sleep
 
 
-# posts = [
-# 	{
-# 		'author': 'Corey Schafer',
-# 		'title': 'Blog Post 1',
-# 		'content': 'First post content',
-# 		'date_posted': 'April 20, 2018'
-# 	},
-# 	{
-# 		'author': 'Jane Doe',
-# 		'title': 'Blog Post 2',
-# 		'content': 'Second post content',
-# 		'date_posted': 'April 21, 2018'
-# 	}
-# ]
-
-
-# tasks = [
-# 	{
-# 		'RecID': '1',
-# 		'UnitID': '1',
-# 		'Articul': 'Nasty',
-# 		'ProcessID': '101',
-# 		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
-# 		'OperatorName': 'Zoya Semenovna',
-# 		'OperationDate': '17/11/18:17-25-36',
-# 		'Pull': '197mljfuy',
-# 		'OrderNumber': '145878925loi',
-# 		'LocalNumb': '12',
-# 		'PartLocalNumb': '4',
-# 		'ReadyDate': '18/11/18:25-30-36',
-# 		'CountryOrder': 'PL',
-# 		'CityOrder': 'Lublin',
-# 		'PlantOrder': 'RIF - 5',
-# 		'DateEntered': '18/12/19:25-25-36',
-# 		'RequiredRDate': '17/11/18:17-0-0',
-# 		'CountryProd': 'UK',
-# 		'CityProd': 'Kyiv',
-# 		'QR': '186547'
-# 	},
-# 	{
-# 		'RecID': '1',
-# 		'UnitID': '1',
-# 		'Articul': 'Kate',
-# 		'ProcessID': '101',
-# 		'ProcessIDsDescription': "101 - add, 102 - del in case of damage, 103 - calc error",
-# 		'OperatorName': 'Zoya Semenovna',
-# 		'OperationDate': '17/11/18:17-25-42',
-# 		'Pull': '199poi',
-# 		'OrderNumber': '199987',
-# 		'LocalNumb': '13',
-# 		'PartLocalNumb': '1',
-# 		'ReadyDate': '18/11/18:25-30-36',
-# 		'CountryOrder': 'PL',
-# 		'CityOrder': 'Lublin',
-# 		'PlantOrder': 'RIF - 5',
-# 		'DateEntered': '18/12/19:25-25-36',
-# 		'RequiredRDate': '17/11/18:17-0-0',
-# 		'CountryProd': 'UK',
-# 		'CityProd': 'Kyiv',
-# 		'QR': '186551'
-# 	}
-# ]
-
 machines = [  # from machines config db
 	{
 		'1': 4,
@@ -98,7 +35,7 @@ mProgress = [  # test temp: before db'll be added
 		'5': [[100, 2000], [400, 900], [300, 900], [200, 900]],
 		'6': [[400, 1000], [400, 900], [400, 1200], [400, 700], [400, 520], [600, 900]],
 		'7': [[400, 1000], [120, 900], [400, 1200], [425, 900]],
-		'8': [[400, 900], [400, 900], [560, 900], [400, 900], [400, 900], [400, 900]]
+		'8': [[400, 900], [400, 900], [560, 900], [400, 900], [400, 900], [400, 900], [400, 900], [400, 900]]
 	}
 ]
 
@@ -186,10 +123,11 @@ def machineP(number=None):
 			'Pull_12': form.pull_12.data,
 			'LocalNumb_12': form.localNumb_12.data,
 			'SQL_Table_NAME_': 'Config',
-			"MachineID": number
+			"MachineID": number,
+			"ReloadDate": datetime.utcnow()
 		}
 
-		insertSole_1(**query)
+		insertSole_1(**query)  # send to db
 		# print(getRecsSole_1("MachineID, Pos_1", "Config"))
 
 	return render_template('machine.html', flgLoading=flgLoading, form=form, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
@@ -203,6 +141,9 @@ def machineAll():
 	# print(getCookie('test'))
 	# delCookie('u1')
 	# delCookie('userID')
+
+	print(getRecsSole_1(fields, tableName, WHeRE=None))
+	# SELECT * FROM glueMachine Where UnitID<>1 ORDER BY RecID DESC LIMIT 1
 
 	return render_template('machineAll.html', flgLoading=flgLoading, machines=machines[0], mProgress=mProgress)
 
@@ -232,7 +173,7 @@ def taskAddP():
 	# if form.validate_on_submit():  # doesn't work **** ???
 
 		# print(form.dateRequired.data)
-
+		
 		query = {
 			'Bunch': form.bunch.data,
 			'Pull': form.pull.data,
@@ -246,7 +187,8 @@ def taskAddP():
 			'DateEnteredTask': form.dateEnteredTask.data,
 			'DateEnteredToProduction': form.dateEnteredToProduction.data,
 			'DateRequired': form.dateRequired.data,
-			'SQL_Table_NAME_': 'Tasks'
+			'SQL_Table_NAME_': 'Tasks',
+			"Ammount": random.randint(0, 10) * 100  # just for test (add to form further)
 		}
 
 		# don't turn on commit 1/24/2019 @ 1:13 PM bug "display:block;" for content section (in taskAdd tamplate)
@@ -366,13 +308,14 @@ def insertSole_1(**data):
 
 	elif data['SQL_Table_NAME_'] == "Tasks":
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
-		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
+		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired, Ammount) VALUES (" \
 		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
 		'\'' + ', ' + str(data['LocalNumb']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
 		str(data['StateOrder']) + '\'' + ', ' + '\'' + str(data['PlantOrder']) + '\'' + ', ' + '\'' + \
 		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
 		str(data['PlantProduction'])  + '\'' + ', ' + '\'' + str(data['DateEnteredTask']) + '\'' + ', ' + '\'' + \
-		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + ')'
+		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + \
+		', ' + '\'' + str(data['Ammount']) + '\'' + ')'
 
 	elif data['SQL_Table_NAME_'] == "Config":
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (OperatorFirstName, OperatorSecondName, OperatorWorkingChange, \
@@ -380,7 +323,7 @@ def insertSole_1(**data):
 		Bunch_3, Pull_3, LocalNumb_3, Bunch_4, Pull_4, LocalNumb_4, Bunch_5, Pull_5, LocalNumb_5, \
 		Bunch_6, Pull_6, LocalNumb_6, Bunch_7, Pull_7, LocalNumb_7, Bunch_8, Pull_8, LocalNumb_8, \
 		Bunch_9, Pull_9, LocalNumb_9, Bunch_10, Pull_10, LocalNumb_10, Bunch_11, Pull_11, LocalNumb_11, \
-		Bunch_12, Pull_12, LocalNumb_12, MachineID) VALUES (" \
+		Bunch_12, Pull_12, LocalNumb_12, MachineID, ReloadDate) VALUES (" \
 		+ '\'' + str(data['OperatorFirstName']) + '\'' + ', '  + '\'' + str(data['OperatorSecondName']) + \
 		'\'' + ', ' + '\'' + str(data['OperatorWorkingChange']) + '\'' + ', ' + '\'' + str(data['CityProduction']) + '\'' + ', ' + '\'' + \
 		str(data['StateProduction']) + '\'' + ', ' + '\'' + str(data['PlantProduction']) + '\'' + ', ' + '\'' + \
@@ -406,7 +349,8 @@ def insertSole_1(**data):
 		str(data['Bunch_11']) + '\'' + ', ' + '\'' + str(data['Pull_11'])  + '\'' + ', ' + '\'' + \
 		str(data['LocalNumb_11']) + '\'' + ', ' + '\'' + \
 		str(data['Bunch_12']) + '\'' + ', ' + '\'' + str(data['Pull_12'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_12']) + '\'' + ', ' + '\'' + str(data['MachineID'])  + '\'' + ')'
+		str(data['LocalNumb_12']) + '\'' + ', ' + '\'' + str(data['MachineID'])  + '\'' +  ', ' + \
+		'\'' + str(data['ReloadDate'])  + '\'' + ')'
 	else:
 		prrint("Table is incorect or data is empty!")
 		return False
@@ -423,9 +367,12 @@ def insertSole_1(**data):
 	return True
 
 
-def getRecsSole_1(fields, tableName):
+def getRecsSole_1(fields, tableName, WHeRE=None):
 	db_response = []
-	query = "SELECT " + fields + " FROM " + tableName # + " WHERE RecID = " + str(id)
+	if WHeRE:
+		query = "SELECT " + fields + " FROM " + tableName + " WHERE " + str(WHeRE)
+	else:
+		query = "SELECT " + fields + " FROM " + tableName # + " WHERE RecID = " + str(id)
 	print(query)
 	try:
 		mycursor.execute(query)
@@ -440,6 +387,20 @@ def getRecsSole_1(fields, tableName):
 	print(db_response)
 	return db_response
 
+def customRecSole_1(query):
+	try:
+		mycursor.execute(query)
+		mydb.commit()
+	except mSql.Error as err:
+		print("Failed getting from database: {}".format(err))
+		return False
+
+	for x in mycursor:
+		db_response.append(x)
+
+	print(db_response)
+	return db_response
+	
 
 def delRecIDSole_1(id, id_2=None):
 	try:

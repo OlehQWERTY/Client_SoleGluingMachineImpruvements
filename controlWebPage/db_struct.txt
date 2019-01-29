@@ -121,5 +121,6 @@ CREATE TABLE Tasks (
 	PlantProduction varchar(255),
 	DateEnteredTask varchar(255),
 	DateEnteredToProduction varchar(255),
-	DateRequired varchar(255)
+	DateRequired varchar(255),
+	Ammount varchar(255)
 );
