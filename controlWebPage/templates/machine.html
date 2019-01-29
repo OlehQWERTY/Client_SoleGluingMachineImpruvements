@@ -26,157 +26,138 @@
   <!-- {% endif %} -->
 	<!--форма ввода-->
   <div id = "inputMachineParam">
-    <form class="needs-validation" novalidate>
-<!--     	<div class="form-row">
-    		 
-    		 <div class="btn-group btn-group-toggle" data-toggle="buttons" id = "languageSelector" style="height: 50px; margin-top: 20px">
-                  <label class="btn btn-secondary active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked> En
-                  </label>
-                  <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="option2" autocomplete="off"> Uk
-                  </label>
-            </div>
+    <!-- required for form like this... -->
+    <form method="POST" action="">
+      <form class="needs-validation" novalidate>
+  <!--     	<div class="form-row">
+      		 
+      		 <div class="btn-group btn-group-toggle" data-toggle="buttons" id = "languageSelector" style="height: 50px; margin-top: 20px">
+                    <label class="btn btn-secondary active">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked> En
+                    </label>
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="options" id="option2" autocomplete="off"> Uk
+                    </label>
+              </div>
 
-    		<div class="col-md-1 mb-3">
-				  <div class="form-group">
-				    <label for="exampleFormControlSelect1"> Кількість позицій</label>
-				    <select class="form-control" id="exampleFormControlSelect1">
-				      <option>4</option>
-				      <option>6</option>
-				      <option>8</option>
-				    </select>
-				  </div>
-				</div>
-			</div> -->
-
-      <div class="form-row">
-        
-        <div class="col-md-4 mb-3">
-          <label for="validationTooltip01">{[(Operator's name)]}</label>
-          {{ form.operatorsName(class="form-control form-control-md") }}
-          <!-- <input type="text" class="form-control" id="validationTooltip01" placeholder="{[(Nataly)]}" required> -->
-          <!-- <input type="text" class="form-control" id="validationTooltip01" placeholder="Им'я" value="Зоя" required> -->
-          <div class="invalid-tooltip">
-            Looks good!
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-          <label for="validationTooltip02">{[(Operator's secondname)]}</label>
-          {{ form.operatorsSecondname(class="form-control form-control-md") }}
-          <!-- <div class="valid-invalid">  показувати підпис нижче при пустому полі -->
-          <div class="invalid-tooltip">
-            Looks good!
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-          <label for="validationTooltip03">{[(Working change)]}</label>
-          {{ form.workingChange(class="form-control form-control-md") }}
-          <!-- <input type="text" class="form-control" id="validationTooltip03" placeholder="2" required> -->
-          <div class="invalid-tooltip">
-          <!-- <div class="valid-invalid"> -->
-            Looks good!
-          </div>
-        </div>
-
-      </div>
-
-      <div class="form-row">
-        <div class="col-md-5 mb-3">
-          <label for="validationTooltip04">{[(City production)]}</label>
-          {{ form.cityProduction(class="form-control form-control-md") }}
-          <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="{[(Zhytomyr)]}" required> -->
-          <div class="invalid-tooltip">
-            Please provide a valid city.
-          </div>
-        </div>
-        <div class="col-md-3 mb-3">
-          <label for="validationTooltip05">{[(State production)]}</label>
-          {{ form.stateProduction(class="form-control form-control-md") }}
-          <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="{[(Ukraine)]}" required> -->
-          <div class="invalid-tooltip">
-            Please provide a valid state.
-          </div>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label for="validationTooltip06">{[(Plant production)]}</label>
-          {{ form.plantProduction(class="form-control form-control-md") }}
-          <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="{[(RIF)]}-1" required> -->
-          <div class="invalid-tooltip">
-            Please provide a valid plant id.
-          </div>
-        </div>
-      </div>
-
-      <center><h3> {[(Positions)]}: </h3></center>
-
-      {% for x in range(1, machine + 1) %}
+      		<div class="col-md-1 mb-3">
+  				  <div class="form-group">
+  				    <label for="exampleFormControlSelect1"> Кількість позицій</label>
+  				    <select class="form-control" id="exampleFormControlSelect1">
+  				      <option>4</option>
+  				      <option>6</option>
+  				      <option>8</option>
+  				    </select>
+  				  </div>
+  				</div>
+  			</div> -->
 
         <div class="form-row">
-          <div class="col-md-1 mb-3">
-            <!-- put here more appropriate element -->
-            <button type="button" class="btn btn-lg btn btn-success" disabled>{{ x }}</button>
+          
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip01">{[(Operator's first name)]}</label>
+            {{ form.operatorFirstName(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip01" placeholder="{[(Nataly)]}" required> -->
+            <!-- <input type="text" class="form-control" id="validationTooltip01" placeholder="Им'я" value="Зоя" required> -->
             <div class="invalid-tooltip">
-              Please provide a valid position number.
+              Please provide a valid data!
             </div>
           </div>
-          <div class="col-md-5 mb-3">
-            <label for="validationTooltip04">{[(Bunch)]}</label>
-            {{ form.bunch(class="form-control form-control-md") }}
-            <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required> -->
+
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip02">{[(Operator's second name)]}</label>
+            {{ form.operatorSecondName(class="form-control form-control-md") }}
+            <!-- <div class="valid-invalid">  показувати підпис нижче при пустому полі -->
             <div class="invalid-tooltip">
-              Please provide a valid city.
+              Please provide a valid data!
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="validationTooltip03">{[(Working change)]}</label>
+            {{ form.operatorWorkingChange(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip03" placeholder="2" required> -->
+            <div class="invalid-tooltip">
+            <!-- <div class="valid-invalid"> -->
+              Please provide a valid data!
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-5 mb-3">
+            <label for="validationTooltip04">{[(City production)]}</label>
+            {{ form.cityProduction(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="{[(Zhytomyr)]}" required> -->
+            <div class="invalid-tooltip">
+              Please provide a valid data!
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationTooltip05">{[(State production)]}</label>
+            {{ form.stateProduction(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="{[(Ukraine)]}" required> -->
+            <div class="invalid-tooltip">
+              Please provide a valid data!
             </div>
           </div>
           <div class="col-md-4 mb-3">
-            <label for="validationTooltip05">{[(Pull)]}</label>
-            {{ form.pull(class="form-control form-control-md") }}
-            <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required> -->
+            <label for="validationTooltip06">{[(Plant production)]}</label>
+            {{ form.plantProduction(class="form-control form-control-md") }}
+            <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="{[(RIF)]}-1" required> -->
             <div class="invalid-tooltip">
-              Please provide a valid state.
-            </div>
-          </div>
-          <div class="col-md-2 mb-3">
-            <label for="validationTooltip06">{[(Local numb)]}</label>
-            {{ form.localNumber(class="form-control form-control-md") }}
-            <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required> -->
-            <div class="invalid-tooltip">
-              Please provide a valid plant id.
+              Please provide a valid data!
             </div>
           </div>
         </div>
 
-      {% endfor %}
-      
-      <!-- test after translation -->
-      <!-- <button class="btn btn-primary" type="submit">{[(Submit form)]}</button>  -->
-      {{ form.submit(class="btn btn-primary") }}
+        <center><h3> {[(Positions)]}: </h3></center>
+
+        {% for x in range(1, machine + 1) %}
+
+          <div class="form-row">
+            <div class="col-md-1 mb-3">
+              <!-- put here more appropriate element -->
+              <button type="button" class="btn btn-lg btn btn-success" disabled>{{ x }}</button>
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="validationTooltip04">{[(Bunch)]}</label>
+              {{ form.bunch_1(class="form-control form-control-md") }}
+              <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="BG58RZK87" required> -->
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationTooltip05">{[(Pull)]}</label>
+              {{ form.pull_1(class="form-control form-control-md") }}
+              <!-- <input type="text" class="form-control" id="validationTooltip05" placeholder="190045" required> -->
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="validationTooltip06">{[(Local numb)]}</label>
+              {{ form.localNumb_1(class="form-control form-control-md") }}
+              <!-- <input type="text" class="form-control" id="validationTooltip06" placeholder="127" required> -->
+              <div class="invalid-tooltip">
+                Please provide a valid data!
+              </div>
+            </div>
+          </div>
+
+        {% endfor %}
+        
+        <!-- test after translation -->
+        <!-- <button class="btn btn-primary" type="submit">{[(Submit form)]}</button>  -->
+        {{ form.submit(class="btn btn-primary") }}
+      </form>
     </form>
   </div>
 
   </div> <!-- my_content -->
 {% endblock content %}
-
-
-    RecID int auto_increment primary key,
-    UnitID varchar(255),
-    Articul varchar(255),
-    ProcessID varchar(255),
-    ProcessIDsDescription varchar(255),
-    OperatorName varchar(255),
-    OperationDate varchar(255),
-    Pull varchar(255),
-    OrderNumber varchar(255),
-    LocalNumber varchar(255),
-    PartLocalNumber varchar(255),
-    ReadyDate varchar(255),
-    CountryOrder varchar(255),
-    CityOrder varchar(255),
-    PlantOrder varchar(255),
-    DateEntered varchar(255),
-    RequiredRDate varchar(255),
-    CountryProd varchar(255),
-    CityProd varchar(255),
-    QR varchar(255),

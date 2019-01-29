@@ -40,8 +40,8 @@ tasks = [
 		'OperationDate': '17/11/18:17-25-36',
 		'Pull': '197mljfuy',
 		'OrderNumber': '145878925loi',
-		'LocalNumber': '12',
-		'PartLocalNumber': '4',
+		'LocalNumb': '12',
+		'PartLocalNumb': '4',
 		'ReadyDate': '18/11/18:25-30-36',
 		'CountryOrder': 'PL',
 		'CityOrder': 'Lublin',
@@ -62,8 +62,8 @@ tasks = [
 		'OperationDate': '17/11/18:17-25-42',
 		'Pull': '199poi',
 		'OrderNumber': '199987',
-		'LocalNumber': '13',
-		'PartLocalNumber': '1',
+		'LocalNumb': '13',
+		'PartLocalNumb': '1',
 		'ReadyDate': '18/11/18:25-30-36',
 		'CountryOrder': 'PL',
 		'CityOrder': 'Lublin',
@@ -127,7 +127,7 @@ def home():
 	# return 'Main, page!'
 
 
-@app.route('/machine/<number>')
+@app.route('/machine/<number>', methods=['GET', 'POST'])
 @login_required
 def machineP(number=None):
 	if number and int(number) > 8:
@@ -135,30 +135,61 @@ def machineP(number=None):
 	else:
 		current_pos_ammount = machines[0][str(number)]
 
-
-	form = MachineForm()
+	print("machine #")
+	form = MachineForm(request.form, csrf_enabled=False)  # ????
+	print(form.is_submitted())
 	if form.is_submitted():
-
-		print(form.operatorsName.data)  # не виводить якогось дива
+		print("Submited")
+		print(form.operatorFirstName.data)  # не виводить якогось дива
 
 		query = {
-			'OperatorsName': form.operatorsName.data,
-			'OperatorsSecondname': form.operatorsSecondname.data,
-			'WorkingChange': form.workingChange.data,
-			'CityProduction': form.cityProduction.data,
-			'stateProduction': form.stateProduction.data,
-			'PlantOrder': form.plantOrder.data,
+			'OperatorFirstName': form.operatorFirstName.data,
+			'OperatorSecondName': form.operatorSecondName.data,
+			'OperatorWorkingChange': form.operatorWorkingChange.data,
 			'CityProduction': form.cityProduction.data,
 			'StateProduction': form.stateProduction.data,
 			'PlantProduction': form.plantProduction.data,
-			'Bunch': form.bunch.data,
-			'Pull': form.pull.data,
-			'localNumber': form.localNumber.data,
+			'Bunch_1': form.bunch_1.data,
+			'Pull_1': form.pull_1.data,
+			'LocalNumb_1': form.localNumb_1.data,
+			'Bunch_2': form.bunch_2.data,
+			'Pull_2': form.pull_2.data,
+			'LocalNumb_2': form.localNumb_2.data,
+			'Bunch_3': form.bunch_3.data,
+			'Pull_3': form.pull_3.data,
+			'LocalNumb_3': form.localNumb_3.data,
+			'Bunch_4': form.bunch_4.data,
+			'Pull_4': form.pull_4.data,
+			'LocalNumb_4': form.localNumb_4.data,
+			'Bunch_5': form.bunch_5.data,
+			'Pull_5': form.pull_5.data,
+			'LocalNumb_5': form.localNumb_5.data,
+			'Bunch_6': form.bunch_6.data,
+			'Pull_6': form.pull_6.data,
+			'LocalNumb_6': form.localNumb_6.data,
+			'Bunch_7': form.bunch_7.data,
+			'Pull_7': form.pull_7.data,
+			'LocalNumb_7': form.localNumb_7.data,
+			'Bunch_8': form.bunch_8.data,
+			'Pull_8': form.pull_8.data,
+			'LocalNumb_8': form.localNumb_8.data,
+			'Bunch_9': form.bunch_9.data,
+			'Pull_9': form.pull_9.data,
+			'LocalNumb_9': form.localNumb_9.data,
+			'Bunch_10': form.bunch_10.data,
+			'Pull_10': form.pull_10.data,
+			'LocalNumb_10': form.localNumb_10.data,
+			'Bunch_11': form.bunch_11.data,
+			'Pull_11': form.pull_11.data,
+			'LocalNumb_11': form.localNumb_11.data,
+			'Bunch_12': form.bunch_12.data,
+			'Pull_12': form.pull_12.data,
+			'LocalNumb_12': form.localNumb_12.data,
 			'SQL_Table_NAME_': 'Config'
 		}
 
-		# insertSole_1(**query)
-		print(getRecsSole_1("MachineID, Pos_1", "Config"))
+		insertSole_1(**query)
+		# print(getRecsSole_1("MachineID, Pos_1", "Config"))
 
 	return render_template('machine.html', flgLoading=flgLoading, form=form, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
 	# return render_template('machine.html', flgLoading=flgLoading, number=number, machine=current_pos_ammount)  # , name=name , name="name" [0][number]# , name=name , name="name" [0][number]
@@ -180,7 +211,7 @@ def machineAll():
 # @app.route('/task/<name>')
 @login_required
 def taskP():
-	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateRequired, StateProduction, StateProduction", "Tasks")  # get tasks from db
+	taskTable = getRecsSole_1("Bunch, Pull, LocalNumb, DateRequired, StateProduction, StateProduction", "Tasks")  # get tasks from db
 	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable)  #  True if dict == dict1 else False
 
 
@@ -191,18 +222,20 @@ def taskAddP():
 	# flgLoading = False
 	# print(flgLoading)
 
-	form = TaskAddForm()
+	form = TaskAddForm(request.form, csrf_enabled=False)  # params inside is required for form.validate_on_submit() in my prj
+	form = TaskAddForm()  # works with form.is_submitted()
 	# print("validation")
 	# print(form.is_submitted())
-	# print(form.validate_on_submit())
-	if form.is_submitted():
+	print(form.validate_on_submit())
+	# if form.is_submitted():
+	if form.validate_on_submit():
 
 		# print(form.dateRequired.data)
 
 		query = {
 			'Bunch': form.bunch.data,
 			'Pull': form.pull.data,
-			'LocalNumber': form.localNumber.data,
+			'LocalNumb': form.localNumb.data,
 			'CityOrder': form.cityOrder.data,
 			'StateOrder': form.stateOrder.data,
 			'PlantOrder': form.plantOrder.data,
@@ -315,7 +348,7 @@ def getUserTable():
 
 
 def getSole_1():
-	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumber, ReadyDate FROM glueMachine")
+	mycursor.execute("SELECT UnitID, Articul, ProcessID, OperatorName, OperationDate, Pull, OrderNumber, LocalNumb, ReadyDate FROM glueMachine")
 	return mycursor
 
 
@@ -323,31 +356,31 @@ def insertSole_1(**data):
 	if data['SQL_Table_NAME_'] == "glueMachine":  # is not used
 	# Error with bracets 'data['UnitID']'
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (UnitID, Articul, ProcessID, OperatorName, OperationDate, \
-		Pull, OrderNumber, LocalNumber, ReadyDate) VALUES (" \
+		Pull, OrderNumber, LocalNumb, ReadyDate) VALUES (" \
 		+ data['UnitID'] + ', '  + '\'' + str(data['Articul']) + \
 		'\'' + ', ' + data['ProcessID'] + ', ' + '\'' + str(data['OperatorName']) + '\'' + ', ' + '\'' + \
 		str(data['OperationDate']) + '\'' + ', ' + '\'' + str(data['Pull']) + '\'' + ', ' + '\'' + \
-		str(data['OrderNumber']) + '\'' + ', ' + '\'' + str(data['LocalNumber']) + '\'' + ', ' + '\'' + \
+		str(data['OrderNumber']) + '\'' + ', ' + '\'' + str(data['LocalNumb']) + '\'' + ', ' + '\'' + \
 		str(data['ReadyDate'])  + '\'' + ')'
 
 	elif data['SQL_Table_NAME_'] == "Tasks":
-		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
+		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumb, CityOrder, StateOrder,	PlantOrder, CityProduction, \
 		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
 		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
-		'\'' + ', ' + str(data['LocalNumber']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
+		'\'' + ', ' + str(data['LocalNumb']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
 		str(data['StateOrder']) + '\'' + ', ' + '\'' + str(data['PlantOrder']) + '\'' + ', ' + '\'' + \
 		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
 		str(data['PlantProduction'])  + '\'' + ', ' + '\'' + str(data['DateEnteredTask']) + '\'' + ', ' + '\'' + \
 		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + ')'
+
 	elif data['SQL_Table_NAME_'] == "Config":  # continue point
-		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (Bunch, Pull, LocalNumber, CityOrder, StateOrder,	PlantOrder, CityProduction, \
-		StateProduction, PlantProduction, DateEnteredTask, DateEnteredToProduction, DateRequired) VALUES (" \
-		+ '\'' + str(data['Bunch']) + '\'' + ', '  + '\'' + str(data['Pull']) + \
-		'\'' + ', ' + str(data['LocalNumber']) + ', ' + '\'' + str(data['CityOrder']) + '\'' + ', ' + '\'' + \
-		str(data['StateOrder']) + '\'' + ', ' + '\'' + str(data['PlantOrder']) + '\'' + ', ' + '\'' + \
-		str(data['CityProduction']) + '\'' + ', ' + '\'' + str(data['StateProduction']) + '\'' + ', ' + '\'' + \
-		str(data['PlantProduction'])  + '\'' + ', ' + '\'' + str(data['DateEnteredTask']) + '\'' + ', ' + '\'' + \
-		str(data['DateEnteredToProduction']) + '\'' + ', ' + '\'' + str(data['DateRequired']) + '\'' + ')'
+		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (OperatorFirstName, OperatorSecondName, OperatorWorkingChange, \
+		CityProduction, StateProduction, plantProduction, Bunch_1, Pull_1, LocalNumb_1) VALUES (" \
+		+ '\'' + str(data['OperatorFirstName']) + '\'' + ', '  + '\'' + str(data['OperatorSecondName']) + \
+		'\'' + ', ' + '\'' + str(data['OperatorWorkingChange']) + '\'' + ', ' + '\'' + str(data['CityProduction']) + '\'' + ', ' + '\'' + \
+		str(data['StateProduction']) + '\'' + ', ' + '\'' + str(data['PlantProduction']) + '\'' + ', ' + '\'' + \
+		str(data['Bunch_1']) + '\'' + ', ' + '\'' + str(data['Pull_1'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_1']) + '\'' + ')'
 	else:
 		prrint("Table is incorect or data is empty!")
 		return False
