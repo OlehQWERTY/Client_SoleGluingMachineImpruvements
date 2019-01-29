@@ -153,9 +153,33 @@ def machineAll():
 # @app.route('/task/<name>')
 @login_required
 def taskP():
-	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateRequired, StateProduction, StateProduction", "Tasks")  # get tasks from db
-	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable)  #  True if dict == dict1 else False
 
+	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount", "Tasks")  # get tasks from db
+	# Bunch, add under
+	task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul HAVING COUNT(*) > 1")
+	# print(task_machine_1)
+
+	for a in task_machine_1:
+		if a[0] == 'unknown':
+			task_machine_1.remove(a)
+	# print("without one task...")
+	# print(task_machine_1)
+
+	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
+
+# Bunch
+# Pull
+# LocalNumber
+# CityOrder
+# StateOrder
+# PlantOrder
+# CityProduction
+# StateProduction
+# PlantProduction
+# DateEnteredTask
+# DateEnteredToProduction
+# DateRequired
+# Ammount
 
 @app.route('/task/add', methods=['GET', 'POST'])
 @login_required
@@ -388,6 +412,8 @@ def getRecsSole_1(fields, tableName, WHeRE=None):
 	return db_response
 
 def customRecSole_1(query):
+	# print(query)
+	db_response = []
 	try:
 		mycursor.execute(query)
 		mydb.commit()

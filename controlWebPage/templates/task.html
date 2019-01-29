@@ -68,19 +68,22 @@
               <th scope="col">{[(Bunch)]}</th>
               <th scope="col">{[(Pull)]}</th>
               <th scope="col">{[(Local numb)]}</th>
+              <th scope="col">{[(Date entered)]}</th>
               <th scope="col">{[(Date required)]}</th>
-              <th scope="col">{[(Total ammount)]}</th>
-              <th scope="col">{[(Percentage)]}</th>
+              <th scope="col">{[(Total/current ammount)]}</th>
+              <!-- <th scope="col">{[(Percentage)]}</th> -->
             </tr>
           </thead>
           <tbody>
             {% for x in tasks_list %}
               <!-- # {{loop.index}}: {{ x }} -->
+              {% set xIndex = loop.index %}
               <tr>
                 <th scope="row">{{loop.index}}</th>
                 {% for y in x %}
                   <!-- {{loop.index}} -->
-                  {% if loop.index == 2 %}
+                  <!-- Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount -->
+                  {% if loop.index == 10 %}
                     <td>
                       <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
@@ -88,7 +91,13 @@
                       <!-- {{loop.index}} -->
                     </td>
                   {% else %}
-                    <td>{{ y }}</td>
+                    {% if loop.index == 6 %}
+                    <!-- ammount 140/300 -->
+                    <!----------------------------------Find apropriate task_from_machine according pull----------------------------------------------------------------------  -->
+                      <td>{{ task_from_machine[xIndex][3] * 10 }} / {{ y }}</td> 
+                    {% else %}
+                      <td>{{ y }}</td>
+                    {% endif %}
                   {% endif %}
                 {% endfor %}
               </tr>
