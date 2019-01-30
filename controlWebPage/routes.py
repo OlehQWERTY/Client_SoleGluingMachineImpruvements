@@ -142,7 +142,7 @@ def machineAll():
 	# delCookie('u1')
 	# delCookie('userID')
 
-	print(getRecsSole_1(fields, tableName, WHeRE=None))
+	# print(getRecsSole_1(fields, tableName, WHeRE=None))
 	# SELECT * FROM glueMachine Where UnitID<>1 ORDER BY RecID DESC LIMIT 1
 
 	return render_template('machineAll.html', flgLoading=flgLoading, machines=machines[0], mProgress=mProgress)
@@ -156,7 +156,9 @@ def taskP():
 
 	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount", "Tasks")  # get tasks from db
 	# Bunch, add under
-	task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul HAVING COUNT(*) > 1")
+	# don't show rec ammount les 1
+	task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul")
+	# task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul HAVING COUNT(*) > 1")
 	# print(task_machine_1)
 
 	for a in task_machine_1:
@@ -211,8 +213,8 @@ def taskAddP():
 			'DateEnteredTask': form.dateEnteredTask.data,
 			'DateEnteredToProduction': form.dateEnteredToProduction.data,
 			'DateRequired': form.dateRequired.data,
-			'SQL_Table_NAME_': 'Tasks',
-			"Ammount": random.randint(0, 10) * 100  # just for test (add to form further)
+			'Ammount': form.ammount.data,
+			'SQL_Table_NAME_': 'Tasks'
 		}
 
 		# don't turn on commit 1/24/2019 @ 1:13 PM bug "display:block;" for content section (in taskAdd tamplate)

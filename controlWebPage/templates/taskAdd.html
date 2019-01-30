@@ -165,6 +165,18 @@
 			</div>
 		  </div>
 		</div>
+
+ 		<div class="form-row">
+		  <div class="col-md-2 mb-3">
+			<label for="validationTooltip04">{[(Ammount)]}</label>
+			<!-- {{ form.bunch.label(class="col-form-label") }} -->
+			{{ form.ammount(class="form-control form-control-md") }}
+			<div class="invalid-tooltip">
+			  Please provide a valid ammount.
+			</div>
+		  </div>
+		</div>
+
 		<!-- btn-outline-info -->
 		<!-- btn-primary -->
 		{{ form.submit(class="btn btn-primary") }}

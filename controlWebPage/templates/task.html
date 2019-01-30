@@ -83,18 +83,54 @@
                 {% for y in x %}
                   <!-- {{loop.index}} -->
                   <!-- Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount -->
-                  {% if loop.index == 10 %}
+                  <!-- {% if loop.index == 100500 %}
                     <td>
                       <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <!-- {{loop.index}} -->
-                    </td>
-                  {% else %}
+                    </td> -->
+                  <!-- {% else %} -->
                     {% if loop.index == 6 %}
                     <!-- ammount 140/300 -->
-                    <!----------------------------------Find apropriate task_from_machine according pull----------------------------------------------------------------------  -->
-                      <td>{{ task_from_machine[xIndex][3] * 10 }} / {{ y }}</td> 
+                    <!-- Find apropriate task_from_machine according pull (c[1] == x[1]) -->
+                    <!-- later CHECK QR code (get from QR Pull and Bunch isEqual to x[0] & x[1]) -->
+                      {% for task in task_from_machine %} 
+                        {% if x[1] == task[1] %}
+                          <!-- <td>{{ task[3] * 10 }} / {{ y }}</td>  -->
+                          
+                          <!-- devise zero protection -->
+                          {% if y|int <= 0 %}
+                            {% set percentage =  0 %}
+                          {% else %}
+                            {% set percentage = ((task[3]|int * 10) / y|int) * 100 %}
+                          {% endif %}
+                          
+                          {% set type = "bg-success" %}
+
+                          <!-- {{percentage}} -->
+                          <!-- {{(task[3]|int)}} -->
+                          <td>
+                            {{ task[3] * 10 }} / {{ y }}
+
+                            <!-- different colours for status bar  -->
+                            {% if percentage > 80 %}
+                              {% set type = "bg-danger" %}
+                            {% elif percentage > 40 %}
+                              {% set type = "bg-warning" %} 
+                            {% endif %}
+
+                            <div class="progress">
+                              <div class="progress-bar {{type}}" role="progressbar" style="width: {{ percentage }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </td>
+<!--                         {% else %}
+                          {% if task_from_machine|length <= loop.index %}
+                            {% if task[3] is not defined %}
+                              <td>? / {{ y }}</td>
+                            {% endif %}
+                          {% endif %} -->
+                        {% endif %}
+                      {% endfor %}
                     {% else %}
                       <td>{{ y }}</td>
                     {% endif %}

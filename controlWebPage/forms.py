@@ -66,6 +66,8 @@ class TaskAddForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     plantProduction = StringField('plant production',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount = StringField('ammount',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "600", "id": "validationTooltip13" })
     # dateEnteredTask = DateField('date entered task', id = 'datepicker', format='%d/%m/%Y %H:%M:%S')
     # DateTimeLocalField
     dateEnteredTask = DateTimeLocalField(label = 'date entered task', format = '%Y-%m-%dT%H:%M', validators=[DataRequired()])
