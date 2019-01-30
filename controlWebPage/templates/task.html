@@ -16,10 +16,6 @@
 {% block content %}
 	<!--форма ввода-->
 
-<!-- <div id = showTasksList>
-	  <h1> Tasks List! </h1>
-	</div> -->
-
   {% if flgLoading %}
     {{ super() }}  <!-- insert content section of base tamplete -->
     <div id='my_content' style='display:none;'>  <!-- hide content because of loading -->
@@ -29,34 +25,6 @@
 
 
   <center><legend class="border-bottom mb-4">{[(Task list:)]}</legend></center>
-<!-- 	<h1> Task #1254554788: </h1>
-	<div class="progress">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-  </div>
-
-  <h1> Task #156844225: </h1>
-
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-
-  <font color="red"><h1> * Task #55654888522 is done: </h1></font>
-
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-  </div> -->
-
-
-  <!-- 
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-  </div> -->
 
     <div class="col-12" id="l_ogAd_min">
       <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
@@ -81,23 +49,12 @@
               <tr>
                 <th scope="row">{{loop.index}}</th>
                 {% for y in x %}
-                  <!-- {{loop.index}} -->
-                  <!-- Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount -->
-                  <!-- {% if loop.index == 100500 %}
-                    <td>
-                      <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 25%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </td> -->
-                  <!-- {% else %} -->
                     {% if loop.index == 6 %}
                     <!-- ammount 140/300 -->
                     <!-- Find apropriate task_from_machine according pull (c[1] == x[1]) -->
                     <!-- later CHECK QR code (get from QR Pull and Bunch isEqual to x[0] & x[1]) -->
                       {% for task in task_from_machine %} 
                         {% if x[1] == task[1] %}
-                          <!-- <td>{{ task[3] * 10 }} / {{ y }}</td>  -->
-                          
                           <!-- devise zero protection -->
                           {% if y|int <= 0 %}
                             {% set percentage =  0 %}
@@ -108,7 +65,6 @@
                           {% set type = "bg-success" %}
 
                           <!-- {{percentage}} -->
-                          <!-- {{(task[3]|int)}} -->
                           <td>
                             {{ task[3] * 10 }} / {{ y }}
 
@@ -123,12 +79,6 @@
                               <div class="progress-bar {{type}}" role="progressbar" style="width: {{ percentage }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </td>
-<!--                         {% else %}
-                          {% if task_from_machine|length <= loop.index %}
-                            {% if task[3] is not defined %}
-                              <td>? / {{ y }}</td>
-                            {% endif %}
-                          {% endif %} -->
                         {% endif %}
                       {% endfor %}
                     {% else %}
@@ -143,7 +93,6 @@
   <!-- table -->
       </div>
     </div> 
-
 
   </div>  <!-- my_content -->
 
