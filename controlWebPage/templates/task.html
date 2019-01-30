@@ -7,6 +7,35 @@
   <style type="text/css">
     .important { color: #336699; }
   </style>
+
+  <script> $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}; </script>
+
+  <!-- ajax -->
+  <script type=text/javascript>
+    // var i = 1;
+    function change_task_list_data(data){
+      // alert(data);
+
+      // Future: online list update 
+    }
+
+    setInterval(function() {
+      $(function() {
+        $.getJSON($SCRIPT_ROOT + '/_renew_task_list', {
+          // a: $('input[name="a"]').val(),
+          // b: $('input[name="b"]').val()
+        }, function(data) {
+          // alert(data.result)
+          data.result;
+
+          change_task_list_data(data.result);
+
+        });
+        return false;
+      });
+    }, 5000);
+  </script>
+
 {% endblock head %}
  
 {% block topBar %}
@@ -84,7 +113,6 @@
                     {% else %}
                       <td>{{ y }}</td>
                     {% endif %}
-                  {% endif %}
                 {% endfor %}
               </tr>
             {% endfor %}

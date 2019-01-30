@@ -46,6 +46,16 @@ iop = 1000
 def add_mProgress():
 	return jsonify(result=[random.randint(0, 10), 1000 - iop])
 
+@app.route('/_renew_task_list')  # ajax send task list table
+@login_required
+def renew_task_list():
+	task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul")
+	print("ajax")
+
+	for a in task_machine_1:
+		if a[0] == 'unknown':
+			task_machine_1.remove(a)
+	return jsonify(result=[task_machine_1])
 
 @app.route('/_get_numbers')  # ajax test
 @login_required
