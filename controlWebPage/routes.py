@@ -99,39 +99,51 @@ def machineP(number=None):
 			'Bunch_1': form.bunch_1.data,
 			'Pull_1': form.pull_1.data,
 			'LocalNumb_1': form.localNumb_1.data,
+			'Ammount_1': form.ammount_1.data,
 			'Bunch_2': form.bunch_2.data,
 			'Pull_2': form.pull_2.data,
 			'LocalNumb_2': form.localNumb_2.data,
+			'Ammount_2': form.ammount_2.data,
 			'Bunch_3': form.bunch_3.data,
 			'Pull_3': form.pull_3.data,
 			'LocalNumb_3': form.localNumb_3.data,
+			'Ammount_3': form.ammount_3.data,
 			'Bunch_4': form.bunch_4.data,
 			'Pull_4': form.pull_4.data,
 			'LocalNumb_4': form.localNumb_4.data,
+			'Ammount_4': form.ammount_4.data,
 			'Bunch_5': form.bunch_5.data,
 			'Pull_5': form.pull_5.data,
 			'LocalNumb_5': form.localNumb_5.data,
+			'Ammount_5': form.ammount_5.data,
 			'Bunch_6': form.bunch_6.data,
 			'Pull_6': form.pull_6.data,
 			'LocalNumb_6': form.localNumb_6.data,
+			'Ammount_6': form.ammount_6.data,
 			'Bunch_7': form.bunch_7.data,
 			'Pull_7': form.pull_7.data,
 			'LocalNumb_7': form.localNumb_7.data,
+			'Ammount_7': form.ammount_7.data,
 			'Bunch_8': form.bunch_8.data,
 			'Pull_8': form.pull_8.data,
 			'LocalNumb_8': form.localNumb_8.data,
+			'Ammount_8': form.ammount_8.data,
 			'Bunch_9': form.bunch_9.data,
 			'Pull_9': form.pull_9.data,
 			'LocalNumb_9': form.localNumb_9.data,
+			'Ammount_9': form.ammount_9.data,
 			'Bunch_10': form.bunch_10.data,
 			'Pull_10': form.pull_10.data,
 			'LocalNumb_10': form.localNumb_10.data,
+			'Ammount_10': form.ammount_10.data,
 			'Bunch_11': form.bunch_11.data,
 			'Pull_11': form.pull_11.data,
 			'LocalNumb_11': form.localNumb_11.data,
+			'Ammount_11': form.ammount_11.data,
 			'Bunch_12': form.bunch_12.data,
 			'Pull_12': form.pull_12.data,
 			'LocalNumb_12': form.localNumb_12.data,
+			'Ammount_12': form.ammount_12.data,
 			'SQL_Table_NAME_': 'Config',
 			"MachineID": number,
 			"ReloadDate": datetime.utcnow()
@@ -159,7 +171,7 @@ def machineAll():
 
 
 @app.route('/task/')
-@app.route('/task/list')
+@app.route('/task/list')  # general task list
 # @app.route('/task/<name>')
 @login_required
 def taskP():
@@ -178,6 +190,18 @@ def taskP():
 	# print(task_machine_1)
 
 	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
+
+@app.route('/machine/<number>/tasks')
+@login_required
+def machineTasks(number=None):
+
+	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount", "Tasks")  # get tasks from db
+	task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul")
+
+	for a in task_machine_1:
+		if a[0] == 'unknown':
+			task_machine_1.remove(a)
+	return render_template('machineTasks.html', flgLoading=flgLoading, number=number, tasks_list=taskTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
 
 # Bunch
 # Pull
@@ -355,38 +379,40 @@ def insertSole_1(**data):
 
 	elif data['SQL_Table_NAME_'] == "Config":
 		query = "INSERT INTO " + str(data['SQL_Table_NAME_']) + " (OperatorFirstName, OperatorSecondName, OperatorWorkingChange, \
-		CityProduction, StateProduction, plantProduction, Bunch_1, Pull_1, LocalNumb_1, Bunch_2, Pull_2, LocalNumb_2, \
-		Bunch_3, Pull_3, LocalNumb_3, Bunch_4, Pull_4, LocalNumb_4, Bunch_5, Pull_5, LocalNumb_5, \
-		Bunch_6, Pull_6, LocalNumb_6, Bunch_7, Pull_7, LocalNumb_7, Bunch_8, Pull_8, LocalNumb_8, \
-		Bunch_9, Pull_9, LocalNumb_9, Bunch_10, Pull_10, LocalNumb_10, Bunch_11, Pull_11, LocalNumb_11, \
-		Bunch_12, Pull_12, LocalNumb_12, MachineID, ReloadDate) VALUES (" \
+		CityProduction, StateProduction, plantProduction, Bunch_1, Pull_1, LocalNumb_1, Ammount_1, Bunch_2, Pull_2,  \
+		LocalNumb_2, Ammount_2, Bunch_3, Pull_3, LocalNumb_3, Ammount_3, Bunch_4, Pull_4, LocalNumb_4, Ammount_4, \
+		Bunch_5, Pull_5, LocalNumb_5, Ammount_5, Bunch_6, Pull_6, LocalNumb_6, Ammount_6, Bunch_7, Pull_7, LocalNumb_7, \
+		Ammount_7, Bunch_8,	Pull_8, LocalNumb_8, Ammount_8, Bunch_9, Pull_9, LocalNumb_9, Ammount_9, Bunch_10, Pull_10, \
+		LocalNumb_10, Ammount_10, Bunch_11, Pull_11, LocalNumb_11, Ammount_11, Bunch_12, Pull_12, LocalNumb_12, Ammount_12, \
+		MachineID, ReloadDate) VALUES (" \
 		+ '\'' + str(data['OperatorFirstName']) + '\'' + ', '  + '\'' + str(data['OperatorSecondName']) + \
 		'\'' + ', ' + '\'' + str(data['OperatorWorkingChange']) + '\'' + ', ' + '\'' + str(data['CityProduction']) + '\'' + ', ' + '\'' + \
 		str(data['StateProduction']) + '\'' + ', ' + '\'' + str(data['PlantProduction']) + '\'' + ', ' + '\'' + \
 		str(data['Bunch_1']) + '\'' + ', ' + '\'' + str(data['Pull_1'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_1']) + '\'' + ', ' + '\'' + str(data['Bunch_2']) + '\'' + ', ' + '\'' + str(data['Pull_2'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_2']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_1']) + '\'' + ', ' + '\'' + str(data['Ammount_1'])  + '\'' + ', ' + '\'' + \
+		str(data['Bunch_2']) + '\'' + ', ' + '\'' + str(data['Pull_2'])  + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_2']) + '\'' + ', ' + '\'' + str(data['Ammount_2'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_3']) + '\'' + ', ' + '\'' + str(data['Pull_3'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_3']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_3']) + '\'' + ', ' + '\'' + str(data['Ammount_3'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_4']) + '\'' + ', ' + '\'' + str(data['Pull_4'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_4']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_4']) + '\'' + ', ' + '\'' + str(data['Ammount_4'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_5']) + '\'' + ', ' + '\'' + str(data['Pull_5'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_5']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_5']) + '\'' + ', ' + '\'' + str(data['Ammount_5'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_6']) + '\'' + ', ' + '\'' + str(data['Pull_6'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_6']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_6']) + '\'' + ', ' + '\'' + str(data['Ammount_6'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_7']) + '\'' + ', ' + '\'' + str(data['Pull_7'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_7']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_7']) + '\'' + ', ' + '\'' + str(data['Ammount_7'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_8']) + '\'' + ', ' + '\'' + str(data['Pull_8'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_8']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_8']) + '\'' + ', ' + '\'' + str(data['Ammount_8'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_9']) + '\'' + ', ' + '\'' + str(data['Pull_9'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_9']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_9']) + '\'' + ', ' + '\'' + str(data['Ammount_9'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_10']) + '\'' + ', ' + '\'' + str(data['Pull_10'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_10']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_10']) + '\'' + ', ' + '\'' + str(data['Ammount_10'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_11']) + '\'' + ', ' + '\'' + str(data['Pull_11'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_11']) + '\'' + ', ' + '\'' + \
+		str(data['LocalNumb_11']) + '\'' + ', ' + '\'' + str(data['Ammount_11'])  + '\'' + ', ' + '\'' + \
 		str(data['Bunch_12']) + '\'' + ', ' + '\'' + str(data['Pull_12'])  + '\'' + ', ' + '\'' + \
-		str(data['LocalNumb_12']) + '\'' + ', ' + '\'' + str(data['MachineID'])  + '\'' +  ', ' + \
-		'\'' + str(data['ReloadDate'])  + '\'' + ')'
+		str(data['LocalNumb_12']) + '\'' + ', ' + '\'' + str(data['Ammount_12'])  + '\'' + ', ' + '\'' + \
+		str(data['MachineID'])  + '\'' +  ', ' + '\'' + str(data['ReloadDate'])  + '\'' + ')'
 	else:
 		prrint("Table is incorect or data is empty!")
 		return False

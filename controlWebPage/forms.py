@@ -104,73 +104,97 @@ class MachineForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_1 = StringField('Local numb 1',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_1 = StringField('Ammount 1',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_2 = StringField('Bunch 2',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_2 = StringField('Pull 2',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_2 = StringField('Local numb 2',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_2 = StringField('Ammount 2',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_3 = StringField('Bunch 3',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_3 = StringField('Pull 3',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_3 = StringField('Local numb 3',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_3 = StringField('Ammount 3',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_4 = StringField('Bunch 4',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_4 = StringField('Pull 4',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_4 = StringField('Local numb 4',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_4 = StringField('Ammount 4',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_5 = StringField('Bunch 5',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_5 = StringField('Pull 5',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_5 = StringField('Local numb 5',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_5 = StringField('Ammount 5',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_6 = StringField('Bunch 6',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_6 = StringField('Pull 6',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_6 = StringField('Local numb 6',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_6 = StringField('Ammount 6',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_7 = StringField('Bunch 7',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_7 = StringField('Pull 7',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_7 = StringField('Local numb 7',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_7 = StringField('Ammount 7',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_8 = StringField('Bunch 8',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_8 = StringField('Pull 8',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_8 = StringField('Local numb 8',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_8 = StringField('Ammount 8',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_9 = StringField('Bunch 9',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_9 = StringField('Pull 9',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_9 = StringField('Local numb 9',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_9 = StringField('Ammount 9',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_10 = StringField('Bunch 10',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_10 = StringField('Pull 10',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_10 = StringField('Local numb 10',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_10 = StringField('Ammount 10',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_11 = StringField('Bunch 11',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_11 = StringField('Pull 11',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_11 = StringField('Local numb 11',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
+    ammount_11 = StringField('Ammount 11',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
     bunch_12 = StringField('Bunch 12',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "UK", "id": "validationTooltip11" })
     pull_12 = StringField('Pull 12',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
     localNumb_12 = StringField('Local numb 12',
                            validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "RIF-1", "id": "validationTooltip12" })
- 
+    ammount_12 = StringField('Ammount 12',
+                           validators=[DataRequired(), Length(min=2, max=255)], render_kw={"placeholder": "100", "id": "validationTooltip12" })
+
     submit = SubmitField('Submit form')
 
     # validate
