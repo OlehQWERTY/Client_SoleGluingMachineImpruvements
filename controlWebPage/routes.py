@@ -195,27 +195,34 @@ def taskP():
 @login_required
 def machineTasks(number=None):
 
-	taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount", "Tasks")  # get tasks from db
-	task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine GROUP BY Articul")
+	# taskTable = getRecsSole_1("Bunch, Pull, LocalNumber, DateEnteredTask, DateRequired, Ammount", "Tasks")  # get tasks from db
 
-	for a in task_machine_1:
-		if a[0] == 'unknown':
-			task_machine_1.remove(a)
-	return render_template('machineTasks.html', flgLoading=flgLoading, number=number, tasks_list=taskTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
+	if number and int(number) > 8:  # change me (the same for machine)
+		current_pos_ammount = None
+	else:
+		current_pos_ammount = machines[0][str(number)]
 
-# Bunch
-# Pull
-# LocalNumber
-# CityOrder
-# StateOrder
-# PlantOrder
-# CityProduction
-# StateProduction
-# PlantProduction
-# DateEnteredTask
-# DateEnteredToProduction
-# DateRequired
-# Ammount
+	if number is None:
+		print("machine is not specified")
+		return '<h1>machine is not specified</h1>'
+	else:
+
+		confTable = customRecSole_1("SELECT Bunch_1, Pull_1, LocalNumb_1, Ammount_1, Bunch_2, Pull_2, LocalNumb_2, Ammount_2, Bunch_3, Pull_3, \
+			LocalNumb_3, Ammount_3, Bunch_4, Pull_4, LocalNumb_4, Ammount_4, Bunch_5, Pull_5, LocalNumb_5, Ammount_5, Bunch_6, Pull_6, LocalNumb_6, Ammount_6, \
+			Bunch_7, Pull_7, LocalNumb_7, Ammount_7, Bunch_8, Pull_8, LocalNumb_8, Ammount_8, Bunch_9, Pull_9, LocalNumb_9, Ammount_9, \
+			Bunch_10, Pull_10, LocalNumb_10, Ammount_10, Bunch_11, Pull_11, LocalNumb_11,  Ammount_11, Bunch_12, Pull_12, LocalNumb_12,  Ammount_12, \
+			ReloadDate  FROM Config Where MachineID=" + str(number) + " ORDER BY RecType, ReloadDate \
+			DESC LIMIT 10")
+		task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine Where UnitID=" + \
+			str(number) + " GROUP BY Articul")
+
+		for a in task_machine_1:
+			if a[0] == 'unknown':
+				task_machine_1.remove(a)
+
+	return render_template('machineTasks.html', flgLoading=flgLoading, number=number, current_pos_ammount=current_pos_ammount, \
+	confTable=confTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
+
 
 @app.route('/task/add', methods=['GET', 'POST'])
 @login_required
