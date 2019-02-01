@@ -58,7 +58,7 @@
     <div class="col-12" id="l_ogAd_min">
       <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
   <!-- table -->
-        <table class="table table-striped">
+        <table class="table table-sm table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -78,25 +78,41 @@
               {% set xIndex = loop.index %}
 
                 <!-- if exist in general task list -->
-                {% set arrDoesntExist = [] %}
+                {% set arrExist = [] %}
+                {% set ammountForTaskInMachine = [] %}
+                
+                {% set count = [0] %}
                   {% for task in task_from_machine %}
-                    {% if x[1] != task[1] and xIndex not in arrDoesntExist %}
-                      {{ arrDoesntExist.append(xIndex) if arrDoesntExist.append(xIndex) != None else '' }}
-                      <!-- {{arrDoesntExist}} -->
-                      <!-- red -->
-                      <!-- <p><font color="red"># {{xIndex}}</font></p> -->
-                    {% endif %}
-                  {% endfor %}
+                    {% for z in range(1, current_pos_ammount * 4, 4) %}
+                      {% if x[z] != task[1] or [xIndex, z] in arrExist %}
+                        <!-- {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
+                        {% if count[0] >= current_pos_ammount %}koko{% endif %} -->
+                      {% else %}
+                        {{ arrExist.append([xIndex, z]) if arrExist.append([xIndex, z]) != None else '' }}
 
+                        {{ammountForTaskInMachine.append({(xIndex ~ '_' ~ z): task[3]}) if ammountForTaskInMachine.append({(xIndex ~ '_' ~ z): task[3]}) != None else '' }}
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+                
+                <!-- Show us... -->
+                <!-- ammountForTaskInMachine: {{ammountForTaskInMachine}} -->
+                <!-- <p>arrExist: {{arrExist}}</p> -->
+                
                 <!-- show (Bunch_n, Pull_n, LocalNumb_n, Ammount_n) * current_pos_ammount -->
                 {% for z in range(1, current_pos_ammount * 4, 4) %}
                     <!-- show Bunch_n, Pull_n, LocalNumb_n, Ammount_n ... -->
                     {% for k in range(-1, 3) %}
                     <td>
-                      {% if xIndex in arrDoesntExist %}
-                        <font color="red">{{x[1 + k]}}</font>
+                      {% if [xIndex, z]  not in arrExist %}
+                        <font color="red">{{x[z + k]}}*</font>
                       {% else %}
-                        {{x[1 + k]}}
+                        {% if k == 2 and (xIndex ~ '_' ~ z) in ammountForTaskInMachine[0].keys() %} 
+                          <!-- ammount -->
+                          {{ ammountForTaskInMachine[0][ (xIndex ~ '_' ~ z) ]*10 }}/{{x[z + k]}}
+                        {% else %}
+                           {{x[z + k]}}
+                        {% endif %}
                       {% endif%}
                     </td>
                     {% endfor %}
