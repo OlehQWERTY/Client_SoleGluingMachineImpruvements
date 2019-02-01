@@ -220,6 +220,10 @@ def machineTasks(number=None):
 			if a[0] == 'unknown':
 				task_machine_1.remove(a)
 
+		for i in range(4):
+			print("task_machine_1")
+		print(task_machine_1)
+
 	return render_template('machineTasks.html', flgLoading=flgLoading, number=number, current_pos_ammount=current_pos_ammount, \
 	confTable=confTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
 

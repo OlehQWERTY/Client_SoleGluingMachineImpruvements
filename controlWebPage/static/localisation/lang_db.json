@@ -73,6 +73,7 @@
 		"Submit form",
 		"--- _ Machine tasks _ ---",
 		"task list",
+		"ReloadDate",
 		"--- _ Short words _ ---",
 		"Log"
 	],
@@ -150,6 +151,7 @@
 		"Відправити",
 		"--- _ Machine tasks _ ---",
 		"список завдань",
+		"Дата оновлення",
 		"--- _ Short words _ ---",
 		"Лог"
 	]
