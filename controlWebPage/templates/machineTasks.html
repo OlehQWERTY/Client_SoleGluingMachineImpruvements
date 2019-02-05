@@ -86,6 +86,7 @@
                     {% for z in range(1, current_pos_ammount * 4, 4) %}
                       <!-- pull is equal -->
                       {% if x[z] != task[1] or [xIndex, z] in arrExist %}
+                        <!-- ++ {{task[1]}} : {{task[3]}}  -->
                       <!--  or [xIndex, z] in arrExist  -->
 
                         <!-- {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
@@ -93,6 +94,8 @@
                       {% else %}
                         {{ arrExist.append([xIndex, z]) if arrExist.append([xIndex, z]) != None else '' }}
                         {{ammountForTaskInMachine.append({(xIndex ~ '_' ~ z): task[3]}) if ammountForTaskInMachine.append({(xIndex ~ '_' ~ z): task[3]}) != None else '' }}
+
+                        <!-- {{xIndex, z}}:{{task[3]}} -->
                       {% endif %}
                     {% endfor %}
                   {% endfor %}
@@ -101,7 +104,7 @@
                 <!-- ammountForTaskInMachine: {{ammountForTaskInMachine}} -->
                 <!-- <p>arrExist: {{arrExist}}</p> -->
 
-                <!-- {{ammountForTaskInMachine}} -->
+                {{ammountForTaskInMachine}}
 
                 
                 <!-- show (Bunch_n, Pull_n, LocalNumb_n, Ammount_n) * current_pos_ammount -->
