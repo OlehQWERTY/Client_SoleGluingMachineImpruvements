@@ -79,7 +79,7 @@
 
                 <!-- if exist in general task list -->
                 {% set arrExist = [] %}
-                {% set ammountForTaskInMachine = [] %}
+                {% set ammountForTaskInMachine = {'apple': 'fruit'} %}
                 
                 {% set count = [0] %}
                   {% for task in task_from_machine %}
@@ -92,8 +92,9 @@
                         <!-- {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
                         {% if count[0] >= current_pos_ammount %}koko{% endif %} -->
                       {% else %}
+                        <!-- update({'item': 3}) -->
                         {{ arrExist.append([xIndex, z]) if arrExist.append([xIndex, z]) != None else '' }}
-                        {{ammountForTaskInMachine.append({(xIndex ~ '_' ~ z): task[3]}) if ammountForTaskInMachine.append({(xIndex ~ '_' ~ z): task[3]}) != None else '' }}
+                        {{ammountForTaskInMachine.update({(xIndex ~ '_' ~ z): task[3]}) if ammountForTaskInMachine.update({(xIndex ~ '_' ~ z): task[3]}) != None else '' }}
 
                         <!-- {{xIndex, z}}:{{task[3]}} -->
                       {% endif %}
@@ -104,25 +105,28 @@
                 <!-- ammountForTaskInMachine: {{ammountForTaskInMachine}} -->
                 <!-- <p>arrExist: {{arrExist}}</p> -->
 
-                {{ammountForTaskInMachine}}
+                <!-- {{(xIndex ~ '_' ~ z)}}
+                дщдщдщ
+                {{ammountForTaskInMachine}} -->
 
                 
                 <!-- show (Bunch_n, Pull_n, LocalNumb_n, Ammount_n) * current_pos_ammount -->
                 {% for z in range(1, current_pos_ammount * 4, 4) %}
+                    <!-- Z{{z}}Z
+                    loop: {{loop.index}} -->
                     <!-- show Bunch_n, Pull_n, LocalNumb_n, Ammount_n ... -->
                     {% for k in range(-1, 3) %}
                     <td>
                       {% if [xIndex, z]  not in arrExist %}
-                        <!-- doesn't speccified task ammount is red -->
+                        <!-- doesn't speccified task bunch, pull, localnumber, ammount is red -->
                         <font color="red">{{x[z + k]}}*</font>
                       {% else %}
-                        <!-- {{ammountForTaskInMachine, z, k}} -->
-                        {% if k == 2 and (xIndex ~ '_' ~ z) in ammountForTaskInMachine[0].keys() %} 
+                        {% if k == 2 and (xIndex ~ '_' ~ z) in ammountForTaskInMachine.keys() %} 
                           <!-- ammount -->
-                          {{ ammountForTaskInMachine[0][ (xIndex ~ '_' ~ z) ]*10 }}/{{x[z + k]}}
+                          {{ ammountForTaskInMachine.get(xIndex ~ '_' ~ z) *10 }}/{{x[z + k]}}
                         {% else %}
                           <!-- not ammount field -->
-                          {% if k == 2 %} {{ ammountForTaskInMachine[0].get(xIndex ~ '_' ~ z) }} ** {{xIndex ~ '_' ~ z}} ** {{ammountForTaskInMachine[0]}} {% endif%}
+                          <!-- {% if k == 2 %} {{ ammountForTaskInMachine[0].get(xIndex ~ '_' ~ z) }} ** {{xIndex ~ '_' ~ z}} ** {{ammountForTaskInMachine}} {% endif%} -->
                           {{x[z + k]}}  
                         {% endif %}
                       {% endif%}
