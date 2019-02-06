@@ -86,29 +86,15 @@
                     {% for z in range(1, current_pos_ammount * 4, 4) %}
                       <!-- pull is equal -->
                       {% if x[z] != task[1] or [xIndex, z] in arrExist %}
-                        <!-- ++ {{task[1]}} : {{task[3]}}  -->
-                      <!--  or [xIndex, z] in arrExist  -->
-
-                        <!-- {% if count.append(count.pop() + 1) %}{% endif %} {# increment count by 1 #}
-                        {% if count[0] >= current_pos_ammount %}koko{% endif %} -->
+                      
                       {% else %}
                         <!-- update({'item': 3}) -->
                         {{ arrExist.append([xIndex, z]) if arrExist.append([xIndex, z]) != None else '' }}
                         {{ammountForTaskInMachine.update({(xIndex ~ '_' ~ z): task[3]}) if ammountForTaskInMachine.update({(xIndex ~ '_' ~ z): task[3]}) != None else '' }}
 
-                        <!-- {{xIndex, z}}:{{task[3]}} -->
                       {% endif %}
                     {% endfor %}
                   {% endfor %}
-                
-                <!-- Show us... -->
-                <!-- ammountForTaskInMachine: {{ammountForTaskInMachine}} -->
-                <!-- <p>arrExist: {{arrExist}}</p> -->
-
-                <!-- {{(xIndex ~ '_' ~ z)}}
-                дщдщдщ
-                {{ammountForTaskInMachine}} -->
-
                 
                 <!-- show (Bunch_n, Pull_n, LocalNumb_n, Ammount_n) * current_pos_ammount -->
                 {% for z in range(1, current_pos_ammount * 4, 4) %}
@@ -126,7 +112,6 @@
                           {{ ammountForTaskInMachine.get(xIndex ~ '_' ~ z) *10 }}/{{x[z + k]}}
                         {% else %}
                           <!-- not ammount field -->
-                          <!-- {% if k == 2 %} {{ ammountForTaskInMachine[0].get(xIndex ~ '_' ~ z) }} ** {{xIndex ~ '_' ~ z}} ** {{ammountForTaskInMachine}} {% endif%} -->
                           {{x[z + k]}}  
                         {% endif %}
                       {% endif%}
