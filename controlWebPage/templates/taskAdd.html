@@ -176,6 +176,19 @@
 			</div>
 		  </div>
 		</div>
+<!-- select -->
+<!-- replace with this City, Contry, Plant -->
+		<div class="form-row">
+		  <div class="col-md-4 mb-3">
+		  	<label for="validationTooltip04">{[(City)]}</label>
+	       		<!-- <span class="input-group-addon">Please select</span> -->
+            <select name="comp_select" class="selectpicker form-control">
+              {% for o in data %}
+              <option value="{{ o.name }}">{{ o.name }}</option>
+              {% endfor %}
+            </select>
+		  </div>
+		</div> 
 
 		<!-- btn-outline-info -->
 		<!-- btn-primary -->

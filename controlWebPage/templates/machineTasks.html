@@ -34,6 +34,26 @@
         return false;
       });
     }, 5000);
+
+// check boxes events
+    // for (x=1;x<{{confTable|length }};x++){
+      // $(document).on('click','#customCheck_1:checked',function(e){
+      $(document).on('click','[id^=customCheck_]:checked',function(e){
+        // console.log($('#customCheck_1:checked').val() );
+        // alert( $("#customCheck_2.checked").val() );
+        // alert( e,'#customCheck_' + x + ':checked' );
+
+        console.log(e.target.id  + " was clicked!");
+        // console.log(x.toString());
+
+        // if(e.target && e.target.className == "foo") {
+        //   console.log("foo "+e.target.innerText+" was clicked!");
+        // }
+      });
+
+    //}
+
+
   </script>
 
 {% endblock head %}
@@ -54,6 +74,10 @@
 
 
   <center><legend class="border-bottom mb-4"> {[(Machine)]} #{{number}} {[(task list)]}:</legend></center>
+<!-- apply -->
+  <form method="POST" action="">
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
 
     <div class="col-12" id="l_ogAd_min">
       <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
@@ -63,6 +87,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">{[(Active)]} {{p}}</th>
+              <th scope="col">{[(Del)]} {{p}}</th>
               {% for p in range(1, current_pos_ammount + 1) %}
                 <th scope="col">{[(Bunch)]} {{p}}</th>
                 <th scope="col">{[(Pull)]} {{p}}</th>
@@ -83,12 +108,37 @@
               </div>
             </td> -->
             <!-- <td><input type="checkbox" name="name1" />&nbsp;</td> -->
+
             <td>
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id={{ "customCheck" ~ '_' ~ loop.index }}>
-                <label class="custom-control-label" for={{ "customCheck" ~ '_' ~ loop.index }}>On/Off</label>
+                <center>
+                  <input type="checkbox" class="custom-control-input" id={{ "customCheck" ~ '_' ~ loop.index }}>
+                  <label class="custom-control-label" for={{ "customCheck" ~ '_' ~ loop.index }}> </label>
+                  <!-- <label class="custom-control-label" for={{ "customCheck" ~ '_' ~ loop.index }}>On/Off</label> -->
+                </center>
               </div>
             </td>
+            
+            <td>
+              <div class="custom-control custom-checkbox">
+                <center>
+                  <input type="checkbox" class="custom-control-input" id={{ "delCheck" ~ '_' ~ loop.index }}>
+                  <label class="custom-control-label" for={{ "delCheck" ~ '_' ~ loop.index }}> </label>
+                </center>
+              </div>
+            </td>
+
+            <!-- set to true -->
+            <!-- customCheck_2.checked = true -->
+            <!-- get state -->
+            <!-- customCheck_2.checked -->
+
+
+            <!-- event on this -->
+            <!-- $(document).on('click','#customCheck_1:checked',function(e){
+                alert($('#customCheck_1:checked').val() );
+            }); -->
+
               {% set xIndex = loop.index %}
 
                 <!-- if exist in general task list -->

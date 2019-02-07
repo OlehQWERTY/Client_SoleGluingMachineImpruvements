@@ -202,3 +202,7 @@ class MachineForm(FlaskForm):
         localNumb = localNumb.data
         if not localNumb.isdigit():  # isdigit only detects positive integers
             raise ValidationError('Local number should be a positive digit')
+
+
+class MachineTasksForm(FlaskForm):
+  submit = SubmitField('Apply')

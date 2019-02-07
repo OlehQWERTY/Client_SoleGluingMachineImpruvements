@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, abort, Response
 from flask import make_response, request
 from flask import jsonify  # for ajax
 from controlWebPage import app, db, bcrypt, mSql, mydb, mycursor
-from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm, MachineForm
+from controlWebPage.forms import RegistrationForm, LoginForm, TaskAddForm, MachineForm, MachineTasksForm
 from controlWebPage.modules import User, Log
 from flask_login import login_user, current_user, logout_user, login_required
 # --------------------------
@@ -191,7 +191,7 @@ def taskP():
 
 	return render_template('task.html', flgLoading=flgLoading, tasks_list=taskTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
 
-@app.route('/machine/<number>/tasks')
+@app.route('/machine/<number>/tasks', methods=['GET', 'POST'])
 @login_required
 def machineTasks(number=None):
 
@@ -213,7 +213,7 @@ def machineTasks(number=None):
 			Bunch_10, Pull_10, LocalNumb_10, Ammount_10, Bunch_11, Pull_11, LocalNumb_11,  Ammount_11, Bunch_12, Pull_12, LocalNumb_12,  Ammount_12, \
 			ReloadDate  FROM Config Where MachineID=" + str(number) + " ORDER BY RecType, ReloadDate \
 			DESC LIMIT 10")
-		task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*) FROM glueMachine Where UnitID=" + \
+		task_machine_1 = customRecSole_1("SELECT Articul, Pull, LocalNumber, COUNT(*), RecID FROM glueMachine Where UnitID=" + \
 			str(number) + " GROUP BY Articul")
 
 		for a in task_machine_1:
@@ -224,8 +224,14 @@ def machineTasks(number=None):
 			print("task_machine_1")
 		print(task_machine_1)
 
+		form = MachineTasksForm(request.form, csrf_enabled=False)  # ????
+	
+		if form.is_submitted():
+			print("applied...")
+			#  put del tasks here
+
 	return render_template('machineTasks.html', flgLoading=flgLoading, number=number, current_pos_ammount=current_pos_ammount, \
-	confTable=confTable, task_from_machine=task_machine_1 )  #  True if dict == dict1 else False
+	confTable=confTable, task_from_machine=task_machine_1, form=form )  #  True if dict == dict1 else False
 
 
 @app.route('/task/add', methods=['GET', 'POST'])
@@ -244,7 +250,10 @@ def taskAddP():
 	# if form.validate_on_submit():  # doesn't work **** ???
 
 		# print(form.dateRequired.data)
-		
+
+		# select
+		select = request.form.get('comp_select')
+		print(select)
 		query = {
 			'Bunch': form.bunch.data,
 			'Pull': form.pull.data,
@@ -268,7 +277,7 @@ def taskAddP():
 		insertSole_1(**query)
 		# flgLoading = False
 
-	return render_template('taskAdd.html', flgLoading=flgLoading, form=form)  # , tasks=tasks
+	return render_template('taskAdd.html', flgLoading=flgLoading, form=form, data=[{'name':'Zhytomyr'}, {'name':'Kyiv'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}, {'name':'Arcobaleno'}])  # , tasks=tasks
 
 
 @app.route("/register", methods=['GET', 'POST'])
