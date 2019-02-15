@@ -8,14 +8,19 @@ from flask_login import LoginManager
 import mysql.connector as mSql  # my sql official py connect
 
 
-mydb = mSql.connect(
-  host="172.16.2.142",
-  user="monitor",
-  passwd="password",
-  database="sole_1"
-)
+try:
+	mydb = mSql.connect(
+	  host="172.16.2.142",
+	  user="monitor",
+	  passwd="password",
+	  database="sole_1"
+	)
 
-mycursor = mydb.cursor(buffered=True)
+	mycursor = mydb.cursor(buffered=True)
+
+except mSql.Error as err:
+	# make something further
+	print("Failed connecting to database: {}".format(err))
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
